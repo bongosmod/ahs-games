@@ -1,0 +1,399 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #111111;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    padding: 25px 20px 15px;
+}
+
+
+.top-bar {
+    max-width: 700px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    align-items: center;
+}
+
+
+    .top-bar h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+
+.back-button,
+#help-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #cccccc;
+    background: white;
+    color: #111;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+    .back-button:hover,
+    #help-button:hover {
+        background: #eeeeee;
+    }
+
+
+header p {
+    margin: 8px 0 0;
+    color: #555;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    width: min(700px, 92%);
+    margin: auto;
+}
+
+
+/* =========================
+   MISTAKES
+========================= */
+
+#mistakes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 18px 0;
+    font-size: 14px;
+}
+
+
+#mistake-dots {
+    display: flex;
+    gap: 5px;
+}
+
+
+.mistake-dot {
+    width: 9px;
+    height: 9px;
+    background: #111;
+    border-radius: 50%;
+}
+
+
+    .mistake-dot.used {
+        background: #dddddd;
+    }
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+#message {
+    height: 32px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+    #message.show {
+        animation: messagePop 0.2s ease;
+    }
+
+
+@keyframes messagePop {
+
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   SOLVED GROUPS
+========================= */
+
+#solved-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+
+.solved-group {
+    padding: 18px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    animation: groupAppear 0.25s ease;
+}
+
+
+@keyframes groupAppear {
+
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.solved-group h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+
+.solved-group p {
+    margin: 0;
+    font-size: 13px;
+}
+
+
+.group-fruit {
+    background: #f9df6d;
+}
+
+
+.group-colors {
+    background: #a0c35a;
+}
+
+
+.group-animals {
+    background: #b0c4ef;
+}
+
+
+.group-numbers {
+    background: #ba81c5;
+}
+
+
+/* =========================
+   GAME BOARD
+========================= */
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+
+.word {
+    aspect-ratio: 1.35;
+    border: none;
+    border-radius: 8px;
+    background: #eeeeee;
+    color: #111111;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.12s;
+}
+
+
+    .word:hover {
+        background: #dddddd;
+    }
+
+
+    .word:active {
+        transform: scale(0.96);
+    }
+
+
+    .word.selected {
+        background: #111111;
+        color: white;
+    }
+
+
+    .word.wrong {
+        animation: shake 0.3s;
+    }
+
+
+@keyframes shake {
+
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+
+    #buttons button {
+        padding: 12px 24px;
+        border: 2px solid #111;
+        border-radius: 25px;
+        background: white;
+        color: #111;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+
+        #buttons button:hover {
+            background: #111;
+            color: white;
+        }
+
+
+        #buttons button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+
+/* =========================
+   HELP
+========================= */
+
+#help-overlay,
+#game-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+    #help-overlay.show,
+    #game-overlay.show {
+        display: flex;
+    }
+
+
+#help-box,
+#game-box {
+    position: relative;
+    width: min(420px, 100%);
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+    #help-box h2,
+    #game-box h2 {
+        margin-top: 0;
+    }
+
+
+    #help-box p,
+    #game-box p {
+        color: #555;
+        line-height: 1.5;
+    }
+
+
+#close-help {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   GAME OVER BUTTON
+========================= */
+
+#play-again {
+    padding: 12px 24px;
+    border: 2px solid #111;
+    border-radius: 25px;
+    background: #111;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+    #play-again:hover {
+        background: #333;
+    }
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    .top-bar h1 {
+        font-size: 27px;
+    }
+
+
+    .word {
+        font-size: 11px;
+    }
+
+
+    #buttons button {
+        padding: 11px 18px;
+    }
+}

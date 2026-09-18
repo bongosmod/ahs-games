@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AHS Games - Connections</title>
+
+    <link rel="stylesheet"
+          href="connections.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="top-bar">
+
+            <a href="../index.html" class="back-button">
+                ←
+            </a>
+
+            <h1>Connections</h1>
+
+            <button id="help-button">
+                ?
+            </button>
+
+        </div>
+
+        <p>
+            Create four groups of four!
+        </p>
+
+    </header>
+
+
+    <main>
+
+        <!-- MISTAKES -->
+
+        <div id="mistakes">
+
+            <span>Mistakes remaining:</span>
+
+            <div id="mistake-dots">
+
+                <span class="mistake-dot"></span>
+                <span class="mistake-dot"></span>
+                <span class="mistake-dot"></span>
+                <span class="mistake-dot"></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div id="message"></div>
+
+
+        <!-- SOLVED GROUPS -->
+
+        <div id="solved-groups"></div>
+
+
+        <!-- GAME BOARD -->
+
+        <div id="game-board"></div>
+
+
+        <!-- BUTTONS -->
+
+        <div id="buttons">
+
+            <button id="shuffle">
+                SHUFFLE
+            </button>
+
+            <button id="submit">
+                SUBMIT
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- HELP POPUP -->
+
+    <div id="help-overlay">
+
+        <div id="help-box">
+
+            <button id="close-help">
+                ×
+            </button>
+
+            <h2>How to Play</h2>
+
+            <p>
+                Find four groups of four words that share
+                something in common.
+            </p>
+
+            <p>
+                Select four words and press
+                <strong>SUBMIT</strong>.
+            </p>
+
+            <p>
+                You have four mistakes available.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- GAME OVER -->
+
+    <div id="game-overlay">
+
+        <div id="game-box">
+
+            <h2 id="game-title">
+                You Won!
+            </h2>
+
+            <p id="game-description"></p>
+
+            <button id="play-again">
+                ADMIRE PUZZLE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="connections.js"></script>
+
+</body>
+
+</html>

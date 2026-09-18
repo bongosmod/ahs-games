@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-17",
+  "groups": [
+    {
+      "name": "FRUITS",
+      "words": [ "APPLE", "BANANA", "ORANGE", "PEAR" ],
+      "className": "group-fruit"
+    },
+    {
+      "name": "COLORS",
+      "words": [ "RED", "BLUE", "GREEN", "YELLOW" ],
+      "className": "group-colors"
+    },
+    {
+      "name": "ANIMALS",
+      "words": [ "DOG", "CAT", "HORSE", "COW" ],
+      "className": "group-animals"
+    },
+    {
+      "name": "NUMBERS",
+      "words": [ "ONE", "TWO", "THREE", "FOUR" ],
+      "className": "group-numbers"
+    }
+  ]
+}
