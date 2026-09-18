@@ -1,25 +1,45 @@
 {
-  "date": "2026-09-17",
-  "groups": [
-    {
-      "name": "FRUITS",
-      "words": [ "APPLE", "BANANA", "ORANGE", "PEAR" ],
-      "className": "group-fruit"
-    },
-    {
-      "name": "COLORS",
-      "words": [ "RED", "BLUE", "GREEN", "YELLOW" ],
-      "className": "group-colors"
-    },
-    {
-      "name": "ANIMALS",
-      "words": [ "DOG", "CAT", "HORSE", "COW" ],
-      "className": "group-animals"
-    },
-    {
-      "name": "NUMBERS",
-      "words": [ "ONE", "TWO", "THREE", "FOUR" ],
-      "className": "group-numbers"
-    }
-  ]
+    "date": "2026-09-18",
+    "groups": [
+        {
+            "name": "Can Precede BALL",
+            "words": [
+                "BASKET",
+                "CANNON",
+                "CRYSTAL",
+                "WRECKING"
+            ],
+            "className": "group-yellow"
+        },
+        {
+            "name": "Kinds of COAT",
+            "words": [
+                "RAIN",
+                "LAB",
+                "TRENCH",
+                "PEA"
+            ],
+            "className": "group-green"
+        },
+        {
+            "name": "Can Precede BOARD",
+            "words": [
+                "KEY",
+                "DASH",
+                "SURF",
+                "SKATE"
+            ],
+            "className": "group-blue"
+        },
+        {
+            "name": "Can Follow UNDER",
+            "words": [
+                "COVER",
+                "GROUND",
+                "LINE",
+                "SCORE"
+            ],
+            "className": "group-purple"
+        }
+    ]
 }
