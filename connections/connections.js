@@ -18,19 +18,27 @@ let gameFinished = false;
 let groups = [];
 
 
-/* LOAD PUZZLE */
+/* =========================
+   LOAD PUZZLE
+========================= */
 
 async function loadPuzzle() {
 
     try {
 
-        const response = await fetch("../puzzles/connections.json");
+        const response =
+            await fetch("../puzzles/connections.json");
 
         if (!response.ok) {
-            throw new Error("Could not load puzzle.");
+
+            throw new Error(
+                "Could not load puzzle."
+            );
+
         }
 
-        const puzzle = await response.json();
+        const puzzle =
+            await response.json();
 
         groups = puzzle.groups;
 
@@ -40,30 +48,40 @@ async function loadPuzzle() {
 
         console.error(error);
 
-        showMessage("Could not load today's puzzle.");
+        showMessage(
+            "Could not load today's puzzle."
+        );
 
     }
 
 }
 
 
-/* SETUP GAME */
+/* =========================
+   SETUP GAME
+========================= */
 
 function setupGame() {
 
     gameBoard.innerHTML = "";
+
     solvedGroupsContainer.innerHTML = "";
 
     solvedGroups = [];
+
     mistakes = 0;
+
     gameFinished = false;
 
     submitButton.disabled = false;
+
     shuffleButton.disabled = false;
 
     updateMistakes();
 
+
     const allWords = [];
+
 
     groups.forEach(function (group) {
 
@@ -75,34 +93,59 @@ function setupGame() {
 
     });
 
+
     shuffleArray(allWords);
+
 
     allWords.forEach(function (wordText) {
 
-        const word = document.createElement("button");
+        const word =
+            document.createElement("button");
 
         word.className = "word";
+
         word.textContent = wordText;
 
-        word.addEventListener("click", function () {
 
-            if (word.disabled || gameFinished) {
-                return;
+        word.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    word.disabled ||
+                    gameFinished
+                ) {
+
+                    return;
+
+                }
+
+
+                const selected =
+                    document.querySelectorAll(
+                        ".word.selected"
+                    );
+
+
+                if (
+                    !word.classList.contains(
+                        "selected"
+                    ) &&
+                    selected.length >= 4
+                ) {
+
+                    return;
+
+                }
+
+
+                word.classList.toggle(
+                    "selected"
+                );
+
             }
+        );
 
-            const selected =
-                document.querySelectorAll(".word.selected");
-
-            if (
-                !word.classList.contains("selected") &&
-                selected.length >= 4
-            ) {
-                return;
-            }
-
-            word.classList.toggle("selected");
-
-        });
 
         gameBoard.appendChild(word);
 
@@ -111,14 +154,23 @@ function setupGame() {
 }
 
 
-/* SHUFFLE */
+/* =========================
+   SHUFFLE
+========================= */
 
 function shuffleArray(array) {
 
-    for (let i = array.length - 1; i > 0; i--) {
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
 
         const randomIndex =
-            Math.floor(Math.random() * (i + 1));
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
 
         const temp = array[i];
 
@@ -131,85 +183,118 @@ function shuffleArray(array) {
 }
 
 
-shuffleButton.addEventListener("click", function () {
+shuffleButton.addEventListener(
+    "click",
+    function () {
 
-    if (gameFinished) {
-        return;
-    }
+        if (gameFinished) {
 
-    const words = [];
+            return;
 
-    document.querySelectorAll(".word").forEach(function (word) {
-
-        if (!word.disabled) {
-            words.push(word);
         }
 
-    });
 
-    shuffleArray(words);
-
-    words.forEach(function (word) {
-
-        gameBoard.appendChild(word);
-
-    });
-
-});
+        const words = [];
 
 
-/* GET SELECTED WORDS */
+        document
+            .querySelectorAll(".word")
+            .forEach(function (word) {
+
+                if (!word.disabled) {
+
+                    words.push(word);
+
+                }
+
+            });
+
+
+        shuffleArray(words);
+
+
+        words.forEach(function (word) {
+
+            gameBoard.appendChild(word);
+
+        });
+
+    }
+);
+
+
+/* =========================
+   GET SELECTED WORDS
+========================= */
 
 function getSelectedWords() {
 
     const selected = [];
 
-    document.querySelectorAll(".word.selected").forEach(function (word) {
 
-        selected.push(word.textContent);
+    document
+        .querySelectorAll(".word.selected")
+        .forEach(function (word) {
 
-    });
+            selected.push(
+                word.textContent
+            );
+
+        });
+
 
     return selected;
 
 }
 
 
-/* CLEAR SELECTION */
+/* =========================
+   CLEAR SELECTION
+========================= */
 
 function clearSelection() {
 
-    document.querySelectorAll(".word").forEach(function (word) {
+    document
+        .querySelectorAll(".word")
+        .forEach(function (word) {
 
-        word.classList.remove("selected");
+            word.classList.remove(
+                "selected"
+            );
 
-    });
+        });
 
 }
 
 
-/* MISTAKES */
+/* =========================
+   MISTAKES
+========================= */
 
 function updateMistakes() {
 
-    mistakeDots.forEach(function (dot, index) {
+    mistakeDots.forEach(
+        function (dot, index) {
 
-        if (index < mistakes) {
+            if (index < mistakes) {
 
-            dot.classList.add("used");
+                dot.classList.add("used");
 
-        } else {
+            } else {
 
-            dot.classList.remove("used");
+                dot.classList.remove("used");
+
+            }
 
         }
-
-    });
+    );
 
 }
 
 
-/* MESSAGE */
+/* =========================
+   MESSAGE
+========================= */
 
 function showMessage(text) {
 
@@ -224,69 +309,130 @@ function showMessage(text) {
 }
 
 
-/* SUBMIT */
+/* =========================
+   SUBMIT
+========================= */
 
-submitButton.addEventListener("click", function () {
+submitButton.addEventListener(
+    "click",
+    function () {
 
-    if (gameFinished) {
-        return;
-    }
+        if (gameFinished) {
 
-    const selectedWords = getSelectedWords();
+            return;
 
-    if (selectedWords.length !== 4) {
-
-        showMessage("Select exactly 4 words.");
-
-        return;
-
-    }
+        }
 
 
-    /* CHECK FOR CORRECT GROUP */
-
-    const matchingGroup = groups.find(function (group) {
-
-        return group.words.every(function (word) {
-
-            return selectedWords.includes(word);
-
-        });
-
-    });
+        const selectedWords =
+            getSelectedWords();
 
 
-    if (
-        matchingGroup &&
-        !solvedGroups.includes(matchingGroup)
-    ) {
+        if (selectedWords.length !== 4) {
 
-        solveGroup(matchingGroup);
+            showMessage(
+                "Select exactly 4 words."
+            );
 
-        return;
+            return;
 
-    }
-
-
-    /* CHECK FOR ONE AWAY */
-
-    const oneAway = groups.find(function (group) {
-
-        const matches = selectedWords.filter(function (word) {
-
-            return group.words.includes(word);
-
-        });
-
-        return (
-            matches.length === 3 &&
-            !solvedGroups.includes(group)
-        );
-
-    });
+        }
 
 
-    if (oneAway) {
+        /* =========================
+           CHECK CORRECT GROUP
+        ========================= */
+
+        const matchingGroup =
+            groups.find(function (group) {
+
+                return group.words.every(
+                    function (word) {
+
+                        return selectedWords.includes(
+                            word
+                        );
+
+                    }
+                );
+
+            });
+
+
+        if (
+            matchingGroup &&
+            !solvedGroups.includes(
+                matchingGroup
+            )
+        ) {
+
+            solveGroup(
+                matchingGroup
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           CHECK ONE AWAY
+        ========================= */
+
+        const oneAway =
+            groups.find(function (group) {
+
+                const matches =
+                    selectedWords.filter(
+                        function (word) {
+
+                            return group.words.includes(
+                                word
+                            );
+
+                        }
+                    );
+
+
+                return (
+                    matches.length === 3 &&
+                    !solvedGroups.includes(
+                        group
+                    )
+                );
+
+            });
+
+
+        if (oneAway) {
+
+            makeWrongAnimation();
+
+            mistakes++;
+
+            updateMistakes();
+
+            showMessage(
+                "One away!"
+            );
+
+            clearSelection();
+
+
+            if (mistakes >= 4) {
+
+                endGame(false);
+
+            }
+
+            return;
+
+        }
+
+
+        /* =========================
+           WRONG
+        ========================= */
 
         makeWrongAnimation();
 
@@ -294,9 +440,12 @@ submitButton.addEventListener("click", function () {
 
         updateMistakes();
 
-        showMessage("One away!");
+        showMessage(
+            "Not quite!"
+        );
 
         clearSelection();
+
 
         if (mistakes >= 4) {
 
@@ -304,77 +453,94 @@ submitButton.addEventListener("click", function () {
 
         }
 
-        return;
-
     }
+);
 
 
-    /* WRONG */
-
-    makeWrongAnimation();
-
-    mistakes++;
-
-    updateMistakes();
-
-    showMessage("Not quite!");
-
-    clearSelection();
-
-    if (mistakes >= 4) {
-
-        endGame(false);
-
-    }
-
-});
-
-
-/* SOLVE GROUP */
+/* =========================
+   SOLVE GROUP
+========================= */
 
 function solveGroup(group) {
 
     solvedGroups.push(group);
 
-    const groupCard = document.createElement("div");
+
+    const groupCard =
+        document.createElement("div");
+
+
+    /*
+        IMPORTANT:
+
+        Use the exact className
+        from the AI JSON.
+    */
 
     groupCard.className =
-        "solved-group " + group.className;
+        "solved-group " +
+        group.className;
 
-    const title = document.createElement("h3");
 
-    title.textContent = group.name;
+    const title =
+        document.createElement("h3");
 
-    const words = document.createElement("p");
 
-    words.textContent = group.words.join(" • ");
+    title.textContent =
+        group.name;
+
+
+    const words =
+        document.createElement("p");
+
+
+    words.textContent =
+        group.words.join(" • ");
+
 
     groupCard.appendChild(title);
 
     groupCard.appendChild(words);
 
-    solvedGroupsContainer.appendChild(groupCard);
+
+    solvedGroupsContainer.appendChild(
+        groupCard
+    );
 
 
-    document.querySelectorAll(".word").forEach(function (word) {
+    document
+        .querySelectorAll(".word")
+        .forEach(function (word) {
 
-        if (group.words.includes(word.textContent)) {
+            if (
+                group.words.includes(
+                    word.textContent
+                )
+            ) {
 
-            word.disabled = true;
+                word.disabled = true;
 
-            word.classList.remove("selected");
+                word.classList.remove(
+                    "selected"
+                );
 
-            word.style.display = "none";
+                word.style.display =
+                    "none";
 
-        }
+            }
 
-    });
-
-
-    showMessage("Nice! You found a group!");
+        });
 
 
-    if (solvedGroups.length === groups.length) {
+    showMessage(
+        "Nice! You found a group!"
+    );
+
+
+    if (
+        solvedGroups.length ===
+        groups.length
+    ) {
 
         endGame(true);
 
@@ -383,26 +549,40 @@ function solveGroup(group) {
 }
 
 
-/* WRONG ANIMATION */
+/* =========================
+   WRONG ANIMATION
+========================= */
 
 function makeWrongAnimation() {
 
-    document.querySelectorAll(".word.selected").forEach(function (word) {
+    document
+        .querySelectorAll(".word.selected")
+        .forEach(function (word) {
 
-        word.classList.add("wrong");
+            word.classList.add(
+                "wrong"
+            );
 
-        setTimeout(function () {
 
-            word.classList.remove("wrong");
+            setTimeout(
+                function () {
 
-        }, 350);
+                    word.classList.remove(
+                        "wrong"
+                    );
 
-    });
+                },
+                350
+            );
+
+        });
 
 }
 
 
-/* END GAME */
+/* =========================
+   END GAME
+========================= */
 
 function endGame(won) {
 
@@ -412,67 +592,104 @@ function endGame(won) {
 
     shuffleButton.disabled = true;
 
-    setTimeout(function () {
 
-        if (won) {
+    setTimeout(
+        function () {
 
-            gameTitle.textContent = "You Won! 🎉";
+            if (won) {
 
-            gameDescription.textContent =
-                "You found all four groups!";
+                gameTitle.textContent =
+                    "You Won! 🎉";
 
-        } else {
+                gameDescription.textContent =
+                    "You found all four groups!";
 
-            gameTitle.textContent = "Game Over";
+            } else {
 
-            gameDescription.textContent =
-                "Better luck tomorrow!";
+                gameTitle.textContent =
+                    "Game Over";
 
-        }
+                gameDescription.textContent =
+                    "Better luck tomorrow!";
 
-        gameOverlay.classList.add("show");
+            }
 
-    }, 500);
+
+            gameOverlay.classList.add(
+                "show"
+            );
+
+        },
+        500
+    );
 
 }
 
 
-/* ADMIRE PUZZLE */
+/* =========================
+   ADMIRE PUZZLE
+========================= */
 
-playAgain.addEventListener("click", function () {
+playAgain.addEventListener(
+    "click",
+    function () {
 
-    gameOverlay.classList.remove("show");
-
-});
-
-
-/* HELP */
-
-helpButton.addEventListener("click", function () {
-
-    helpOverlay.classList.add("show");
-
-});
-
-
-closeHelp.addEventListener("click", function () {
-
-    helpOverlay.classList.remove("show");
-
-});
-
-
-helpOverlay.addEventListener("click", function (event) {
-
-    if (event.target === helpOverlay) {
-
-        helpOverlay.classList.remove("show");
+        gameOverlay.classList.remove(
+            "show"
+        );
 
     }
+);
 
-});
+
+/* =========================
+   HELP
+========================= */
+
+helpButton.addEventListener(
+    "click",
+    function () {
+
+        helpOverlay.classList.add(
+            "show"
+        );
+
+    }
+);
 
 
-/* START */
+closeHelp.addEventListener(
+    "click",
+    function () {
+
+        helpOverlay.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+helpOverlay.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target === helpOverlay
+        ) {
+
+            helpOverlay.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   START
+========================= */
 
 loadPuzzle();

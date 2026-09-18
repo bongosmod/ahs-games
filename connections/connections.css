@@ -2,7 +2,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     margin: 0;
     background: #ffffff;
@@ -11,15 +10,11 @@ body {
     text-align: center;
 }
 
-
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header {
     padding: 25px 20px 15px;
 }
-
 
 .top-bar {
     max-width: 700px;
@@ -29,12 +24,10 @@ header {
     align-items: center;
 }
 
-
     .top-bar h1 {
         margin: 0;
         font-size: 32px;
     }
-
 
 .back-button,
 #help-button {
@@ -52,32 +45,24 @@ header {
     align-items: center;
 }
 
-
     .back-button:hover,
     #help-button:hover {
         background: #eeeeee;
     }
-
 
 header p {
     margin: 8px 0 0;
     color: #555;
 }
 
-
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 main {
     width: min(700px, 92%);
     margin: auto;
 }
 
-
-/* =========================
-   MISTAKES
-========================= */
+/* MISTAKES */
 
 #mistakes {
     display: flex;
@@ -88,12 +73,10 @@ main {
     font-size: 14px;
 }
 
-
 #mistake-dots {
     display: flex;
     gap: 5px;
 }
-
 
 .mistake-dot {
     width: 9px;
@@ -102,15 +85,11 @@ main {
     border-radius: 50%;
 }
 
-
     .mistake-dot.used {
         background: #dddddd;
     }
 
-
-/* =========================
-   MESSAGE
-========================= */
+/* MESSAGE */
 
 #message {
     height: 32px;
@@ -118,14 +97,11 @@ main {
     font-size: 15px;
 }
 
-
     #message.show {
         animation: messagePop 0.2s ease;
     }
 
-
 @keyframes messagePop {
-
     0% {
         transform: scale(0.8);
         opacity: 0;
@@ -137,10 +113,7 @@ main {
     }
 }
 
-
-/* =========================
-   SOLVED GROUPS
-========================= */
+/* SOLVED GROUPS */
 
 #solved-groups {
     display: flex;
@@ -149,7 +122,6 @@ main {
     margin-bottom: 8px;
 }
 
-
 .solved-group {
     padding: 18px 10px;
     border-radius: 8px;
@@ -157,9 +129,7 @@ main {
     animation: groupAppear 0.25s ease;
 }
 
-
 @keyframes groupAppear {
-
     from {
         transform: scale(0.9);
         opacity: 0;
@@ -171,49 +141,59 @@ main {
     }
 }
 
-
 .solved-group h3 {
     margin: 0 0 6px;
     font-size: 16px;
 }
-
 
 .solved-group p {
     margin: 0;
     font-size: 13px;
 }
 
+/* CONNECTIONS COLORS */
 
-.group-fruit {
-    background: #f9df6d;
+.group-yellow {
+    background: #f9df6d !important;
 }
 
-
-.group-colors {
-    background: #a0c35a;
+.group-green {
+    background: #a0c35a !important;
 }
 
-
-.group-animals {
-    background: #b0c4ef;
+.group-blue {
+    background: #b0c4ef !important;
 }
 
-
-.group-numbers {
-    background: #ba81c5;
+.group-purple {
+    background: #ba81c5 !important;
 }
 
+/* FALLBACK COLORS */
 
-/* =========================
-   GAME BOARD
-========================= */
+.group-0 {
+    background: #f9df6d !important;
+}
+
+.group-1 {
+    background: #a0c35a !important;
+}
+
+.group-2 {
+    background: #b0c4ef !important;
+}
+
+.group-3 {
+    background: #ba81c5 !important;
+}
+
+/* GAME BOARD */
 
 #game-board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
 }
-
 
 .word {
     aspect-ratio: 1.35;
@@ -227,30 +207,24 @@ main {
     transition: transform 0.12s, background 0.12s;
 }
 
-
     .word:hover {
         background: #dddddd;
     }
 
-
     .word:active {
         transform: scale(0.96);
     }
-
 
     .word.selected {
         background: #111111;
         color: white;
     }
 
-
     .word.wrong {
         animation: shake 0.3s;
     }
 
-
 @keyframes shake {
-
     0%, 100% {
         transform: translateX(0);
     }
@@ -264,10 +238,7 @@ main {
     }
 }
 
-
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
 
 #buttons {
     display: flex;
@@ -275,7 +246,6 @@ main {
     gap: 10px;
     margin-top: 25px;
 }
-
 
     #buttons button {
         padding: 12px 24px;
@@ -287,22 +257,17 @@ main {
         cursor: pointer;
     }
 
-
         #buttons button:hover {
             background: #111;
             color: white;
         }
-
 
         #buttons button:disabled {
             opacity: 0.4;
             cursor: not-allowed;
         }
 
-
-/* =========================
-   HELP
-========================= */
+/* HELP */
 
 #help-overlay,
 #game-overlay {
@@ -315,12 +280,10 @@ main {
     padding: 20px;
 }
 
-
     #help-overlay.show,
     #game-overlay.show {
         display: flex;
     }
-
 
 #help-box,
 #game-box {
@@ -332,19 +295,16 @@ main {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
 }
 
-
     #help-box h2,
     #game-box h2 {
         margin-top: 0;
     }
-
 
     #help-box p,
     #game-box p {
         color: #555;
         line-height: 1.5;
     }
-
 
 #close-help {
     position: absolute;
@@ -356,10 +316,7 @@ main {
     cursor: pointer;
 }
 
-
-/* =========================
-   GAME OVER BUTTON
-========================= */
+/* GAME OVER */
 
 #play-again {
     padding: 12px 24px;
@@ -371,15 +328,11 @@ main {
     cursor: pointer;
 }
 
-
     #play-again:hover {
         background: #333;
     }
 
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 500px) {
 
@@ -387,11 +340,9 @@ main {
         font-size: 27px;
     }
 
-
     .word {
         font-size: 11px;
     }
-
 
     #buttons button {
         padding: 11px 18px;
