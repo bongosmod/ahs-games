@@ -1,140 +1,73 @@
 ﻿const gameBoard = document.getElementById("game-board");
-
 const submitButton = document.getElementById("submit");
-
 const shuffleButton = document.getElementById("shuffle");
-
-const mistakeDots =
-    document.querySelectorAll(".mistake-dot");
-
-const solvedGroupsContainer =
-    document.getElementById("solved-groups");
-
-const message =
-    document.getElementById("message");
-
-const helpButton =
-    document.getElementById("help-button");
-
-const helpOverlay =
-    document.getElementById("help-overlay");
-
-const closeHelp =
-    document.getElementById("close-help");
-
-const gameOverlay =
-    document.getElementById("game-overlay");
-
-const gameTitle =
-    document.getElementById("game-title");
-
-const gameDescription =
-    document.getElementById("game-description");
-
-const playAgain =
-    document.getElementById("play-again");
-
+const mistakeDots = document.querySelectorAll(".mistake-dot");
+const solvedGroupsContainer = document.getElementById("solved-groups");
+const message = document.getElementById("message");
+const helpButton = document.getElementById("help-button");
+const helpOverlay = document.getElementById("help-overlay");
+const closeHelp = document.getElementById("close-help");
+const gameOverlay = document.getElementById("game-overlay");
+const gameTitle = document.getElementById("game-title");
+const gameDescription = document.getElementById("game-description");
+const playAgain = document.getElementById("play-again");
 
 let mistakes = 0;
-
 let solvedGroups = [];
-
 let gameFinished = false;
+let groups = [];
 
 
-/* =========================
-   PUZZLE
-========================= */
+/* LOAD PUZZLE */
 
-const groups = [
+async function loadPuzzle() {
 
-    {
-        name: "FRUITS",
+    try {
 
-        words: [
-            "APPLE",
-            "BANANA",
-            "ORANGE",
-            "PEAR"
-        ],
+        const response = await fetch("../puzzles/connections.json");
 
-        className: "group-fruit"
-    },
+        if (!response.ok) {
+            throw new Error("Could not load puzzle.");
+        }
 
+        const puzzle = await response.json();
 
-    {
-        name: "COLORS",
+        groups = puzzle.groups;
 
-        words: [
-            "RED",
-            "BLUE",
-            "GREEN",
-            "YELLOW"
-        ],
+        setupGame();
 
-        className: "group-colors"
-    },
+    } catch (error) {
 
+        console.error(error);
 
-    {
-        name: "ANIMALS",
+        showMessage("Could not load today's puzzle.");
 
-        words: [
-            "DOG",
-            "CAT",
-            "HORSE",
-            "COW"
-        ],
-
-        className: "group-animals"
-    },
-
-
-    {
-        name: "NUMBERS",
-
-        words: [
-            "ONE",
-            "TWO",
-            "THREE",
-            "FOUR"
-        ],
-
-        className: "group-numbers"
     }
 
-];
+}
 
 
-/* =========================
-   SETUP
-========================= */
+/* SETUP GAME */
 
 function setupGame() {
 
     gameBoard.innerHTML = "";
-
     solvedGroupsContainer.innerHTML = "";
 
     solvedGroups = [];
-
     mistakes = 0;
-
     gameFinished = false;
 
     submitButton.disabled = false;
-
     shuffleButton.disabled = false;
 
     updateMistakes();
 
-
     const allWords = [];
 
+    groups.forEach(function (group) {
 
-    groups.forEach(group => {
-
-        group.words.forEach(word => {
+        group.words.forEach(function (word) {
 
             allWords.push(word);
 
@@ -142,54 +75,34 @@ function setupGame() {
 
     });
 
-
     shuffleArray(allWords);
 
+    allWords.forEach(function (wordText) {
 
-    allWords.forEach(wordText => {
-
-        const word =
-            document.createElement("button");
+        const word = document.createElement("button");
 
         word.className = "word";
-
         word.textContent = wordText;
 
+        word.addEventListener("click", function () {
 
-        word.addEventListener("click", () => {
-
-            if (
-                word.disabled ||
-                gameFinished
-            ) {
-
+            if (word.disabled || gameFinished) {
                 return;
-
             }
 
-
             const selected =
-                document.querySelectorAll(
-                    ".word.selected"
-                );
-
-
-            /* Don't allow more than 4 */
+                document.querySelectorAll(".word.selected");
 
             if (
                 !word.classList.contains("selected") &&
                 selected.length >= 4
             ) {
-
                 return;
-
             }
-
 
             word.classList.toggle("selected");
 
         });
-
 
         gameBoard.appendChild(word);
 
@@ -198,144 +111,105 @@ function setupGame() {
 }
 
 
-/* =========================
-   SHUFFLE
-========================= */
+/* SHUFFLE */
 
 function shuffleArray(array) {
 
-    for (
-        let i = array.length - 1;
-        i > 0;
-        i--
-    ) {
+    for (let i = array.length - 1; i > 0; i--) {
 
         const randomIndex =
-            Math.floor(
-                Math.random() * (i + 1)
-            );
+            Math.floor(Math.random() * (i + 1));
 
+        const temp = array[i];
 
-        [
-            array[i],
-            array[randomIndex]
-        ] =
-            [
-                array[randomIndex],
-                array[i]
-            ];
+        array[i] = array[randomIndex];
+
+        array[randomIndex] = temp;
 
     }
 
 }
 
 
-shuffleButton.addEventListener(
-    "click",
-    () => {
+shuffleButton.addEventListener("click", function () {
 
-        if (gameFinished) {
-            return;
+    if (gameFinished) {
+        return;
+    }
+
+    const words = [];
+
+    document.querySelectorAll(".word").forEach(function (word) {
+
+        if (!word.disabled) {
+            words.push(word);
         }
 
+    });
 
-        const words = [];
+    shuffleArray(words);
 
+    words.forEach(function (word) {
 
-        document
-            .querySelectorAll(".word")
-            .forEach(word => {
+        gameBoard.appendChild(word);
 
-                if (!word.disabled) {
+    });
 
-                    words.push(word);
-
-                }
-
-            });
+});
 
 
-        shuffleArray(words);
-
-
-        words.forEach(word => {
-
-            gameBoard.appendChild(word);
-
-        });
-
-    }
-);
-
-
-/* =========================
-   SELECTED WORDS
-========================= */
+/* GET SELECTED WORDS */
 
 function getSelectedWords() {
 
     const selected = [];
 
+    document.querySelectorAll(".word.selected").forEach(function (word) {
 
-    document
-        .querySelectorAll(".word.selected")
-        .forEach(word => {
+        selected.push(word.textContent);
 
-            selected.push(word.textContent);
-
-        });
-
+    });
 
     return selected;
 
 }
 
 
-/* =========================
-   CLEAR SELECTION
-========================= */
+/* CLEAR SELECTION */
 
 function clearSelection() {
 
-    document
-        .querySelectorAll(".word")
-        .forEach(word => {
+    document.querySelectorAll(".word").forEach(function (word) {
 
-            word.classList.remove("selected");
+        word.classList.remove("selected");
 
-        });
+    });
 
 }
 
 
-/* =========================
-   MISTAKES
-========================= */
+/* MISTAKES */
 
 function updateMistakes() {
 
-    mistakeDots.forEach(
-        (dot, index) => {
+    mistakeDots.forEach(function (dot, index) {
 
-            if (index < mistakes) {
+        if (index < mistakes) {
 
-                dot.classList.add("used");
+            dot.classList.add("used");
 
-            } else {
+        } else {
 
-                dot.classList.remove("used");
-
-            }
+            dot.classList.remove("used");
 
         }
-    );
+
+    });
 
 }
 
 
-/* =========================
-   MESSAGE
-========================= */
+/* MESSAGE */
 
 function showMessage(text) {
 
@@ -350,109 +224,69 @@ function showMessage(text) {
 }
 
 
-/* =========================
-   SUBMIT
-========================= */
+/* SUBMIT */
 
-submitButton.addEventListener(
-    "click",
-    () => {
+submitButton.addEventListener("click", function () {
 
-        if (gameFinished) {
-            return;
-        }
+    if (gameFinished) {
+        return;
+    }
 
+    const selectedWords = getSelectedWords();
 
-        const selectedWords =
-            getSelectedWords();
+    if (selectedWords.length !== 4) {
 
+        showMessage("Select exactly 4 words.");
 
-        if (selectedWords.length !== 4) {
+        return;
 
-            showMessage(
-                "Select exactly 4 words."
-            );
-
-            return;
-
-        }
+    }
 
 
-        /* =========================
-           CORRECT GROUP
-        ========================= */
+    /* CHECK FOR CORRECT GROUP */
 
-        const matchingGroup =
-            groups.find(group => {
+    const matchingGroup = groups.find(function (group) {
 
-                return group.words.every(
-                    word =>
-                        selectedWords.includes(word)
-                );
+        return group.words.every(function (word) {
 
-            });
+            return selectedWords.includes(word);
+
+        });
+
+    });
 
 
-        if (
-            matchingGroup &&
-            !solvedGroups.includes(matchingGroup)
-        ) {
+    if (
+        matchingGroup &&
+        !solvedGroups.includes(matchingGroup)
+    ) {
 
-            solveGroup(matchingGroup);
+        solveGroup(matchingGroup);
 
-            return;
+        return;
 
-        }
-
-
-        /* =========================
-           ONE AWAY
-        ========================= */
-
-        const oneAway =
-            groups.find(group => {
-
-                const matches =
-                    selectedWords.filter(word =>
-                        group.words.includes(word)
-                    );
+    }
 
 
-                return (
-                    matches.length === 3 &&
-                    !solvedGroups.includes(group)
-                );
+    /* CHECK FOR ONE AWAY */
 
-            });
+    const oneAway = groups.find(function (group) {
 
+        const matches = selectedWords.filter(function (word) {
 
-        if (oneAway) {
+            return group.words.includes(word);
 
-            makeWrongAnimation();
+        });
 
-            mistakes++;
+        return (
+            matches.length === 3 &&
+            !solvedGroups.includes(group)
+        );
 
-            updateMistakes();
-
-            showMessage("One away!");
-
-            clearSelection();
+    });
 
 
-            if (mistakes >= 4) {
-
-                endGame(false);
-
-            }
-
-            return;
-
-        }
-
-
-        /* =========================
-           WRONG
-        ========================= */
+    if (oneAway) {
 
         makeWrongAnimation();
 
@@ -460,10 +294,9 @@ submitButton.addEventListener(
 
         updateMistakes();
 
-        showMessage("Not quite!");
+        showMessage("One away!");
 
         clearSelection();
-
 
         if (mistakes >= 4) {
 
@@ -471,74 +304,77 @@ submitButton.addEventListener(
 
         }
 
+        return;
+
     }
-);
 
 
-/* =========================
-   SOLVE GROUP
-========================= */
+    /* WRONG */
+
+    makeWrongAnimation();
+
+    mistakes++;
+
+    updateMistakes();
+
+    showMessage("Not quite!");
+
+    clearSelection();
+
+    if (mistakes >= 4) {
+
+        endGame(false);
+
+    }
+
+});
+
+
+/* SOLVE GROUP */
 
 function solveGroup(group) {
 
     solvedGroups.push(group);
 
-
-    const groupCard =
-        document.createElement("div");
-
+    const groupCard = document.createElement("div");
 
     groupCard.className =
-        `solved-group ${group.className}`;
+        "solved-group " + group.className;
+
+    const title = document.createElement("h3");
+
+    title.textContent = group.name;
+
+    const words = document.createElement("p");
+
+    words.textContent = group.words.join(" • ");
+
+    groupCard.appendChild(title);
+
+    groupCard.appendChild(words);
+
+    solvedGroupsContainer.appendChild(groupCard);
 
 
-    groupCard.innerHTML = `
+    document.querySelectorAll(".word").forEach(function (word) {
 
-        <h3>${group.name}</h3>
+        if (group.words.includes(word.textContent)) {
 
-        <p>
-            ${group.words.join(" • ")}
-        </p>
+            word.disabled = true;
 
-    `;
+            word.classList.remove("selected");
 
+            word.style.display = "none";
 
-    solvedGroupsContainer.appendChild(
-        groupCard
-    );
+        }
 
-
-    document
-        .querySelectorAll(".word")
-        .forEach(word => {
-
-            if (
-                group.words.includes(
-                    word.textContent
-                )
-            ) {
-
-                word.disabled = true;
-
-                word.classList.remove(
-                    "selected"
-                );
-
-                word.style.display = "none";
-
-            }
-
-        });
+    });
 
 
-    showMessage(
-        "Nice! You found a group!"
-    );
+    showMessage("Nice! You found a group!");
 
 
-    if (
-        solvedGroups.length === groups.length
-    ) {
+    if (solvedGroups.length === groups.length) {
 
         endGame(true);
 
@@ -547,35 +383,26 @@ function solveGroup(group) {
 }
 
 
-/* =========================
-   WRONG ANIMATION
-========================= */
+/* WRONG ANIMATION */
 
 function makeWrongAnimation() {
 
-    document
-        .querySelectorAll(".word.selected")
-        .forEach(word => {
+    document.querySelectorAll(".word.selected").forEach(function (word) {
 
-            word.classList.add("wrong");
+        word.classList.add("wrong");
 
+        setTimeout(function () {
 
-            setTimeout(() => {
+            word.classList.remove("wrong");
 
-                word.classList.remove(
-                    "wrong"
-                );
+        }, 350);
 
-            }, 350);
-
-        });
+    });
 
 }
 
 
-/* =========================
-   END GAME
-========================= */
+/* END GAME */
 
 function endGame(won) {
 
@@ -585,20 +412,23 @@ function endGame(won) {
 
     shuffleButton.disabled = true;
 
+    setTimeout(function () {
 
-    setTimeout(() => {
+        if (won) {
 
-        gameTitle.textContent =
-            won
-                ? "You Won! 🎉"
-                : "Game Over";
+            gameTitle.textContent = "You Won! 🎉";
 
+            gameDescription.textContent =
+                "You found all four groups!";
 
-        gameDescription.textContent =
-            won
-                ? "You found all four groups!"
-                : "Better luck tomorrow!";
+        } else {
 
+            gameTitle.textContent = "Game Over";
+
+            gameDescription.textContent =
+                "Better luck tomorrow!";
+
+        }
 
         gameOverlay.classList.add("show");
 
@@ -607,65 +437,42 @@ function endGame(won) {
 }
 
 
-/* =========================
-   PLAY AGAIN
-========================= */
+/* ADMIRE PUZZLE */
 
-playAgain.addEventListener(
-    "click",
-    () => {
+playAgain.addEventListener("click", function () {
 
-        gameOverlay.classList.remove("show");
+    gameOverlay.classList.remove("show");
 
-    }
-);
-
-/* =========================
-   HELP
-========================= */
-
-helpButton.addEventListener(
-    "click",
-    () => {
-
-        helpOverlay.classList.add(
-            "show"
-        );
-
-    }
-);
+});
 
 
-closeHelp.addEventListener(
-    "click",
-    () => {
+/* HELP */
 
-        helpOverlay.classList.remove(
-            "show"
-        );
+helpButton.addEventListener("click", function () {
+
+    helpOverlay.classList.add("show");
+
+});
+
+
+closeHelp.addEventListener("click", function () {
+
+    helpOverlay.classList.remove("show");
+
+});
+
+
+helpOverlay.addEventListener("click", function (event) {
+
+    if (event.target === helpOverlay) {
+
+        helpOverlay.classList.remove("show");
 
     }
-);
+
+});
 
 
-helpOverlay.addEventListener(
-    "click",
-    event => {
+/* START */
 
-        if (event.target === helpOverlay) {
-
-            helpOverlay.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   START
-========================= */
-
-setupGame();
+loadPuzzle();
