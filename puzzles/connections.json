@@ -1,43 +1,43 @@
 {
-    "date": "2026-09-18",
+    "date": "2026-09-19",
     "groups": [
         {
-            "name": "Can Precede BALL",
+            "name": "DANCE STYLES",
             "words": [
-                "BASKET",
-                "CANNON",
-                "CRYSTAL",
-                "WRECKING"
+                "BALLET",
+                "SALSA",
+                "TANGO",
+                "SWING"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Kinds of COAT",
+            "name": "NOCTURNAL ANIMALS",
             "words": [
-                "RAIN",
-                "LAB",
-                "TRENCH",
-                "PEA"
+                "BAT",
+                "MOTH",
+                "OWL",
+                "RACCOON"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Precede BOARD",
+            "name": "BOARD GAMES",
             "words": [
-                "KEY",
-                "DASH",
-                "SURF",
-                "SKATE"
+                "CLUE",
+                "LIFE",
+                "RISK",
+                "SORRY"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Can Follow UNDER",
+            "name": "WORDS FOLLOWING SPRING",
             "words": [
-                "COVER",
-                "GROUND",
-                "LINE",
-                "SCORE"
+                "BOARD",
+                "BREAK",
+                "CHICKEN",
+                "ROLL"
             ],
             "className": "group-purple"
         }
