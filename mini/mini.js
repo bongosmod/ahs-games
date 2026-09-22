@@ -39,21 +39,14 @@ const playAgain =
 
 
 let puzzle = null;
-
 let cells = [];
-
 let selectedRow = 0;
-
 let selectedCol = 0;
-
 let direction = "across";
-
 let gameFinished = false;
 
 
-/* =========================
-   LOAD PUZZLE
-========================= */
+/* LOAD PUZZLE */
 
 async function loadPuzzle() {
 
@@ -67,7 +60,6 @@ async function loadPuzzle() {
             throw new Error(
                 "Could not load puzzle."
             );
-
         }
 
         puzzle =
@@ -82,28 +74,21 @@ async function loadPuzzle() {
         showMessage(
             "Could not load today's puzzle."
         );
-
     }
-
 }
 
 
-/* =========================
-   SETUP PUZZLE
-========================= */
+/* SETUP PUZZLE */
 
 function setupPuzzle() {
 
     crosswordGrid.innerHTML = "";
-
     acrossClues.innerHTML = "";
-
     downClues.innerHTML = "";
 
     cells = [];
 
     gameFinished = false;
-
 
     const rows =
         puzzle.grid.length;
@@ -111,10 +96,11 @@ function setupPuzzle() {
     const cols =
         puzzle.grid[0].length;
 
-
     crosswordGrid.style.gridTemplateColumns =
         `repeat(${cols}, 1fr)`;
 
+    crosswordGrid.style.gridTemplateRows =
+        `repeat(${rows}, 1fr)`;
 
     createCells(
         rows,
@@ -124,15 +110,15 @@ function setupPuzzle() {
     createClues();
 
     selectFirstCell();
-
 }
 
 
-/* =========================
-   CREATE CELLS
-========================= */
+/* CREATE CELLS */
 
-function createCells(rows, cols) {
+function createCells(
+    rows,
+    cols
+) {
 
     for (
         let row = 0;
@@ -141,7 +127,6 @@ function createCells(rows, cols) {
     ) {
 
         cells[row] = [];
-
 
         for (
             let col = 0;
@@ -152,14 +137,14 @@ function createCells(rows, cols) {
             const cell =
                 document.createElement("div");
 
-
             cell.className =
                 "crossword-cell";
-
 
             const letter =
                 puzzle.grid[row][col];
 
+
+            /* BLACK SQUARE */
 
             if (letter === "#") {
 
@@ -167,16 +152,18 @@ function createCells(rows, cols) {
                     "block"
                 );
 
-                cells[row][col] = null;
+                cells[row][col] =
+                    null;
 
                 crosswordGrid.appendChild(
                     cell
                 );
 
                 continue;
-
             }
 
+
+            /* NUMBER */
 
             const number =
                 getCellNumber(
@@ -201,19 +188,20 @@ function createCells(rows, cols) {
                 cell.appendChild(
                     numberElement
                 );
-
             }
 
 
-            cell.dataset.row = row;
+            cell.dataset.row =
+                row;
 
-            cell.dataset.col = col;
+            cell.dataset.col =
+                col;
 
             cell.dataset.answer =
                 letter.toUpperCase();
 
-
-            cell.dataset.letter = "";
+            cell.dataset.letter =
+                "";
 
 
             cell.addEventListener(
@@ -224,38 +212,34 @@ function createCells(rows, cols) {
                         row,
                         col
                     );
-
                 }
             );
 
 
-            cells[row][col] = cell;
+            cells[row][col] =
+                cell;
 
             crosswordGrid.appendChild(
                 cell
             );
-
         }
-
     }
-
 }
 
 
-/* =========================
-   CELL NUMBER
-========================= */
+/* CELL NUMBER */
 
-function getCellNumber(row, col) {
+function getCellNumber(
+    row,
+    col
+) {
 
     const current =
         puzzle.grid[row][col];
 
-
     if (current === "#") {
 
         return null;
-
     }
 
 
@@ -264,7 +248,8 @@ function getCellNumber(row, col) {
             col === 0 ||
             puzzle.grid[row][col - 1] === "#"
         ) &&
-        col + 1 < puzzle.grid[row].length &&
+        col + 1 <
+        puzzle.grid[row].length &&
         puzzle.grid[row][col + 1] !== "#";
 
 
@@ -273,7 +258,8 @@ function getCellNumber(row, col) {
             row === 0 ||
             puzzle.grid[row - 1][col] === "#"
         ) &&
-        row + 1 < puzzle.grid.length &&
+        row + 1 <
+        puzzle.grid.length &&
         puzzle.grid[row + 1][col] !== "#";
 
 
@@ -283,7 +269,6 @@ function getCellNumber(row, col) {
     ) {
 
         return null;
-
     }
 
 
@@ -302,14 +287,11 @@ function getCellNumber(row, col) {
             c++
         ) {
 
-            const cell =
-                puzzle.grid[r][c];
-
-
-            if (cell === "#") {
+            if (
+                puzzle.grid[r][c] === "#"
+            ) {
 
                 continue;
-
             }
 
 
@@ -318,7 +300,8 @@ function getCellNumber(row, col) {
                     c === 0 ||
                     puzzle.grid[r][c - 1] === "#"
                 ) &&
-                c + 1 < puzzle.grid[r].length &&
+                c + 1 <
+                puzzle.grid[r].length &&
                 puzzle.grid[r][c + 1] !== "#";
 
 
@@ -327,14 +310,17 @@ function getCellNumber(row, col) {
                     r === 0 ||
                     puzzle.grid[r - 1][c] === "#"
                 ) &&
-                r + 1 < puzzle.grid.length &&
+                r + 1 <
+                puzzle.grid.length &&
                 puzzle.grid[r + 1][c] !== "#";
 
 
-            if (across || down) {
+            if (
+                across ||
+                down
+            ) {
 
                 number++;
-
             }
 
 
@@ -344,22 +330,16 @@ function getCellNumber(row, col) {
             ) {
 
                 return number;
-
             }
-
         }
-
     }
 
 
     return null;
-
 }
 
 
-/* =========================
-   CREATE CLUES
-========================= */
+/* CREATE CLUES */
 
 function createClues() {
 
@@ -368,13 +348,13 @@ function createClues() {
 
             const clueElement =
                 createClueElement(
-                    clue
+                    clue,
+                    "across"
                 );
 
             acrossClues.appendChild(
                 clueElement
             );
-
         }
     );
 
@@ -384,48 +364,43 @@ function createClues() {
 
             const clueElement =
                 createClueElement(
-                    clue
+                    clue,
+                    "down"
                 );
 
             downClues.appendChild(
                 clueElement
             );
-
         }
     );
-
 }
 
 
-/* =========================
-   CLUE ELEMENT
-========================= */
+/* CLUE ELEMENT */
 
-function createClueElement(clue) {
+function createClueElement(
+    clue,
+    clueDirection
+) {
 
     const element =
         document.createElement("div");
 
-
     element.className =
         "clue";
-
 
     element.dataset.number =
         clue.number;
 
-
     element.dataset.direction =
-        clue.direction;
+        clueDirection;
 
 
     const number =
         document.createElement("span");
 
-
     number.className =
         "clue-number";
-
 
     number.textContent =
         clue.number;
@@ -433,7 +408,6 @@ function createClueElement(clue) {
 
     const text =
         document.createElement("span");
-
 
     text.textContent =
         clue.clue;
@@ -455,26 +429,24 @@ function createClueElement(clue) {
             selectClue(
                 clue
             );
-
         }
     );
 
 
     return element;
-
 }
 
 
-/* =========================
-   CELL CLICK
-========================= */
+/* CELL CLICK */
 
-function handleCellClick(row, col) {
+function handleCellClick(
+    row,
+    col
+) {
 
     if (gameFinished) {
 
         return;
-
     }
 
 
@@ -487,23 +459,21 @@ function handleCellClick(row, col) {
             direction === "across"
                 ? "down"
                 : "across";
-
     }
 
 
-    selectedRow = row;
+    selectedRow =
+        row;
 
-    selectedCol = col;
+    selectedCol =
+        col;
 
 
     selectCell();
-
 }
 
 
-/* =========================
-   SELECT CELL
-========================= */
+/* SELECT CELL */
 
 function selectCell() {
 
@@ -517,7 +487,6 @@ function selectCell() {
     if (!cell) {
 
         return;
-
     }
 
 
@@ -540,7 +509,6 @@ function selectCell() {
             wordCell.classList.add(
                 "active-word"
             );
-
         }
     );
 
@@ -549,19 +517,17 @@ function selectCell() {
         "active-word"
     );
 
+
     cell.classList.add(
         "active"
     );
 
 
     highlightClue();
-
 }
 
 
-/* =========================
-   CLEAR HIGHLIGHTS
-========================= */
+/* CLEAR HIGHLIGHTS */
 
 function clearHighlights() {
 
@@ -579,7 +545,6 @@ function clearHighlights() {
                 cell.classList.remove(
                     "active-word"
                 );
-
             }
         );
 
@@ -594,16 +559,12 @@ function clearHighlights() {
                 clue.classList.remove(
                     "active-clue"
                 );
-
             }
         );
-
 }
 
 
-/* =========================
-   GET WORD CELLS
-========================= */
+/* GET WORD CELLS */
 
 function getWordCells(
     row,
@@ -613,10 +574,11 @@ function getWordCells(
 
     const result = [];
 
+    let startRow =
+        row;
 
-    let startRow = row;
-
-    let startCol = col;
+    let startCol =
+        col;
 
 
     if (
@@ -631,7 +593,6 @@ function getWordCells(
         ) {
 
             startCol--;
-
         }
 
 
@@ -648,29 +609,26 @@ function getWordCells(
                 result.push(
                     cells[startRow][startCol]
                 );
-
             }
 
-            startCol++;
 
+            startCol++;
         }
 
     } else {
 
         while (
             startRow > 0 &&
-            puzzle.grid[startRow - 1][
-            startCol
-            ] !== "#"
+            puzzle.grid[startRow - 1][startCol] !== "#"
         ) {
 
             startRow--;
-
         }
 
 
         while (
-            startRow < puzzle.grid.length &&
+            startRow <
+            puzzle.grid.length &&
             puzzle.grid[startRow][startCol] !== "#"
         ) {
 
@@ -681,24 +639,19 @@ function getWordCells(
                 result.push(
                     cells[startRow][startCol]
                 );
-
             }
 
+
             startRow++;
-
         }
-
     }
 
 
     return result;
-
 }
 
 
-/* =========================
-   HIGHLIGHT CLUE
-========================= */
+/* HIGHLIGHT CLUE */
 
 function highlightClue() {
 
@@ -707,7 +660,9 @@ function highlightClue() {
 
 
     document
-        .querySelectorAll(".clue")
+        .querySelectorAll(
+            ".clue"
+        )
         .forEach(
             function (clue) {
 
@@ -722,24 +677,21 @@ function highlightClue() {
                     clue.classList.add(
                         "active-clue"
                     );
-
                 }
-
             }
         );
-
 }
 
 
-/* =========================
-   CURRENT CLUE NUMBER
-========================= */
+/* CURRENT CLUE NUMBER */
 
 function getCurrentClueNumber() {
 
-    let row = selectedRow;
+    let row =
+        selectedRow;
 
-    let col = selectedCol;
+    let col =
+        selectedCol;
 
 
     while (
@@ -749,7 +701,6 @@ function getCurrentClueNumber() {
     ) {
 
         col--;
-
     }
 
 
@@ -760,7 +711,6 @@ function getCurrentClueNumber() {
     ) {
 
         row--;
-
     }
 
 
@@ -768,18 +718,17 @@ function getCurrentClueNumber() {
         row,
         col
     );
-
 }
 
 
-/* =========================
-   SELECT CLUE
-========================= */
+/* SELECT CLUE */
 
 function selectClue(clue) {
 
     direction =
-        clue.direction;
+        clueDirectionFromList(
+            clue
+        );
 
 
     for (
@@ -798,29 +747,84 @@ function selectClue(clue) {
                 getCellNumber(
                     row,
                     col
-                ) === clue.number
+                ) === clue.number &&
+                startsDirection(
+                    row,
+                    col,
+                    direction
+                )
             ) {
 
-                selectedRow = row;
+                selectedRow =
+                    row;
 
-                selectedCol = col;
+                selectedCol =
+                    col;
 
                 selectCell();
 
                 return;
-
             }
-
         }
-
     }
-
 }
 
 
-/* =========================
-   FIRST CELL
-========================= */
+/* CLUE DIRECTION */
+
+function clueDirectionFromList(clue) {
+
+    if (
+        puzzle.across.includes(
+            clue
+        )
+    ) {
+
+        return "across";
+    }
+
+
+    return "down";
+}
+
+
+/* STARTS DIRECTION */
+
+function startsDirection(
+    row,
+    col,
+    clueDirection
+) {
+
+    if (
+        clueDirection === "across"
+    ) {
+
+        return (
+            (
+                col === 0 ||
+                puzzle.grid[row][col - 1] === "#"
+            ) &&
+            col + 1 <
+            puzzle.grid[row].length &&
+            puzzle.grid[row][col + 1] !== "#"
+        );
+    }
+
+
+    return (
+        (
+            row === 0 ||
+            puzzle.grid[row - 1][col] === "#"
+        ) &&
+        row + 1 <
+        puzzle.grid.length &&
+        puzzle.grid[row + 1][col] !== "#"
+    );
+}
+
+
+/* FIRST CELL */
 
 function selectFirstCell() {
 
@@ -840,28 +844,25 @@ function selectFirstCell() {
                 cells[row][col]
             ) {
 
-                selectedRow = row;
+                selectedRow =
+                    row;
 
-                selectedCol = col;
+                selectedCol =
+                    col;
 
-                direction = "across";
+                direction =
+                    "across";
 
                 selectCell();
 
                 return;
-
             }
-
         }
-
     }
-
 }
 
 
-/* =========================
-   KEYBOARD
-========================= */
+/* KEYBOARD */
 
 document.addEventListener(
     "keydown",
@@ -873,7 +874,6 @@ document.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -891,7 +891,6 @@ document.addEventListener(
             );
 
             return;
-
         }
 
 
@@ -904,7 +903,6 @@ document.addEventListener(
             eraseLetter();
 
             return;
-
         }
 
 
@@ -919,12 +917,12 @@ document.addEventListener(
                 -1
             );
 
-            direction = "across";
+            direction =
+                "across";
 
             selectCell();
 
             return;
-
         }
 
 
@@ -939,12 +937,12 @@ document.addEventListener(
                 1
             );
 
-            direction = "across";
+            direction =
+                "across";
 
             selectCell();
 
             return;
-
         }
 
 
@@ -959,12 +957,12 @@ document.addEventListener(
                 0
             );
 
-            direction = "down";
+            direction =
+                "down";
 
             selectCell();
 
             return;
-
         }
 
 
@@ -979,19 +977,16 @@ document.addEventListener(
                 0
             );
 
-            direction = "down";
+            direction =
+                "down";
 
             selectCell();
-
         }
-
     }
 );
 
 
-/* =========================
-   ENTER LETTER
-========================= */
+/* ENTER LETTER */
 
 function enterLetter(letter) {
 
@@ -1002,7 +997,6 @@ function enterLetter(letter) {
     if (!cell) {
 
         return;
-
     }
 
 
@@ -1016,13 +1010,10 @@ function enterLetter(letter) {
 
 
     moveForward();
-
 }
 
 
-/* =========================
-   UPDATE DISPLAY
-========================= */
+/* UPDATE DISPLAY */
 
 function updateCellDisplay(cell) {
 
@@ -1041,12 +1032,13 @@ function updateCellDisplay(cell) {
         cell.appendChild(
             number
         );
-
     }
 
 
     const letterElement =
-        document.createElement("span");
+        document.createElement(
+            "span"
+        );
 
 
     letterElement.textContent =
@@ -1056,13 +1048,10 @@ function updateCellDisplay(cell) {
     cell.appendChild(
         letterElement
     );
-
 }
 
 
-/* =========================
-   ERASE LETTER
-========================= */
+/* ERASE LETTER */
 
 function eraseLetter() {
 
@@ -1073,7 +1062,6 @@ function eraseLetter() {
     if (!cell) {
 
         return;
-
     }
 
 
@@ -1081,25 +1069,22 @@ function eraseLetter() {
         cell.dataset.letter
     ) {
 
-        cell.dataset.letter = "";
+        cell.dataset.letter =
+            "";
 
         updateCellDisplay(
             cell
         );
 
         return;
-
     }
 
 
     moveBackward();
-
 }
 
 
-/* =========================
-   MOVE FORWARD
-========================= */
+/* MOVE FORWARD */
 
 function moveForward() {
 
@@ -1123,7 +1108,6 @@ function moveForward() {
                         cell.dataset.col
                     ) === selectedCol
                 );
-
             }
         );
 
@@ -1153,15 +1137,11 @@ function moveForward() {
 
 
         selectCell();
-
     }
-
 }
 
 
-/* =========================
-   MOVE BACKWARD
-========================= */
+/* MOVE BACKWARD */
 
 function moveBackward() {
 
@@ -1185,7 +1165,6 @@ function moveBackward() {
                         cell.dataset.col
                     ) === selectedCol
                 );
-
             }
         );
 
@@ -1213,15 +1192,11 @@ function moveBackward() {
 
 
         selectCell();
-
     }
-
 }
 
 
-/* =========================
-   MOVE CELL
-========================= */
+/* MOVE CELL */
 
 function moveCell(
     rowChange,
@@ -1248,27 +1223,26 @@ function moveCell(
             cells[row][col]
         ) {
 
-            selectedRow = row;
+            selectedRow =
+                row;
 
-            selectedCol = col;
+            selectedCol =
+                col;
 
             return;
-
         }
 
 
-        row += rowChange;
+        row +=
+            rowChange;
 
-        col += colChange;
-
+        col +=
+            colChange;
     }
-
 }
 
 
-/* =========================
-   CHECK
-========================= */
+/* CHECK */
 
 checkButton.addEventListener(
     "click",
@@ -1280,12 +1254,10 @@ checkButton.addEventListener(
         ) {
 
             return;
-
         }
 
 
         let incorrect = 0;
-
         let empty = 0;
 
 
@@ -1298,7 +1270,6 @@ checkButton.addEventListener(
                         if (!cell) {
 
                             return;
-
                         }
 
 
@@ -1309,7 +1280,6 @@ checkButton.addEventListener(
                             empty++;
 
                             return;
-
                         }
 
 
@@ -1324,6 +1294,7 @@ checkButton.addEventListener(
                                 "wrong"
                             );
 
+
                             setTimeout(
                                 function () {
 
@@ -1334,23 +1305,24 @@ checkButton.addEventListener(
                                 },
                                 400
                             );
-
                         }
-
                     }
                 );
-
             }
         );
 
 
-        if (incorrect > 0) {
+        if (
+            incorrect > 0
+        ) {
 
             showMessage(
                 "Some letters are incorrect."
             );
 
-        } else if (empty > 0) {
+        } else if (
+            empty > 0
+        ) {
 
             showMessage(
                 "Looking good! Keep going."
@@ -1359,16 +1331,12 @@ checkButton.addEventListener(
         } else {
 
             winGame();
-
         }
-
     }
 );
 
 
-/* =========================
-   REVEAL
-========================= */
+/* REVEAL */
 
 revealButton.addEventListener(
     "click",
@@ -1380,7 +1348,6 @@ revealButton.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -1393,7 +1360,6 @@ revealButton.addEventListener(
                         if (!cell) {
 
                             return;
-
                         }
 
 
@@ -1404,10 +1370,8 @@ revealButton.addEventListener(
                         updateCellDisplay(
                             cell
                         );
-
                     }
                 );
-
             }
         );
 
@@ -1418,18 +1382,16 @@ revealButton.addEventListener(
 
 
         winGame();
-
     }
 );
 
 
-/* =========================
-   WIN
-========================= */
+/* WIN */
 
 function winGame() {
 
-    gameFinished = true;
+    gameFinished =
+        true;
 
 
     setTimeout(
@@ -1450,25 +1412,19 @@ function winGame() {
         },
         400
     );
-
 }
 
 
-/* =========================
-   MESSAGE
-========================= */
+/* MESSAGE */
 
 function showMessage(text) {
 
     message.textContent =
         text;
-
 }
 
 
-/* =========================
-   HELP
-========================= */
+/* HELP */
 
 helpButton.addEventListener(
     "click",
@@ -1477,7 +1433,6 @@ helpButton.addEventListener(
         helpOverlay.classList.add(
             "show"
         );
-
     }
 );
 
@@ -1489,7 +1444,6 @@ closeHelp.addEventListener(
         helpOverlay.classList.remove(
             "show"
         );
-
     }
 );
 
@@ -1506,16 +1460,12 @@ helpOverlay.addEventListener(
             helpOverlay.classList.remove(
                 "show"
             );
-
         }
-
     }
 );
 
 
-/* =========================
-   ADMIRE PUZZLE
-========================= */
+/* ADMIRE PUZZLE */
 
 playAgain.addEventListener(
     "click",
@@ -1524,13 +1474,10 @@ playAgain.addEventListener(
         gameOverlay.classList.remove(
             "show"
         );
-
     }
 );
 
 
-/* =========================
-   START
-========================= */
+/* START */
 
 loadPuzzle();

@@ -58,14 +58,12 @@ header p {
     font-size: 14px;
 }
 
-
 /* MAIN */
 
 main {
-    width: min(700px, 92%);
+    width: min(800px, 94%);
     margin: auto;
 }
-
 
 /* MESSAGE */
 
@@ -77,7 +75,6 @@ main {
     color: #651d32;
 }
 
-
 /* CROSSWORD */
 
 .crossword-section {
@@ -86,34 +83,33 @@ main {
     align-items: center;
 }
 
-
 /* GRID */
 
 #crossword-grid {
+    width: min(650px, 90vw);
+    aspect-ratio: auto;
     display: grid;
-    width: min(500px, 90vw);
-    aspect-ratio: 1 / 1;
     border: 3px solid #651d32;
     background: #651d32;
+    overflow: hidden;
 }
-
 
 /* INDIVIDUAL CELLS */
 
 .crossword-cell {
     position: relative;
+    aspect-ratio: 1 / 1;
     background: white;
     border: 1px solid #cfcfcf;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: clamp(18px, 4vw, 30px);
+    font-size: clamp(16px, 3.5vw, 30px);
     font-weight: bold;
     color: #171717;
     cursor: pointer;
     user-select: none;
 }
-
 
     /* BLACK CELLS */
 
@@ -123,13 +119,11 @@ main {
         cursor: default;
     }
 
-
     /* ACTIVE CELL */
 
     .crossword-cell.active {
         background: #f2d37a;
     }
-
 
     /* ACTIVE WORD */
 
@@ -137,27 +131,47 @@ main {
         background: #fff1c7;
     }
 
-
 /* CLUE NUMBER */
 
 .cell-number {
     position: absolute;
     top: 2px;
     left: 4px;
-    font-size: 10px;
+    font-size: clamp(8px, 1.5vw, 12px);
     font-weight: bold;
     color: #651d32;
 }
 
+/* WRONG LETTER */
+
+.crossword-cell.wrong {
+    animation: wrongShake 0.25s ease;
+    background: #f4d5dc;
+}
+
+@keyframes wrongShake {
+
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-4px);
+    }
+
+    75% {
+        transform: translateX(4px);
+    }
+}
 
 /* CLUES */
 
 .clue-section {
-    width: min(500px, 90vw);
+    width: min(650px, 90vw);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-top: 25px;
+    gap: 30px;
+    margin-top: 30px;
     text-align: left;
 }
 
@@ -191,7 +205,6 @@ main {
     margin-right: 5px;
 }
 
-
 /* BUTTONS */
 
 .crossword-buttons {
@@ -216,7 +229,6 @@ main {
             background: #651d32;
             color: white;
         }
-
 
 /* HELP / GAME OVER */
 
@@ -269,7 +281,6 @@ main {
     color: #651d32;
 }
 
-
 /* GAME OVER */
 
 #play-again {
@@ -286,13 +297,26 @@ main {
         background: #4d1526;
     }
 
-
 /* MOBILE */
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
     .top-bar h1 {
         font-size: 26px;
+    }
+
+    #crossword-grid {
+        width: min(94vw, 600px);
+    }
+
+    .crossword-cell {
+        font-size: clamp(14px, 5vw, 24px);
+    }
+
+    .cell-number {
+        top: 1px;
+        left: 2px;
+        font-size: 8px;
     }
 
     .clue-section {
