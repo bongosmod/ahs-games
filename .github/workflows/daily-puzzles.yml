@@ -1,6 +1,10 @@
 name: Generate Daily Puzzles
 
 on:
+  schedule:
+    - cron: "0 0 * * *"
+      timezone: "America/New_York"
+
   workflow_dispatch:
 
 jobs:
@@ -38,4 +42,3 @@ jobs:
           git diff --cached --quiet || git commit -m "Generate daily Connections puzzle"
 
           git push
-          

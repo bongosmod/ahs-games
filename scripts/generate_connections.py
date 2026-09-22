@@ -1,25 +1,26 @@
 import os
 import json
-from datetime import date
+
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from openai import OpenAI
 
-
-# ==========================================
-# SETUP
-# ==========================================
 
 client = OpenAI(
     api_key=os.environ["OPENAI_API_KEY"]
 )
 
 
-today = date.today().isoformat()
+# Get today's date in Eastern Time
+today = (
+    datetime.now(
+        ZoneInfo("America/New_York")
+    )
+    .date()
+    .isoformat()
+)
 
-
-# ==========================================
-# AI PROMPT
-# ==========================================
 
 prompt = f"""
 Create a brand-new Connections-style word puzzle
@@ -100,51 +101,49 @@ group-purple
 """
 
 
-# ==========================================
-# ASK AI
-# ==========================================
-
 response = client.responses.create(
     model="gpt-5.6-luna",
     input=prompt
 )
 
 
-# ==========================================
-# GET AI RESPONSE
-# ==========================================
-
 raw_text = response.output_text.strip()
 
 
-# Remove accidental markdown code fences
 if raw_text.startswith("```"):
-    raw_text = raw_text.replace("```json", "")
-    raw_text = raw_text.replace("```", "")
+
+    raw_text = raw_text.replace(
+        "```json",
+        ""
+    )
+
+    raw_text = raw_text.replace(
+        "```",
+        ""
+    )
+
     raw_text = raw_text.strip()
 
-
-# ==========================================
-# CONVERT TO JSON
-# ==========================================
 
 puzzle = json.loads(raw_text)
 
 
-# ==========================================
-# VALIDATE PUZZLE
-# ==========================================
-
 if "date" not in puzzle:
-    raise ValueError("Puzzle is missing date.")
+    raise ValueError(
+        "Puzzle is missing date."
+    )
 
 
 if "groups" not in puzzle:
-    raise ValueError("Puzzle is missing groups.")
+    raise ValueError(
+        "Puzzle is missing groups."
+    )
 
 
 if len(puzzle["groups"]) != 4:
-    raise ValueError("Puzzle must contain exactly 4 groups.")
+    raise ValueError(
+        "Puzzle must contain exactly 4 groups."
+    )
 
 
 all_words = []
@@ -153,17 +152,26 @@ all_words = []
 for group in puzzle["groups"]:
 
     if "name" not in group:
-        raise ValueError("Group is missing name.")
+        raise ValueError(
+            "Group is missing name."
+        )
+
 
     if "words" not in group:
-        raise ValueError("Group is missing words.")
+        raise ValueError(
+            "Group is missing words."
+        )
+
 
     if len(group["words"]) != 4:
         raise ValueError(
             "Every group must contain exactly 4 words."
         )
 
-    all_words.extend(group["words"])
+
+    all_words.extend(
+        group["words"]
+    )
 
 
 if len(all_words) != 16:
@@ -178,11 +186,10 @@ if len(set(all_words)) != 16:
     )
 
 
-# ==========================================
-# SAVE PUZZLE
-# ==========================================
-
-os.makedirs("puzzles", exist_ok=True)
+os.makedirs(
+    "puzzles",
+    exist_ok=True
+)
 
 
 with open(
@@ -201,13 +208,27 @@ with open(
 print("====================================")
 print("NEW CONNECTIONS PUZZLE GENERATED!")
 print("====================================")
-print(f"Date: {puzzle['date']}")
+print(
+    f"Date: {puzzle['date']}"
+)
+
 
 for group in puzzle["groups"]:
 
     print()
-    print(group["name"])
-    print(", ".join(group["words"]))
+
+    print(
+        group["name"]
+    )
+
+    print(
+        ", ".join(
+            group["words"]
+        )
+    )
+
 
 print()
-print("Saved to puzzles/connections.json")
+print(
+    "Saved to puzzles/connections.json"
+)
