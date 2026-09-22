@@ -1,0 +1,64 @@
+{
+    "date": "2026-09-22",
+    "grid": [
+        "SATOR",
+        "AREPO",
+        "TENET",
+        "OPERA",
+        "ROTAS"
+    ],
+    "across": [
+        {
+            "number": 1,
+            "clue": "A six-letter Latin palindrome's opening word",
+            "answer": "SATOR"
+        },
+        {
+            "number": 6,
+            "clue": "A mysterious name in the ancient Sator Square",
+            "answer": "AREPO"
+        },
+        {
+            "number": 7,
+            "clue": "A palindrome meaning \u201cholds\u201d or \u201ckeeps\u201d",
+            "answer": "TENET"
+        },
+        {
+            "number": 8,
+            "clue": "A theatrical work, or what a stage company puts on",
+            "answer": "OPERA"
+        },
+        {
+            "number": 9,
+            "clue": "Schedules or work shifts, informally",
+            "answer": "ROTAS"
+        }
+    ],
+    "down": [
+        {
+            "number": 1,
+            "clue": "A sower, in Latin",
+            "answer": "SATOR"
+        },
+        {
+            "number": 2,
+            "clue": "The second mysterious word in the Sator Square",
+            "answer": "AREPO"
+        },
+        {
+            "number": 3,
+            "clue": "Keeps or maintains",
+            "answer": "TENET"
+        },
+        {
+            "number": 4,
+            "clue": "Grand musical dramas",
+            "answer": "OPERA"
+        },
+        {
+            "number": 5,
+            "clue": "Work schedules, especially in British English",
+            "answer": "ROTAS"
+        }
+    ]
+}

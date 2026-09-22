@@ -1,43 +1,43 @@
 {
-    "date": "2026-09-19",
+    "date": "2026-09-22",
     "groups": [
         {
-            "name": "DANCE STYLES",
+            "name": "___BOARD COMPOUNDS",
             "words": [
-                "BALLET",
-                "SALSA",
-                "TANGO",
-                "SWING"
+                "CHALK",
+                "DASH",
+                "SKATE",
+                "SURF"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "NOCTURNAL ANIMALS",
+            "name": "PAPER COMPOUNDS",
             "words": [
-                "BAT",
-                "MOTH",
-                "OWL",
-                "RACCOON"
+                "CLIP",
+                "WEIGHT",
+                "WALL",
+                "NEWS"
             ],
             "className": "group-green"
         },
         {
-            "name": "BOARD GAMES",
+            "name": "DANCE STYLES",
             "words": [
-                "CLUE",
-                "LIFE",
-                "RISK",
-                "SORRY"
+                "TAP",
+                "JAZZ",
+                "SWING",
+                "BREAK"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS FOLLOWING SPRING",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "BOARD",
-                "BREAK",
-                "CHICKEN",
-                "ROLL"
+                "KNIFE",
+                "KNEE",
+                "WRITE",
+                "WRAP"
             ],
             "className": "group-purple"
         }
