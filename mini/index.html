@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AHS Games - Mini Crossword</title>
+
+    <link rel="stylesheet"
+          href="mini.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="top-bar">
+
+            <a href="../index.html"
+               class="back-button">
+                ←
+            </a>
+
+            <h1>
+                Mini Crossword
+            </h1>
+
+            <button id="help-button">
+                ?
+            </button>
+
+        </div>
+
+        <p>
+            A quick crossword for your day.
+        </p>
+
+    </header>
+
+
+    <main>
+
+        <div id="message"></div>
+
+
+        <section class="crossword-section">
+
+            <div id="crossword-grid"
+                 aria-label="Mini crossword"></div>
+
+
+            <div id="clue-section"
+                 class="clue-section">
+
+                <div class="clue-column">
+
+                    <h2>
+                        Across
+                    </h2>
+
+                    <div id="across-clues"></div>
+
+                </div>
+
+
+                <div class="clue-column">
+
+                    <h2>
+                        Down
+                    </h2>
+
+                    <div id="down-clues"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="crossword-buttons">
+
+                <button id="check-button">
+                    CHECK
+                </button>
+
+                <button id="reveal-button">
+                    REVEAL
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div id="help-overlay">
+
+        <div id="help-box">
+
+            <button id="close-help">
+                ×
+            </button>
+
+            <h2>
+                How to Play
+            </h2>
+
+            <p>
+                Fill in the crossword using the clues
+                below the puzzle.
+            </p>
+
+            <p>
+                Click a square and type a letter.
+                Use the arrow keys to move around
+                the puzzle.
+            </p>
+
+            <p>
+                Complete the entire crossword to win!
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div id="game-overlay">
+
+        <div id="game-box">
+
+            <h2 id="game-title">
+                You Won! 🎉
+            </h2>
+
+            <p id="game-description"></p>
+
+            <button id="play-again">
+                ADMIRE PUZZLE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="mini.js"></script>
+
+</body>
+
+</html>

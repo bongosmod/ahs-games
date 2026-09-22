@@ -9,11 +9,9 @@ on:
 
 jobs:
   generate-puzzles:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -32,13 +30,19 @@ jobs:
         run: |
           python scripts/generate_connections.py
 
-      - name: Save new puzzle
+      - name: Generate Mini Crossword
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python scripts/generate_mini.py
+
+      - name: Save new puzzles
         run: |
           git config user.name "AHS Games Bot"
           git config user.email "actions@github.com"
 
-          git add puzzles/connections.json
+          git add puzzles/connections.json puzzles/mini.json
 
-          git diff --cached --quiet || git commit -m "Generate daily Connections puzzle"
+          git diff --cached --quiet || git commit -m "Generate daily puzzles"
 
           git push
