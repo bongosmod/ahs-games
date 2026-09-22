@@ -1,64 +1,79 @@
 {
     "date": "2026-09-22",
     "grid": [
-        "SATOR",
-        "AREPO",
-        "TENET",
-        "OPERA",
-        "ROTAS"
+        "UP#CI",
+        "SIGHT",
+        "#LIE#",
+        "TOTAL",
+        "AT#TO"
     ],
     "across": [
         {
             "number": 1,
-            "clue": "A six-letter Latin palindrome's opening word",
-            "answer": "SATOR"
+            "clue": "Elevate, as a flag",
+            "answer": "UP"
+        },
+        {
+            "number": 3,
+            "clue": "Continuous integration, briefly",
+            "answer": "CI"
+        },
+        {
+            "number": 5,
+            "clue": "Tell an untruth",
+            "answer": "LIE"
         },
         {
             "number": 6,
-            "clue": "A mysterious name in the ancient Sator Square",
-            "answer": "AREPO"
-        },
-        {
-            "number": 7,
-            "clue": "A palindrome meaning \u201cholds\u201d or \u201ckeeps\u201d",
-            "answer": "TENET"
+            "clue": "Add up to",
+            "answer": "TOTAL"
         },
         {
             "number": 8,
-            "clue": "A theatrical work, or what a stage company puts on",
-            "answer": "OPERA"
+            "clue": "In the direction of",
+            "answer": "AT"
         },
         {
             "number": 9,
-            "clue": "Schedules or work shifts, informally",
-            "answer": "ROTAS"
+            "clue": "In order to",
+            "answer": "TO"
         }
     ],
     "down": [
         {
             "number": 1,
-            "clue": "A sower, in Latin",
-            "answer": "SATOR"
+            "clue": "Pronoun for more than one person",
+            "answer": "US"
         },
         {
             "number": 2,
-            "clue": "The second mysterious word in the Sator Square",
-            "answer": "AREPO"
+            "clue": "One who flies a plane",
+            "answer": "PILOT"
         },
         {
             "number": 3,
-            "clue": "Keeps or maintains",
-            "answer": "TENET"
+            "clue": "Version-control tool",
+            "answer": "GIT"
         },
         {
             "number": 4,
-            "clue": "Grand musical dramas",
-            "answer": "OPERA"
+            "clue": "Technology department, briefly",
+            "answer": "IT"
         },
         {
             "number": 5,
-            "clue": "Work schedules, especially in British English",
-            "answer": "ROTAS"
+            "clue": "Beat at a game or competition",
+            "answer": "CHEAT"
+        },
+        {
+            "number": 6,
+            "clue": "The Greek letter \u03c4, informally",
+            "answer": "TA"
+        },
+        {
+            "number": 7,
+            "clue": "Expression of surprise",
+            "answer": "LO"
         }
     ]
 }

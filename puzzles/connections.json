@@ -2,42 +2,42 @@
     "date": "2026-09-22",
     "groups": [
         {
-            "name": "___BOARD COMPOUNDS",
+            "name": "Can Precede BOARD",
             "words": [
-                "CHALK",
+                "CHESS",
                 "DASH",
-                "SKATE",
-                "SURF"
+                "SURF",
+                "BILL"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "PAPER COMPOUNDS",
+            "name": "Kinds of BEANS",
             "words": [
-                "CLIP",
-                "WEIGHT",
-                "WALL",
-                "NEWS"
+                "COFFEE",
+                "GREEN",
+                "JELLY",
+                "PINTO"
             ],
             "className": "group-green"
         },
         {
-            "name": "DANCE STYLES",
+            "name": "Can Precede STONE",
             "words": [
-                "TAP",
-                "JAZZ",
-                "SWING",
-                "BREAK"
+                "BIRTH",
+                "LIME",
+                "MILE",
+                "TOUCH"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS WITH A SILENT FIRST LETTER",
+            "name": "Words with a Silent Initial Letter",
             "words": [
+                "GNOME",
                 "KNIFE",
-                "KNEE",
-                "WRITE",
-                "WRAP"
+                "PSALM",
+                "WRIST"
             ],
             "className": "group-purple"
         }
