@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 from openai import OpenAI
 
 
-MAX_ATTEMPTS = 5
+MAX_ATTEMPTS = 8
 GRID_SIZE = 5
 WORD_LENGTH = 5
 
@@ -37,97 +37,80 @@ def generate_puzzle():
 Create a brand-new daily crossword puzzle called
 "The Grid" for {today}.
 
-This is a very small 5x5 crossword.
-
-IMPORTANT GRID RULES:
-
-- Exactly 5 rows.
-- Exactly 5 columns.
-- Exactly 25 letters.
-- NO black squares.
-- Every row is a five-letter answer.
-- Every column is a five-letter answer.
-- All 10 answers must be different.
-- Every crossing must match exactly.
-- The grid must be a completely valid crossword.
-
-NUMBERING:
-
-Because this is a completely open 5x5 grid,
-there are five Across answers and five Down answers.
-
-Use the SAME numbers for Across and Down:
-
-1 Across / 1 Down
-2 Across / 2 Down
-3 Across / 3 Down
-4 Across / 4 Down
-5 Across / 5 Down
-
-There must NOT be numbers 6, 7, 8, 9, or 10.
-
-DIFFICULTY:
-
-- High-school level.
-- Easy to medium.
-- Fun and approachable.
-- Similar in spirit to a short newspaper mini crossword.
-- Answers should be recognizable to a typical high-school student.
-- Normal everyday English.
-- Familiar pop culture is allowed.
-- Familiar sports, food, school, technology, movies,
-  music, geography, and everyday life are allowed.
-- Clever clues are encouraged when they remain fair.
-
-ANSWER RULES:
-
-- Every answer is exactly 5 letters.
-- Letters only.
-- No spaces.
-- No punctuation.
-- No duplicate answers.
-- No nonsense words.
-- No fake words.
-- No obscure crossword filler.
-- No archaic words.
-- No extremely obscure trivia.
-- No questionable spellings.
-- No SATOR.
-- No AREPO.
-- No TENET.
-- Do not use strange words simply because they
-  make the grid work.
-
-CLUE RULES:
-
-Every answer needs one clue.
-
-Every clue must clearly and accurately describe
-its answer.
-
-Each clue should have ONE intended answer.
-
-Examples:
-
-GOOD:
-"Animal that says moo" -> COW
-GOOD:
-"Opposite of happy" -> SAD
-
-BAD:
-"Animal" -> COW
-BAD:
-"Something useful" -> TOOL
-
-Avoid vague clues where several answers could fit.
-
-Clues should be short and natural.
+This is a 5x5 crossword with NO black squares.
 
 IMPORTANT:
 
-Do NOT make the puzzle harder by using obscure words.
+The grid must contain exactly 5 rows of 5 letters.
 
-The goal is a good, fair, high-school-level daily mini.
+Every ROW must be a normal five-letter English word.
+
+Every COLUMN must ALSO be a normal five-letter English word.
+
+This means the grid is a 5x5 word square-style crossword.
+
+Do NOT invent words.
+
+Do NOT use obscure crossword filler.
+
+Do NOT use archaic words.
+
+Do NOT use nonsense.
+
+Do NOT use SATOR, AREPO, or TENET.
+
+All 10 resulting words must be different.
+
+The puzzle should be:
+
+- High-school level
+- Easy to medium
+- Fun
+- Fair
+- Familiar
+- Similar in spirit to a newspaper mini crossword
+
+Normal topics are encouraged:
+
+- school
+- food
+- sports
+- technology
+- movies
+- music
+- geography
+- animals
+- everyday life
+- familiar pop culture
+
+Clever clues are okay, but they must remain fair.
+
+VERY IMPORTANT:
+
+You MUST calculate the columns from the grid yourself.
+
+Do NOT invent separate Down answers that do not exactly match
+the letters in the grid.
+
+NUMBERING:
+
+There are exactly:
+
+1 Across
+2 Across
+3 Across
+4 Across
+5 Across
+
+and:
+
+1 Down
+2 Down
+3 Down
+4 Down
+5 Down
+
+Across and Down share the same numbers.
 
 Return ONLY valid JSON.
 
@@ -143,74 +126,59 @@ Use exactly this structure:
         "PQRST",
         "UVWXY"
     ],
-    "clues": [
+    "across_clues": [
         {{
             "number": 1,
-            "direction": "across",
-            "clue": "Clue for row 1",
-            "answer": "ABCDE"
+            "clue": "Clue for row 1"
         }},
         {{
             "number": 2,
-            "direction": "across",
-            "clue": "Clue for row 2",
-            "answer": "FGHIJ"
+            "clue": "Clue for row 2"
         }},
         {{
             "number": 3,
-            "direction": "across",
-            "clue": "Clue for row 3",
-            "answer": "KLMNO"
+            "clue": "Clue for row 3"
         }},
         {{
             "number": 4,
-            "direction": "across",
-            "clue": "Clue for row 4",
-            "answer": "PQRST"
+            "clue": "Clue for row 4"
         }},
         {{
             "number": 5,
-            "direction": "across",
-            "clue": "Clue for row 5",
-            "answer": "UVWXY"
-        }},
+            "clue": "Clue for row 5"
+        }}
+    ],
+    "down_clues": [
         {{
             "number": 1,
-            "direction": "down",
-            "clue": "Clue for column 1",
-            "answer": "AFKPU"
+            "clue": "Clue for column 1"
         }},
         {{
             "number": 2,
-            "direction": "down",
-            "clue": "Clue for column 2",
-            "answer": "BGLQV"
+            "clue": "Clue for column 2"
         }},
         {{
             "number": 3,
-            "direction": "down",
-            "clue": "Clue for column 3",
-            "answer": "CHMRW"
+            "clue": "Clue for column 3"
         }},
         {{
             "number": 4,
-            "direction": "down",
-            "clue": "Clue for column 4",
-            "answer": "DINSX"
+            "clue": "Clue for column 4"
         }},
         {{
             "number": 5,
-            "direction": "down",
-            "clue": "Clue for column 5",
-            "answer": "EJOTY"
+            "clue": "Clue for column 5"
         }}
     ]
 }}
 
-The example letters above are ONLY an example of
-the required JSON structure.
+The example letters above are ONLY an example of the structure.
 
 Create a completely different real puzzle.
+
+DO NOT include answers in the clue objects.
+
+The program will calculate the answers directly from the grid.
 """
 
 
@@ -242,14 +210,91 @@ Create a completely different real puzzle.
 
 
 # ============================================================
+# BUILD FINAL CLUES
+# ============================================================
+
+def build_final_puzzle(candidate):
+
+    grid = candidate["grid"]
+
+
+    columns = []
+
+    for column in range(GRID_SIZE):
+
+        word = ""
+
+        for row in range(GRID_SIZE):
+
+            word += grid[row][column]
+
+        columns.append(word)
+
+
+    clues = []
+
+
+    across_clues = candidate.get(
+        "across_clues",
+        []
+    )
+
+
+    down_clues = candidate.get(
+        "down_clues",
+        []
+    )
+
+
+    across_by_number = {
+        clue["number"]: clue["clue"]
+        for clue in across_clues
+    }
+
+
+    down_by_number = {
+        clue["number"]: clue["clue"]
+        for clue in down_clues
+    }
+
+
+    for number in range(1, 6):
+
+        clues.append(
+            {
+                "number": number,
+                "direction": "across",
+                "clue": across_by_number[number],
+                "answer": grid[number - 1]
+            }
+        )
+
+
+    for number in range(1, 6):
+
+        clues.append(
+            {
+                "number": number,
+                "direction": "down",
+                "clue": down_by_number[number],
+                "answer": columns[number - 1]
+            }
+        )
+
+
+    return {
+        "date": candidate["date"],
+        "title": "The Grid",
+        "grid": grid,
+        "clues": clues
+    }
+
+
+# ============================================================
 # MECHANICAL VALIDATION
 # ============================================================
 
 def validate_puzzle(puzzle):
-
-    # -------------------------
-    # Basic structure
-    # -------------------------
 
     if puzzle.get("date") != today:
 
@@ -282,10 +327,6 @@ def validate_puzzle(puzzle):
         )
 
 
-    # -------------------------
-    # Validate every row
-    # -------------------------
-
     for row in grid:
 
         if not isinstance(row, str):
@@ -306,33 +347,22 @@ def validate_puzzle(puzzle):
             )
 
 
-        if "#" in row:
-
-            raise ValueError(
-                "BLACK SQUARE DETECTED."
-            )
-
-
-    # -------------------------
-    # Build columns
-    # -------------------------
+    # ========================================================
+    # BUILD COLUMNS OURSELVES
+    # ========================================================
 
     columns = []
 
-    for column in range(5):
+    for column in range(GRID_SIZE):
 
         word = ""
 
-        for row in range(5):
+        for row in range(GRID_SIZE):
 
             word += grid[row][column]
 
         columns.append(word)
 
-
-    # -------------------------
-    # All 10 answers
-    # -------------------------
 
     answers = (
         grid +
@@ -354,9 +384,25 @@ def validate_puzzle(puzzle):
         )
 
 
-    # -------------------------
-    # Clues
-    # -------------------------
+    forbidden = {
+        "SATOR",
+        "AREPO",
+        "TENET"
+    }
+
+
+    for answer in answers:
+
+        if answer in forbidden:
+
+            raise ValueError(
+                f"Forbidden word detected: {answer}"
+            )
+
+
+    # ========================================================
+    # CLUES
+    # ========================================================
 
     clues = puzzle.get("clues")
 
@@ -403,10 +449,6 @@ def validate_puzzle(puzzle):
         )
 
 
-    # -------------------------
-    # Shared numbering
-    # -------------------------
-
     across_numbers = sorted(
         clue.get("number")
         for clue in across
@@ -433,9 +475,9 @@ def validate_puzzle(puzzle):
         )
 
 
-    # -------------------------
-    # Answers must match grid
-    # -------------------------
+    # ========================================================
+    # ANSWERS MUST MATCH GRID
+    # ========================================================
 
     across.sort(
         key=lambda clue: clue["number"]
@@ -449,10 +491,7 @@ def validate_puzzle(puzzle):
 
     for index, clue in enumerate(across):
 
-        expected = grid[index]
-
-
-        if clue.get("answer") != expected:
+        if clue.get("answer") != grid[index]:
 
             raise ValueError(
                 f"Across #{clue['number']} "
@@ -462,10 +501,7 @@ def validate_puzzle(puzzle):
 
     for index, clue in enumerate(down):
 
-        expected = columns[index]
-
-
-        if clue.get("answer") != expected:
+        if clue.get("answer") != columns[index]:
 
             raise ValueError(
                 f"Down #{clue['number']} "
@@ -473,45 +509,30 @@ def validate_puzzle(puzzle):
             )
 
 
-    # -------------------------
-    # Unique answers
-    # -------------------------
-
-    clue_answers = [
-        clue.get("answer")
-        for clue in clues
-    ]
-
-
-    if len(set(clue_answers)) != 10:
-
-        raise ValueError(
-            "Clue answers must all be unique."
-        )
-
-
-    # -------------------------
-    # Unique clues
-    # -------------------------
+    # ========================================================
+    # UNIQUE CLUES
+    # ========================================================
 
     clue_texts = []
 
 
     for clue in clues:
 
-        text = str(
+        clue_text = str(
             clue.get("clue", "")
         ).strip().lower()
 
 
-        if not text:
+        if not clue_text:
 
             raise ValueError(
                 "A clue is empty."
             )
 
 
-        clue_texts.append(text)
+        clue_texts.append(
+            clue_text
+        )
 
 
     if len(set(clue_texts)) != 10:
@@ -519,26 +540,6 @@ def validate_puzzle(puzzle):
         raise ValueError(
             "Duplicate clues detected."
         )
-
-
-    # -------------------------
-    # Forbidden words
-    # -------------------------
-
-    forbidden = {
-        "SATOR",
-        "AREPO",
-        "TENET"
-    }
-
-
-    for answer in answers:
-
-        if answer in forbidden:
-
-            raise ValueError(
-                f"Forbidden word detected: {answer}"
-            )
 
 
     return True
@@ -556,72 +557,68 @@ a daily 5x5 crossword.
 
 Review the ENTIRE puzzle below.
 
-The puzzle must satisfy ALL of these requirements:
+The puzzle must satisfy ALL of these requirements.
 
 GRID:
 
 - Exactly 5 rows.
 - Exactly 5 columns.
-- No black squares.
 - Exactly 25 letters.
-- Every row is a real five-letter English answer.
-- Every column is a real five-letter English answer.
+- No black squares.
+- Every row is a real five-letter English word.
+- Every column is a real five-letter English word.
 - All 10 answers are different.
 - Every crossing is correct.
-
-NUMBERING:
-
-- Five Across clues numbered 1 through 5.
-- Five Down clues numbered 1 through 5.
-- Across and Down share the same numbers.
-- There are NO clue numbers 6 through 10.
 
 DIFFICULTY:
 
 - High-school level.
 - Easy to medium.
-- Fair and approachable.
+- Fair.
+- Approachable.
 - Similar in spirit to a short newspaper mini crossword.
 
 ANSWER QUALITY:
 
-Reject the puzzle if it contains:
+Reject the puzzle if ANY answer is:
 
+- nonsense
+- fake
+- archaic
+- extremely obscure
+- questionable spelling
+- obscure crossword filler
 - SATOR
 - AREPO
 - TENET
-- obscure ancient words
-- archaic words
-- nonsense
-- fake words
-- questionable spellings
-- obscure crossword filler
-- words that are only being used because
-  they happen to fit the grid
+
+The answers should be recognizable to a typical
+English-speaking high-school student.
 
 CLUE QUALITY:
 
-Review EVERY clue individually.
+Check EVERY clue.
 
-For every clue:
+Each clue must:
 
-1. The clue must accurately describe its answer.
-2. The answer must actually be correct.
-3. The clue must be fair.
-4. The clue must be specific.
-5. The clue should have one intended answer.
-6. The answer should be recognizable to a
-   typical high-school student.
-7. There must be no factual error.
-8. There must be no misleading clue.
-9. There must be no duplicate clue.
-10. The clue should sound natural.
+1. Accurately describe its answer.
+2. Have the correct intended answer.
+3. Be fair.
+4. Be specific.
+5. Be natural.
+6. Avoid major ambiguity.
+7. Avoid factual errors.
+8. Avoid duplicate clues.
 
-Reject the ENTIRE puzzle if even one clue
-is substantially wrong.
+If even ONE clue is substantially wrong,
+reject the entire puzzle.
 
-Do not approve a puzzle simply because
-the grid technically works.
+IMPORTANT:
+
+The puzzle is NOT allowed to be approved merely because
+the letters technically form words.
+
+The answers and clues must make a good daily puzzle.
 
 Return ONLY valid JSON.
 
@@ -712,11 +709,21 @@ for attempt in range(
 
     try:
 
-        puzzle = generate_puzzle()
+        candidate = generate_puzzle()
 
 
         print(
-            "AI generated a puzzle."
+            "AI generated a candidate."
+        )
+
+
+        puzzle = build_final_puzzle(
+            candidate
+        )
+
+
+        print(
+            "Calculated Down answers from grid."
         )
 
 
@@ -780,7 +787,7 @@ if successful_puzzle is None:
 
     print()
     print(
-        "❌ ALL 5 ATTEMPTS FAILED."
+        "❌ ALL ATTEMPTS FAILED."
     )
 
     raise SystemExit(1)
@@ -844,6 +851,7 @@ print("✅ 25 letters")
 print("✅ ZERO black squares")
 print("✅ 5 Across + 5 Down")
 print("✅ Shared 1-5 numbering")
+print("✅ Down answers calculated automatically")
 print("✅ Unique answers")
 print("✅ Unique clues")
 print("✅ Crossings verified")
