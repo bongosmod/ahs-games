@@ -2,17 +2,15 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>AHS Games - Mini Crossword</title>
+    <title>AHS Games - The Grid</title>
 
     <link rel="stylesheet"
           href="mini.css">
-
 </head>
 
 <body>
@@ -22,22 +20,24 @@
         <div class="top-bar">
 
             <a href="../index.html"
-               class="back-button">
+               class="back-button"
+               aria-label="Back to AHS Games">
                 ←
             </a>
 
             <h1>
-                Mini Crossword
+                The Grid
             </h1>
 
-            <button id="help-button">
+            <button id="help-button"
+                    aria-label="How to play">
                 ?
             </button>
 
         </div>
 
         <p>
-            A quick crossword for your day.
+            A quick 5×5 crossword.
         </p>
 
     </header>
@@ -48,48 +48,33 @@
         <div id="message"></div>
 
 
-        <section class="crossword-section">
-
-            <div id="crossword-grid"
-                 aria-label="Mini crossword"></div>
-
-
-            <div id="clue-section"
-                 class="clue-section">
-
-                <div class="clue-column">
-
-                    <h2>
-                        Across
-                    </h2>
-
-                    <div id="across-clues"></div>
-
-                </div>
+        <div id="grid"
+             class="grid"
+             aria-label="The Grid crossword"></div>
 
 
-                <div class="clue-column">
+        <section class="clues-container">
 
-                    <h2>
-                        Down
-                    </h2>
+            <div class="clues-column">
 
-                    <div id="down-clues"></div>
+                <h2>
+                    Across
+                </h2>
 
-                </div>
+                <div id="across-clues"
+                     class="clues"></div>
 
             </div>
 
 
-            <div class="crossword-buttons">
+            <div class="clues-column">
 
-                <button id="check-button">
-                    CHECK
-                </button>
+                <h2>
+                    Down
+                </h2>
 
-                <button id="reveal-button">
-                    REVEAL
-                </button>
+                <div id="down-clues"
+                     class="clues"></div>
 
             </div>
 
@@ -98,11 +83,15 @@
     </main>
 
 
-    <div id="help-overlay">
+    <div id="help-overlay"
+         class="overlay">
 
-        <div id="help-box">
+        <div id="help-box"
+             class="modal">
 
-            <button id="close-help">
+            <button id="close-help"
+                    class="close-button"
+                    aria-label="Close">
                 ×
             </button>
 
@@ -111,18 +100,22 @@
             </h2>
 
             <p>
-                Fill in the crossword using the clues
-                below the puzzle.
+                Fill in the 5×5 grid using the clues.
             </p>
 
             <p>
                 Click a square and type a letter.
-                Use the arrow keys to move around
-                the puzzle.
+                Click the same square again to switch
+                between Across and Down.
             </p>
 
             <p>
-                Complete the entire crossword to win!
+                Use the arrow keys to move around the grid.
+            </p>
+
+            <p>
+                Complete the entire grid to solve
+                today's puzzle.
             </p>
 
         </div>
@@ -130,17 +123,22 @@
     </div>
 
 
-    <div id="game-overlay">
+    <div id="game-overlay"
+         class="overlay">
 
-        <div id="game-box">
+        <div id="game-box"
+             class="modal">
 
             <h2 id="game-title">
-                You Won! 🎉
+                You Won!
             </h2>
 
-            <p id="game-description"></p>
+            <p id="game-description">
+                You completed The Grid!
+            </p>
 
-            <button id="play-again">
+            <button id="play-again"
+                    class="primary-button">
                 ADMIRE PUZZLE
             </button>
 

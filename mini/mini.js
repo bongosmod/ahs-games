@@ -1,20 +1,21 @@
-﻿const crosswordGrid =
-    document.getElementById("crossword-grid");
+﻿const puzzleUrl = "../puzzles/mini.json";
 
-const acrossClues =
+let puzzle = null;
+let selectedCell = null;
+let direction = "across";
+let gameWon = false;
+
+const gridElement =
+    document.getElementById("grid");
+
+const acrossCluesElement =
     document.getElementById("across-clues");
 
-const downClues =
+const downCluesElement =
     document.getElementById("down-clues");
 
-const message =
+const messageElement =
     document.getElementById("message");
-
-const checkButton =
-    document.getElementById("check-button");
-
-const revealButton =
-    document.getElementById("reveal-button");
 
 const helpButton =
     document.getElementById("help-button");
@@ -28,185 +29,114 @@ const closeHelp =
 const gameOverlay =
     document.getElementById("game-overlay");
 
-const gameTitle =
-    document.getElementById("game-title");
-
-const gameDescription =
-    document.getElementById("game-description");
-
-const playAgain =
+const playAgainButton =
     document.getElementById("play-again");
 
 
-let puzzle = null;
-let cells = [];
-let selectedRow = 0;
-let selectedCol = 0;
-let direction = "across";
-let gameFinished = false;
-
-
-/* LOAD PUZZLE */
+/* =========================
+   LOAD PUZZLE
+   ========================= */
 
 async function loadPuzzle() {
 
     try {
 
-        const response =
-            await fetch("../puzzles/mini.json");
+        const response = await fetch(
+            `${puzzleUrl}?t=${Date.now()}`
+        );
 
         if (!response.ok) {
-
             throw new Error(
                 "Could not load puzzle."
             );
         }
 
-        puzzle =
-            await response.json();
+        puzzle = await response.json();
 
-        setupPuzzle();
+        if (
+            !Array.isArray(puzzle.grid) ||
+            puzzle.grid.length !== 5
+        ) {
+            throw new Error(
+                "Invalid 5x5 grid."
+            );
+        }
+
+        for (const row of puzzle.grid) {
+
+            if (
+                typeof row !== "string" ||
+                !/^[A-Z]{5}$/.test(row)
+            ) {
+                throw new Error(
+                    "Invalid grid row."
+                );
+            }
+        }
+
+        if (
+            !Array.isArray(puzzle.clues) ||
+            puzzle.clues.length !== 10
+        ) {
+            throw new Error(
+                "Invalid clue list."
+            );
+        }
+
+        buildGrid();
+        buildClues();
+
+        messageElement.textContent = "";
 
     } catch (error) {
 
         console.error(error);
 
-        showMessage(
-            "Could not load today's puzzle."
-        );
+        messageElement.textContent =
+            "Couldn't load today's puzzle.";
     }
 }
 
 
-/* SETUP PUZZLE */
+/* =========================
+   BUILD GRID
+   ========================= */
 
-function setupPuzzle() {
+function buildGrid() {
 
-    crosswordGrid.innerHTML = "";
-    acrossClues.innerHTML = "";
-    downClues.innerHTML = "";
-
-    cells = [];
-
-    gameFinished = false;
-
-    const rows =
-        puzzle.grid.length;
-
-    const cols =
-        puzzle.grid[0].length;
-
-    crosswordGrid.style.gridTemplateColumns =
-        `repeat(${cols}, 1fr)`;
-
-    crosswordGrid.style.gridTemplateRows =
-        `repeat(${rows}, 1fr)`;
-
-    createCells(
-        rows,
-        cols
-    );
-
-    createClues();
-
-    selectFirstCell();
-}
-
-
-/* CREATE CELLS */
-
-function createCells(
-    rows,
-    cols
-) {
+    gridElement.innerHTML = "";
 
     for (
         let row = 0;
-        row < rows;
+        row < 5;
         row++
     ) {
 
-        cells[row] = [];
-
         for (
             let col = 0;
-            col < cols;
+            col < 5;
             col++
         ) {
 
             const cell =
-                document.createElement("div");
+                document.createElement(
+                    "button"
+                );
 
             cell.className =
-                "crossword-cell";
+                "grid-cell";
 
-            const letter =
-                puzzle.grid[row][col];
+            cell.dataset.row = row;
+            cell.dataset.col = col;
 
-
-            /* BLACK SQUARE */
-
-            if (letter === "#") {
-
-                cell.classList.add(
-                    "block"
-                );
-
-                cells[row][col] =
-                    null;
-
-                crosswordGrid.appendChild(
-                    cell
-                );
-
-                continue;
-            }
-
-
-            /* NUMBER */
-
-            const number =
-                getCellNumber(
-                    row,
-                    col
-                );
-
-
-            if (number !== null) {
-
-                const numberElement =
-                    document.createElement(
-                        "span"
-                    );
-
-                numberElement.className =
-                    "cell-number";
-
-                numberElement.textContent =
-                    number;
-
-                cell.appendChild(
-                    numberElement
-                );
-            }
-
-
-            cell.dataset.row =
-                row;
-
-            cell.dataset.col =
-                col;
-
-            cell.dataset.answer =
-                letter.toUpperCase();
-
-            cell.dataset.letter =
-                "";
-
+            cell.setAttribute(
+                "aria-label",
+                `Row ${row + 1}, Column ${col + 1}`
+            );
 
             cell.addEventListener(
                 "click",
-                function () {
+                () => {
 
                     handleCellClick(
                         row,
@@ -215,244 +145,105 @@ function createCells(
                 }
             );
 
-
-            cells[row][col] =
-                cell;
-
-            crosswordGrid.appendChild(
-                cell
-            );
+            gridElement.appendChild(cell);
         }
     }
 }
 
 
-/* CELL NUMBER */
+/* =========================
+   BUILD CLUES
+   ========================= */
 
-function getCellNumber(
+function buildClues() {
+
+    acrossCluesElement.innerHTML = "";
+    downCluesElement.innerHTML = "";
+
+    puzzle.clues.forEach(
+        clue => {
+
+            const clueButton =
+                document.createElement(
+                    "button"
+                );
+
+            clueButton.className =
+                "clue";
+
+            clueButton.dataset.number =
+                clue.number;
+
+            clueButton.dataset.direction =
+                clue.direction;
+
+            clueButton.innerHTML = `
+                <span class="clue-number">
+                    ${clue.number}.
+                </span>
+                <span>
+                    ${clue.clue}
+                </span>
+            `;
+
+            clueButton.addEventListener(
+                "click",
+                () => {
+                    selectClue(clue);
+                }
+            );
+
+            if (
+                clue.direction === "across"
+            ) {
+
+                acrossCluesElement.appendChild(
+                    clueButton
+                );
+
+            } else {
+
+                downCluesElement.appendChild(
+                    clueButton
+                );
+            }
+        }
+    );
+}
+
+
+/* =========================
+   GET CELL
+   ========================= */
+
+function getCell(
     row,
     col
 ) {
 
-    const current =
-        puzzle.grid[row][col];
-
-    if (current === "#") {
-
-        return null;
-    }
-
-
-    const startsAcross =
-        (
-            col === 0 ||
-            puzzle.grid[row][col - 1] === "#"
-        ) &&
-        col + 1 <
-        puzzle.grid[row].length &&
-        puzzle.grid[row][col + 1] !== "#";
-
-
-    const startsDown =
-        (
-            row === 0 ||
-            puzzle.grid[row - 1][col] === "#"
-        ) &&
-        row + 1 <
-        puzzle.grid.length &&
-        puzzle.grid[row + 1][col] !== "#";
-
-
-    if (
-        !startsAcross &&
-        !startsDown
-    ) {
-
-        return null;
-    }
-
-
-    let number = 0;
-
-
-    for (
-        let r = 0;
-        r <= row;
-        r++
-    ) {
-
-        for (
-            let c = 0;
-            c < puzzle.grid[r].length;
-            c++
-        ) {
-
-            if (
-                puzzle.grid[r][c] === "#"
-            ) {
-
-                continue;
-            }
-
-
-            const across =
-                (
-                    c === 0 ||
-                    puzzle.grid[r][c - 1] === "#"
-                ) &&
-                c + 1 <
-                puzzle.grid[r].length &&
-                puzzle.grid[r][c + 1] !== "#";
-
-
-            const down =
-                (
-                    r === 0 ||
-                    puzzle.grid[r - 1][c] === "#"
-                ) &&
-                r + 1 <
-                puzzle.grid.length &&
-                puzzle.grid[r + 1][c] !== "#";
-
-
-            if (
-                across ||
-                down
-            ) {
-
-                number++;
-            }
-
-
-            if (
-                r === row &&
-                c === col
-            ) {
-
-                return number;
-            }
-        }
-    }
-
-
-    return null;
-}
-
-
-/* CREATE CLUES */
-
-function createClues() {
-
-    puzzle.across.forEach(
-        function (clue) {
-
-            const clueElement =
-                createClueElement(
-                    clue,
-                    "across"
-                );
-
-            acrossClues.appendChild(
-                clueElement
-            );
-        }
-    );
-
-
-    puzzle.down.forEach(
-        function (clue) {
-
-            const clueElement =
-                createClueElement(
-                    clue,
-                    "down"
-                );
-
-            downClues.appendChild(
-                clueElement
-            );
-        }
+    return document.querySelector(
+        `.grid-cell[data-row="${row}"][data-col="${col}"]`
     );
 }
 
 
-/* CLUE ELEMENT */
-
-function createClueElement(
-    clue,
-    clueDirection
-) {
-
-    const element =
-        document.createElement("div");
-
-    element.className =
-        "clue";
-
-    element.dataset.number =
-        clue.number;
-
-    element.dataset.direction =
-        clueDirection;
-
-
-    const number =
-        document.createElement("span");
-
-    number.className =
-        "clue-number";
-
-    number.textContent =
-        clue.number;
-
-
-    const text =
-        document.createElement("span");
-
-    text.textContent =
-        clue.clue;
-
-
-    element.appendChild(
-        number
-    );
-
-    element.appendChild(
-        text
-    );
-
-
-    element.addEventListener(
-        "click",
-        function () {
-
-            selectClue(
-                clue
-            );
-        }
-    );
-
-
-    return element;
-}
-
-
-/* CELL CLICK */
+/* =========================
+   CELL CLICK
+   ========================= */
 
 function handleCellClick(
     row,
     col
 ) {
 
-    if (gameFinished) {
-
+    if (gameWon) {
         return;
     }
 
-
     if (
-        selectedRow === row &&
-        selectedCol === col
+        selectedCell &&
+        selectedCell.row === row &&
+        selectedCell.col === col
     ) {
 
         direction =
@@ -461,421 +252,199 @@ function handleCellClick(
                 : "across";
     }
 
+    selectedCell = {
+        row,
+        col
+    };
 
-    selectedRow =
-        row;
+    highlightSelection();
 
-    selectedCol =
-        col;
+    const cell =
+        getCell(row, col);
 
-
-    selectCell();
+    if (cell) {
+        cell.focus();
+    }
 }
 
 
-/* SELECT CELL */
+/* =========================
+   CLUE CLICK
+   ========================= */
 
-function selectCell() {
+function selectClue(clue) {
 
-    clearHighlights();
-
-
-    const cell =
-        cells[selectedRow][selectedCol];
-
-
-    if (!cell) {
-
+    if (gameWon) {
         return;
     }
 
+    direction =
+        clue.direction;
 
-    cell.classList.add(
-        "active"
-    );
+    /*
+        Because this is a completely open
+        5x5 grid, every Across and Down
+        answer begins on the outside edge.
 
+        Numbers are shared:
 
-    const wordCells =
-        getWordCells(
-            selectedRow,
-            selectedCol,
-            direction
-        );
+        #1 Across / #1 Down
+        #2 Across / #2 Down
+        #3 Across / #3 Down
+        #4 Across / #4 Down
+        #5 Across / #5 Down
+    */
 
+    const index =
+        clue.number - 1;
 
-    wordCells.forEach(
-        function (wordCell) {
-
-            wordCell.classList.add(
-                "active-word"
-            );
-        }
-    );
-
-
-    cell.classList.remove(
-        "active-word"
-    );
-
-
-    cell.classList.add(
-        "active"
-    );
-
-
-    highlightClue();
-}
-
-
-/* CLEAR HIGHLIGHTS */
-
-function clearHighlights() {
-
-    document
-        .querySelectorAll(
-            ".crossword-cell"
-        )
-        .forEach(
-            function (cell) {
-
-                cell.classList.remove(
-                    "active"
-                );
-
-                cell.classList.remove(
-                    "active-word"
-                );
-            }
-        );
-
-
-    document
-        .querySelectorAll(
-            ".clue"
-        )
-        .forEach(
-            function (clue) {
-
-                clue.classList.remove(
-                    "active-clue"
-                );
-            }
-        );
-}
-
-
-/* GET WORD CELLS */
-
-function getWordCells(
-    row,
-    col,
-    wordDirection
-) {
-
-    const result = [];
-
-    let startRow =
-        row;
-
-    let startCol =
-        col;
-
+    let row;
+    let col;
 
     if (
-        wordDirection === "across"
+        clue.direction === "across"
     ) {
 
-        while (
-            startCol > 0 &&
-            puzzle.grid[startRow][
-            startCol - 1
-            ] !== "#"
-        ) {
+        row = index;
+        col = 0;
 
-            startCol--;
-        }
+    } else {
+
+        row = 0;
+        col = index;
+    }
+
+    selectedCell = {
+        row,
+        col
+    };
+
+    highlightSelection();
+
+    const cell =
+        getCell(row, col);
+
+    if (cell) {
+        cell.focus();
+    }
+}
 
 
-        while (
-            startCol <
-            puzzle.grid[startRow].length &&
-            puzzle.grid[startRow][startCol] !== "#"
-        ) {
+/* =========================
+   HIGHLIGHT CURRENT WORD
+   ========================= */
 
-            if (
-                cells[startRow][startCol]
-            ) {
+function highlightSelection() {
 
-                result.push(
-                    cells[startRow][startCol]
+    document
+        .querySelectorAll(".grid-cell")
+        .forEach(
+            cell => {
+
+                cell.classList.remove(
+                    "selected"
+                );
+
+                cell.classList.remove(
+                    "word-selected"
                 );
             }
+        );
 
+    if (!selectedCell) {
+        return;
+    }
 
-            startCol++;
+    const {
+        row,
+        col
+    } = selectedCell;
+
+    if (
+        direction === "across"
+    ) {
+
+        for (
+            let currentCol = 0;
+            currentCol < 5;
+            currentCol++
+        ) {
+
+            const cell =
+                getCell(
+                    row,
+                    currentCol
+                );
+
+            if (cell) {
+
+                cell.classList.add(
+                    "word-selected"
+                );
+            }
         }
 
     } else {
 
-        while (
-            startRow > 0 &&
-            puzzle.grid[startRow - 1][startCol] !== "#"
+        for (
+            let currentRow = 0;
+            currentRow < 5;
+            currentRow++
         ) {
 
-            startRow--;
-        }
+            const cell =
+                getCell(
+                    currentRow,
+                    col
+                );
 
+            if (cell) {
 
-        while (
-            startRow <
-            puzzle.grid.length &&
-            puzzle.grid[startRow][startCol] !== "#"
-        ) {
-
-            if (
-                cells[startRow][startCol]
-            ) {
-
-                result.push(
-                    cells[startRow][startCol]
+                cell.classList.add(
+                    "word-selected"
                 );
             }
-
-
-            startRow++;
         }
     }
 
+    const currentCell =
+        getCell(row, col);
 
-    return result;
-}
+    if (currentCell) {
 
-
-/* HIGHLIGHT CLUE */
-
-function highlightClue() {
-
-    const number =
-        getCurrentClueNumber();
-
-
-    document
-        .querySelectorAll(
-            ".clue"
-        )
-        .forEach(
-            function (clue) {
-
-                if (
-                    Number(
-                        clue.dataset.number
-                    ) === number &&
-                    clue.dataset.direction ===
-                    direction
-                ) {
-
-                    clue.classList.add(
-                        "active-clue"
-                    );
-                }
-            }
-        );
-}
-
-
-/* CURRENT CLUE NUMBER */
-
-function getCurrentClueNumber() {
-
-    let row =
-        selectedRow;
-
-    let col =
-        selectedCol;
-
-
-    while (
-        direction === "across" &&
-        col > 0 &&
-        puzzle.grid[row][col - 1] !== "#"
-    ) {
-
-        col--;
-    }
-
-
-    while (
-        direction === "down" &&
-        row > 0 &&
-        puzzle.grid[row - 1][col] !== "#"
-    ) {
-
-        row--;
-    }
-
-
-    return getCellNumber(
-        row,
-        col
-    );
-}
-
-
-/* SELECT CLUE */
-
-function selectClue(clue) {
-
-    direction =
-        clueDirectionFromList(
-            clue
+        currentCell.classList.remove(
+            "word-selected"
         );
 
-
-    for (
-        let row = 0;
-        row < puzzle.grid.length;
-        row++
-    ) {
-
-        for (
-            let col = 0;
-            col < puzzle.grid[row].length;
-            col++
-        ) {
-
-            if (
-                getCellNumber(
-                    row,
-                    col
-                ) === clue.number &&
-                startsDirection(
-                    row,
-                    col,
-                    direction
-                )
-            ) {
-
-                selectedRow =
-                    row;
-
-                selectedCol =
-                    col;
-
-                selectCell();
-
-                return;
-            }
-        }
-    }
-}
-
-
-/* CLUE DIRECTION */
-
-function clueDirectionFromList(clue) {
-
-    if (
-        puzzle.across.includes(
-            clue
-        )
-    ) {
-
-        return "across";
-    }
-
-
-    return "down";
-}
-
-
-/* STARTS DIRECTION */
-
-function startsDirection(
-    row,
-    col,
-    clueDirection
-) {
-
-    if (
-        clueDirection === "across"
-    ) {
-
-        return (
-            (
-                col === 0 ||
-                puzzle.grid[row][col - 1] === "#"
-            ) &&
-            col + 1 <
-            puzzle.grid[row].length &&
-            puzzle.grid[row][col + 1] !== "#"
+        currentCell.classList.add(
+            "selected"
         );
     }
-
-
-    return (
-        (
-            row === 0 ||
-            puzzle.grid[row - 1][col] === "#"
-        ) &&
-        row + 1 <
-        puzzle.grid.length &&
-        puzzle.grid[row + 1][col] !== "#"
-    );
 }
 
 
-/* FIRST CELL */
-
-function selectFirstCell() {
-
-    for (
-        let row = 0;
-        row < puzzle.grid.length;
-        row++
-    ) {
-
-        for (
-            let col = 0;
-            col < puzzle.grid[row].length;
-            col++
-        ) {
-
-            if (
-                cells[row][col]
-            ) {
-
-                selectedRow =
-                    row;
-
-                selectedCol =
-                    col;
-
-                direction =
-                    "across";
-
-                selectCell();
-
-                return;
-            }
-        }
-    }
-}
-
-
-/* KEYBOARD */
+/* =========================
+   KEYBOARD
+   ========================= */
 
 document.addEventListener(
     "keydown",
-    function (event) {
+    event => {
 
         if (
-            gameFinished ||
-            !puzzle
+            !selectedCell ||
+            gameWon
         ) {
-
             return;
         }
 
+        const {
+            row,
+            col
+        } = selectedCell;
+
+
+        /* LETTER */
 
         if (
             event.key.length === 1 &&
@@ -884,551 +453,360 @@ document.addEventListener(
             )
         ) {
 
-            event.preventDefault();
+            const cell =
+                getCell(row, col);
 
-            enterLetter(
-                event.key.toUpperCase()
-            );
+            cell.textContent =
+                event.key.toUpperCase();
+
+            moveForward();
+
+            checkPuzzle();
+
+            event.preventDefault();
 
             return;
         }
 
+
+        /* BACKSPACE */
 
         if (
             event.key === "Backspace"
         ) {
 
-            event.preventDefault();
+            const cell =
+                getCell(row, col);
 
-            eraseLetter();
+            if (
+                cell.textContent !== ""
+            ) {
+
+                cell.textContent = "";
+
+            } else {
+
+                moveBackward();
+            }
+
+            event.preventDefault();
 
             return;
         }
 
+
+        /* LEFT */
 
         if (
             event.key === "ArrowLeft"
         ) {
 
-            event.preventDefault();
+            direction = "across";
 
-            moveCell(
-                0,
-                -1
+            moveTo(
+                row,
+                Math.max(
+                    0,
+                    col - 1
+                )
             );
 
-            direction =
-                "across";
-
-            selectCell();
-
-            return;
+            event.preventDefault();
         }
 
 
-        if (
+        /* RIGHT */
+
+        else if (
             event.key === "ArrowRight"
         ) {
 
-            event.preventDefault();
+            direction = "across";
 
-            moveCell(
-                0,
-                1
+            moveTo(
+                row,
+                Math.min(
+                    4,
+                    col + 1
+                )
             );
 
-            direction =
-                "across";
-
-            selectCell();
-
-            return;
+            event.preventDefault();
         }
 
 
-        if (
+        /* UP */
+
+        else if (
             event.key === "ArrowUp"
         ) {
 
-            event.preventDefault();
+            direction = "down";
 
-            moveCell(
-                -1,
-                0
+            moveTo(
+                Math.max(
+                    0,
+                    row - 1
+                ),
+                col
             );
 
-            direction =
-                "down";
-
-            selectCell();
-
-            return;
+            event.preventDefault();
         }
 
 
-        if (
+        /* DOWN */
+
+        else if (
             event.key === "ArrowDown"
         ) {
 
-            event.preventDefault();
+            direction = "down";
 
-            moveCell(
-                1,
-                0
+            moveTo(
+                Math.min(
+                    4,
+                    row + 1
+                ),
+                col
             );
 
-            direction =
-                "down";
-
-            selectCell();
+            event.preventDefault();
         }
+
+        highlightSelection();
     }
 );
 
 
-/* ENTER LETTER */
+/* =========================
+   MOVE TO CELL
+   ========================= */
 
-function enterLetter(letter) {
+function moveTo(
+    row,
+    col
+) {
 
-    const cell =
-        cells[selectedRow][selectedCol];
+    selectedCell = {
+        row,
+        col
+    };
 
-
-    if (!cell) {
-
-        return;
-    }
-
-
-    cell.dataset.letter =
-        letter;
-
-
-    updateCellDisplay(
-        cell
-    );
-
-
-    moveForward();
-}
-
-
-/* UPDATE DISPLAY */
-
-function updateCellDisplay(cell) {
-
-    const number =
-        cell.querySelector(
-            ".cell-number"
-        );
-
-
-    cell.textContent =
-        "";
-
-
-    if (number) {
-
-        cell.appendChild(
-            number
-        );
-    }
-
-
-    const letterElement =
-        document.createElement(
-            "span"
-        );
-
-
-    letterElement.textContent =
-        cell.dataset.letter;
-
-
-    cell.appendChild(
-        letterElement
-    );
-}
-
-
-/* ERASE LETTER */
-
-function eraseLetter() {
+    highlightSelection();
 
     const cell =
-        cells[selectedRow][selectedCol];
+        getCell(row, col);
 
-
-    if (!cell) {
-
-        return;
+    if (cell) {
+        cell.focus();
     }
-
-
-    if (
-        cell.dataset.letter
-    ) {
-
-        cell.dataset.letter =
-            "";
-
-        updateCellDisplay(
-            cell
-        );
-
-        return;
-    }
-
-
-    moveBackward();
 }
 
 
-/* MOVE FORWARD */
+/* =========================
+   MOVE FORWARD
+   ========================= */
 
 function moveForward() {
 
-    const wordCells =
-        getWordCells(
-            selectedRow,
-            selectedCol,
-            direction
-        );
+    if (!selectedCell) {
+        return;
+    }
 
-
-    const currentIndex =
-        wordCells.findIndex(
-            function (cell) {
-
-                return (
-                    Number(
-                        cell.dataset.row
-                    ) === selectedRow &&
-                    Number(
-                        cell.dataset.col
-                    ) === selectedCol
-                );
-            }
-        );
-
+    let {
+        row,
+        col
+    } = selectedCell;
 
     if (
-        currentIndex !== -1 &&
-        currentIndex <
-        wordCells.length - 1
+        direction === "across"
     ) {
 
-        const nextCell =
-            wordCells[
-            currentIndex + 1
-            ];
+        if (col < 4) {
 
+            col++;
 
-        selectedRow =
-            Number(
-                nextCell.dataset.row
-            );
+        } else if (row < 4) {
 
-
-        selectedCol =
-            Number(
-                nextCell.dataset.col
-            );
-
-
-        selectCell();
-    }
-}
-
-
-/* MOVE BACKWARD */
-
-function moveBackward() {
-
-    const wordCells =
-        getWordCells(
-            selectedRow,
-            selectedCol,
-            direction
-        );
-
-
-    const currentIndex =
-        wordCells.findIndex(
-            function (cell) {
-
-                return (
-                    Number(
-                        cell.dataset.row
-                    ) === selectedRow &&
-                    Number(
-                        cell.dataset.col
-                    ) === selectedCol
-                );
-            }
-        );
-
-
-    if (
-        currentIndex > 0
-    ) {
-
-        const previousCell =
-            wordCells[
-            currentIndex - 1
-            ];
-
-
-        selectedRow =
-            Number(
-                previousCell.dataset.row
-            );
-
-
-        selectedCol =
-            Number(
-                previousCell.dataset.col
-            );
-
-
-        selectCell();
-    }
-}
-
-
-/* MOVE CELL */
-
-function moveCell(
-    rowChange,
-    colChange
-) {
-
-    let row =
-        selectedRow +
-        rowChange;
-
-    let col =
-        selectedCol +
-        colChange;
-
-
-    while (
-        row >= 0 &&
-        row < puzzle.grid.length &&
-        col >= 0 &&
-        col < puzzle.grid[0].length
-    ) {
-
-        if (
-            cells[row][col]
-        ) {
-
-            selectedRow =
-                row;
-
-            selectedCol =
-                col;
-
-            return;
+            row++;
+            col = 0;
         }
 
+    } else {
 
-        row +=
-            rowChange;
+        if (row < 4) {
 
-        col +=
-            colChange;
-    }
-}
+            row++;
 
+        } else if (col < 4) {
 
-/* CHECK */
-
-checkButton.addEventListener(
-    "click",
-    function () {
-
-        if (
-            gameFinished ||
-            !puzzle
-        ) {
-
-            return;
-        }
-
-
-        let incorrect = 0;
-        let empty = 0;
-
-
-        cells.forEach(
-            function (row) {
-
-                row.forEach(
-                    function (cell) {
-
-                        if (!cell) {
-
-                            return;
-                        }
-
-
-                        if (
-                            !cell.dataset.letter
-                        ) {
-
-                            empty++;
-
-                            return;
-                        }
-
-
-                        if (
-                            cell.dataset.letter !==
-                            cell.dataset.answer
-                        ) {
-
-                            incorrect++;
-
-                            cell.classList.add(
-                                "wrong"
-                            );
-
-
-                            setTimeout(
-                                function () {
-
-                                    cell.classList.remove(
-                                        "wrong"
-                                    );
-
-                                },
-                                400
-                            );
-                        }
-                    }
-                );
-            }
-        );
-
-
-        if (
-            incorrect > 0
-        ) {
-
-            showMessage(
-                "Some letters are incorrect."
-            );
-
-        } else if (
-            empty > 0
-        ) {
-
-            showMessage(
-                "Looking good! Keep going."
-            );
-
-        } else {
-
-            winGame();
+            col++;
+            row = 0;
         }
     }
-);
 
-
-/* REVEAL */
-
-revealButton.addEventListener(
-    "click",
-    function () {
-
-        if (
-            gameFinished ||
-            !puzzle
-        ) {
-
-            return;
-        }
-
-
-        cells.forEach(
-            function (row) {
-
-                row.forEach(
-                    function (cell) {
-
-                        if (!cell) {
-
-                            return;
-                        }
-
-
-                        cell.dataset.letter =
-                            cell.dataset.answer;
-
-
-                        updateCellDisplay(
-                            cell
-                        );
-                    }
-                );
-            }
-        );
-
-
-        showMessage(
-            "Puzzle revealed!"
-        );
-
-
-        winGame();
-    }
-);
-
-
-/* WIN */
-
-function winGame() {
-
-    gameFinished =
-        true;
-
-
-    setTimeout(
-        function () {
-
-            gameTitle.textContent =
-                "Puzzle Complete! 🎉";
-
-
-            gameDescription.textContent =
-                "Nice work! Come back tomorrow for a new Mini Crossword.";
-
-
-            gameOverlay.classList.add(
-                "show"
-            );
-
-        },
-        400
+    moveTo(
+        row,
+        col
     );
 }
 
 
-/* MESSAGE */
+/* =========================
+   MOVE BACKWARD
+   ========================= */
 
-function showMessage(text) {
+function moveBackward() {
 
-    message.textContent =
-        text;
+    if (!selectedCell) {
+        return;
+    }
+
+    let {
+        row,
+        col
+    } = selectedCell;
+
+    if (
+        direction === "across"
+    ) {
+
+        if (col > 0) {
+
+            col--;
+
+        } else if (row > 0) {
+
+            row--;
+            col = 4;
+        }
+
+    } else {
+
+        if (row > 0) {
+
+            row--;
+
+        } else if (col > 0) {
+
+            col--;
+            row = 4;
+        }
+    }
+
+    moveTo(
+        row,
+        col
+    );
 }
 
 
-/* HELP */
+/* =========================
+   CHECK PUZZLE
+   ========================= */
+
+function checkPuzzle() {
+
+    const cells =
+        document.querySelectorAll(
+            ".grid-cell"
+        );
+
+    let completed = true;
+
+    cells.forEach(
+        cell => {
+
+            if (
+                !cell.textContent
+            ) {
+
+                completed = false;
+            }
+        }
+    );
+
+    if (!completed) {
+        return;
+    }
+
+
+    let correct = true;
+
+
+    for (
+        let row = 0;
+        row < 5;
+        row++
+    ) {
+
+        for (
+            let col = 0;
+            col < 5;
+            col++
+        ) {
+
+            const cell =
+                getCell(row, col);
+
+            const expected =
+                puzzle.grid[row][col];
+
+            if (
+                cell.textContent
+                    .toUpperCase()
+                !== expected
+            ) {
+
+                correct = false;
+            }
+        }
+    }
+
+
+    if (correct) {
+
+        gameWon = true;
+
+        messageElement.textContent =
+            "🎉 You solved The Grid!";
+
+        cells.forEach(
+            cell => {
+
+                cell.classList.add(
+                    "correct"
+                );
+            }
+        );
+
+        setTimeout(
+            () => {
+
+                gameOverlay.classList.add(
+                    "show"
+                );
+
+            },
+            500
+        );
+
+    } else {
+
+        messageElement.textContent =
+            "Not quite! Check your answers.";
+    }
+}
+
+
+/* =========================
+   HELP
+   ========================= */
 
 helpButton.addEventListener(
     "click",
-    function () {
+    () => {
 
         helpOverlay.classList.add(
             "show"
@@ -1439,7 +817,7 @@ helpButton.addEventListener(
 
 closeHelp.addEventListener(
     "click",
-    function () {
+    () => {
 
         helpOverlay.classList.remove(
             "show"
@@ -1450,11 +828,10 @@ closeHelp.addEventListener(
 
 helpOverlay.addEventListener(
     "click",
-    function (event) {
+    event => {
 
         if (
-            event.target ===
-            helpOverlay
+            event.target === helpOverlay
         ) {
 
             helpOverlay.classList.remove(
@@ -1465,11 +842,13 @@ helpOverlay.addEventListener(
 );
 
 
-/* ADMIRE PUZZLE */
+/* =========================
+   WIN SCREEN
+   ========================= */
 
-playAgain.addEventListener(
+playAgainButton.addEventListener(
     "click",
-    function () {
+    () => {
 
         gameOverlay.classList.remove(
             "show"
@@ -1478,6 +857,8 @@ playAgain.addEventListener(
 );
 
 
-/* START */
+/* =========================
+   START
+   ========================= */
 
 loadPuzzle();

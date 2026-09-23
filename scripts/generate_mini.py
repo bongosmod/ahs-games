@@ -1,5 +1,6 @@
 ﻿import os
 import json
+import re
 
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -7,21 +8,15 @@ from zoneinfo import ZoneInfo
 from openai import OpenAI
 
 
+MAX_ATTEMPTS = 5
+GRID_SIZE = 5
+WORD_LENGTH = 5
+
+
 client = OpenAI(
     api_key=os.environ["OPENAI_API_KEY"]
 )
 
-
-# =========================
-# SETTINGS
-# =========================
-
-MAX_ATTEMPTS = 5
-
-
-# =========================
-# DATE
-# =========================
 
 today = (
     datetime.now(
@@ -32,227 +27,190 @@ today = (
 )
 
 
-# =========================
-# GENERATE PUZZLE
-# =========================
+# ============================================================
+# AI GENERATION
+# ============================================================
 
 def generate_puzzle():
 
     prompt = f"""
-Create a brand-new Mini Crossword puzzle
-for {today}.
+Create a brand-new daily crossword puzzle called
+"The Grid" for {today}.
 
-The puzzle should feel like a polished newspaper
-mini crossword that a typical high school student
-could solve in a few minutes.
+This is a very small 5x5 crossword.
+
+IMPORTANT GRID RULES:
+
+- Exactly 5 rows.
+- Exactly 5 columns.
+- Exactly 25 letters.
+- NO black squares.
+- Every row is a five-letter answer.
+- Every column is a five-letter answer.
+- All 10 answers must be different.
+- Every crossing must match exactly.
+- The grid must be a completely valid crossword.
+
+NUMBERING:
+
+Because this is a completely open 5x5 grid,
+there are five Across answers and five Down answers.
+
+Use the SAME numbers for Across and Down:
+
+1 Across / 1 Down
+2 Across / 2 Down
+3 Across / 3 Down
+4 Across / 4 Down
+5 Across / 5 Down
+
+There must NOT be numbers 6, 7, 8, 9, or 10.
 
 DIFFICULTY:
 
-- Easy to medium difficulty.
-- Appropriate for high school students.
-- Use common English words.
-- Use everyday knowledge.
-- Use familiar pop culture, school, sports,
-  technology, food, movies, music, and wordplay
-  when appropriate.
-- Do NOT use extremely obscure vocabulary.
-- Do NOT require specialized academic knowledge.
-- Make some clues clever or playful, but keep them
-  clearly solvable.
+- High-school level.
+- Easy to medium.
+- Fun and approachable.
+- Similar in spirit to a short newspaper mini crossword.
+- Answers should be recognizable to a typical high-school student.
+- Normal everyday English.
+- Familiar pop culture is allowed.
+- Familiar sports, food, school, technology, movies,
+  music, geography, and everyday life are allowed.
+- Clever clues are encouraged when they remain fair.
 
-GRID:
+ANSWER RULES:
 
-- Choose a grid size between 5x5 and 8x8.
-- The grid may be square OR rectangular.
-- Width and height may be different.
-- Black squares are OPTIONAL.
-- You MAY use "#" for black squares.
-- You do NOT have to use black squares.
-- If black squares are used, make the pattern feel
-  like a real crossword.
-- Avoid isolated sections.
-- Avoid one-letter entries.
-- Every non-black square must contain exactly one
-  uppercase letter.
+- Every answer is exactly 5 letters.
+- Letters only.
+- No spaces.
+- No punctuation.
+- No duplicate answers.
+- No nonsense words.
+- No fake words.
+- No obscure crossword filler.
+- No archaic words.
+- No extremely obscure trivia.
+- No questionable spellings.
+- No SATOR.
+- No AREPO.
+- No TENET.
+- Do not use strange words simply because they
+  make the grid work.
 
-CROSSWORD NUMBERING:
+CLUE RULES:
 
-A crossword starting square has ONE number.
+Every answer needs one clue.
 
-If an Across answer and a Down answer begin at the
-same square, they MUST have the SAME number.
+Every clue must clearly and accurately describe
+its answer.
 
-For example:
-
-7 Across and 7 Down are correct if both begin at
-the exact same square.
-
-Do NOT assign different numbers to the same square.
-
-Use standard crossword numbering:
-
-- Number squares from top-left to bottom-right.
-- A square receives a number if it begins an Across
-  answer, a Down answer, or both.
-- Numbering starts at 1.
-- Across and Down share numbers when appropriate.
-
-CLUE QUALITY:
-
-This is extremely important.
-
-Every clue MUST accurately describe its answer.
-
-Before returning the puzzle, mentally test every
-clue-answer pair.
+Each clue should have ONE intended answer.
 
 Examples:
 
 GOOD:
-"Animal that says moo" → COW
-
+"Animal that says moo" -> COW
 GOOD:
-"Opposite of yes" → NO
+"Opposite of happy" -> SAD
 
 BAD:
-"Animal that says moo" → HORSE
-
+"Animal" -> COW
 BAD:
-"Opposite of hot" → SUN
+"Something useful" -> TOOL
 
-Do NOT create clues that merely sound plausible.
+Avoid vague clues where several answers could fit.
 
-Do NOT make a clue whose answer could reasonably
-be several different words unless the clue clearly
-specifies the intended answer.
+Clues should be short and natural.
 
-Avoid vague clues.
+IMPORTANT:
 
-Avoid incorrect definitions.
+Do NOT make the puzzle harder by using obscure words.
 
-Avoid factual errors.
-
-Avoid clues that require obscure knowledge.
-
-For names, movies, songs, brands, sports, etc.,
-make sure the clue actually refers to the answer.
-
-For abbreviations, make sure the clue clearly
-indicates that an abbreviation is expected.
-
-For wordplay, make sure the intended answer is
-clear and fair.
-
-Every clue should have ONE intended answer.
-
-CROSSWORD RULES:
-
-- Every Across answer must exactly match the letters
-  in the grid.
-- Every Down answer must exactly match the letters
-  in the grid.
-- Every actual Across entry must have exactly one
-  Across clue.
-- Every actual Down entry must have exactly one
-  Down clue.
-- Every clue number must match its exact starting
-  square.
-- Every answer must be spelled correctly.
-- Answers must contain letters only.
-- Do not invent words.
-- Do not create one-letter entries.
-- Do not use duplicate clues.
-- Avoid duplicate answers.
-- Every answer must be appropriate for the clue.
-
-BLACK SQUARES:
-
-Black squares are OPTIONAL.
-
-A completely open grid is allowed.
-
-If you use black squares:
-
-- Use "#" exactly.
-- Keep the grid rectangular.
-- Do not create one-letter entries.
-- Make the pattern useful for the crossword.
-- Make sure every resulting Across and Down answer
-  is valid.
-
-VARIETY:
-
-Use a mixture of:
-
-- straightforward clues
-- clever clues
-- wordplay
-- everyday references
-- familiar names
-- abbreviations
-- short common words
-
-Do not make every clue the same type.
-
-FINAL QUALITY CHECK:
-
-Before returning the JSON, verify ALL of these:
-
-1. Every Across answer matches the grid.
-2. Every Down answer matches the grid.
-3. Every clue accurately describes its answer.
-4. Every clue has one intended answer.
-5. No clue contains a factual error.
-6. No answer is invented.
-7. Every clue number matches its starting square.
-8. Across and Down share a number when starting
-   at the same square.
-9. Every actual Across entry has a clue.
-10. Every actual Down entry has a clue.
-11. There are no one-letter entries.
-12. Every non-black square contains a letter.
-13. All grid rows have the same length.
-14. The grid is between 5x5 and 8x8.
-15. The puzzle is solvable using the clues.
+The goal is a good, fair, high-school-level daily mini.
 
 Return ONLY valid JSON.
 
-The JSON MUST have exactly this structure:
+Use exactly this structure:
 
 {{
     "date": "{today}",
-
+    "title": "The Grid",
     "grid": [
-        "....#...",
-        "...##...",
-        "........",
-        "..#.....",
-        "...#...."
+        "ABCDE",
+        "FGHIJ",
+        "KLMNO",
+        "PQRST",
+        "UVWXY"
     ],
-
-    "across": [
+    "clues": [
         {{
             "number": 1,
-            "clue": "CLUE",
-            "answer": "WORD"
-        }}
-    ],
-
-    "down": [
+            "direction": "across",
+            "clue": "Clue for row 1",
+            "answer": "ABCDE"
+        }},
+        {{
+            "number": 2,
+            "direction": "across",
+            "clue": "Clue for row 2",
+            "answer": "FGHIJ"
+        }},
+        {{
+            "number": 3,
+            "direction": "across",
+            "clue": "Clue for row 3",
+            "answer": "KLMNO"
+        }},
+        {{
+            "number": 4,
+            "direction": "across",
+            "clue": "Clue for row 4",
+            "answer": "PQRST"
+        }},
+        {{
+            "number": 5,
+            "direction": "across",
+            "clue": "Clue for row 5",
+            "answer": "UVWXY"
+        }},
         {{
             "number": 1,
-            "clue": "CLUE",
-            "answer": "WORD"
+            "direction": "down",
+            "clue": "Clue for column 1",
+            "answer": "AFKPU"
+        }},
+        {{
+            "number": 2,
+            "direction": "down",
+            "clue": "Clue for column 2",
+            "answer": "BGLQV"
+        }},
+        {{
+            "number": 3,
+            "direction": "down",
+            "clue": "Clue for column 3",
+            "answer": "CHMRW"
+        }},
+        {{
+            "number": 4,
+            "direction": "down",
+            "clue": "Clue for column 4",
+            "answer": "DINSX"
+        }},
+        {{
+            "number": 5,
+            "direction": "down",
+            "clue": "Clue for column 5",
+            "answer": "EJOTY"
         }}
     ]
 }}
 
-IMPORTANT:
+The example letters above are ONLY an example of
+the required JSON structure.
 
-- Do NOT return "." in the final grid.
-- "#" means a black square.
-- Every other character must be an uppercase letter.
-- All rows must have the same length.
+Create a completely different real puzzle.
 """
 
 
@@ -262,702 +220,483 @@ IMPORTANT:
     )
 
 
-    raw_text = response.output_text.strip()
+    raw = response.output_text.strip()
 
 
-    if raw_text.startswith("```"):
+    if raw.startswith("```"):
 
-        raw_text = raw_text.replace(
+        raw = raw.replace(
             "```json",
             ""
         )
 
-        raw_text = raw_text.replace(
+        raw = raw.replace(
             "```",
             ""
         )
 
-        raw_text = raw_text.strip()
+        raw = raw.strip()
 
 
-    return json.loads(raw_text)
+    return json.loads(raw)
 
 
-# =========================
+# ============================================================
+# MECHANICAL VALIDATION
+# ============================================================
+
+def validate_puzzle(puzzle):
+
+    # -------------------------
+    # Basic structure
+    # -------------------------
+
+    if puzzle.get("date") != today:
+
+        raise ValueError(
+            "Puzzle has incorrect date."
+        )
+
+
+    if puzzle.get("title") != "The Grid":
+
+        raise ValueError(
+            "Puzzle title must be The Grid."
+        )
+
+
+    grid = puzzle.get("grid")
+
+
+    if not isinstance(grid, list):
+
+        raise ValueError(
+            "Grid must be a list."
+        )
+
+
+    if len(grid) != GRID_SIZE:
+
+        raise ValueError(
+            "Grid must contain exactly 5 rows."
+        )
+
+
+    # -------------------------
+    # Validate every row
+    # -------------------------
+
+    for row in grid:
+
+        if not isinstance(row, str):
+
+            raise ValueError(
+                "Every grid row must be text."
+            )
+
+
+        if not re.fullmatch(
+            r"[A-Z]{5}",
+            row
+        ):
+
+            raise ValueError(
+                "Every grid row must contain exactly "
+                "five uppercase letters."
+            )
+
+
+        if "#" in row:
+
+            raise ValueError(
+                "BLACK SQUARE DETECTED."
+            )
+
+
+    # -------------------------
+    # Build columns
+    # -------------------------
+
+    columns = []
+
+    for column in range(5):
+
+        word = ""
+
+        for row in range(5):
+
+            word += grid[row][column]
+
+        columns.append(word)
+
+
+    # -------------------------
+    # All 10 answers
+    # -------------------------
+
+    answers = (
+        grid +
+        columns
+    )
+
+
+    if len(answers) != 10:
+
+        raise ValueError(
+            "There must be exactly 10 answers."
+        )
+
+
+    if len(set(answers)) != 10:
+
+        raise ValueError(
+            "All 10 answers must be unique."
+        )
+
+
+    # -------------------------
+    # Clues
+    # -------------------------
+
+    clues = puzzle.get("clues")
+
+
+    if not isinstance(clues, list):
+
+        raise ValueError(
+            "Clues must be a list."
+        )
+
+
+    if len(clues) != 10:
+
+        raise ValueError(
+            "There must be exactly 10 clues."
+        )
+
+
+    across = [
+        clue
+        for clue in clues
+        if clue.get("direction") == "across"
+    ]
+
+
+    down = [
+        clue
+        for clue in clues
+        if clue.get("direction") == "down"
+    ]
+
+
+    if len(across) != 5:
+
+        raise ValueError(
+            "There must be exactly 5 Across clues."
+        )
+
+
+    if len(down) != 5:
+
+        raise ValueError(
+            "There must be exactly 5 Down clues."
+        )
+
+
+    # -------------------------
+    # Shared numbering
+    # -------------------------
+
+    across_numbers = sorted(
+        clue.get("number")
+        for clue in across
+    )
+
+
+    down_numbers = sorted(
+        clue.get("number")
+        for clue in down
+    )
+
+
+    if across_numbers != [1, 2, 3, 4, 5]:
+
+        raise ValueError(
+            "Across numbers must be 1 through 5."
+        )
+
+
+    if down_numbers != [1, 2, 3, 4, 5]:
+
+        raise ValueError(
+            "Down numbers must be 1 through 5."
+        )
+
+
+    # -------------------------
+    # Answers must match grid
+    # -------------------------
+
+    across.sort(
+        key=lambda clue: clue["number"]
+    )
+
+
+    down.sort(
+        key=lambda clue: clue["number"]
+    )
+
+
+    for index, clue in enumerate(across):
+
+        expected = grid[index]
+
+
+        if clue.get("answer") != expected:
+
+            raise ValueError(
+                f"Across #{clue['number']} "
+                f"does not match the grid."
+            )
+
+
+    for index, clue in enumerate(down):
+
+        expected = columns[index]
+
+
+        if clue.get("answer") != expected:
+
+            raise ValueError(
+                f"Down #{clue['number']} "
+                f"does not match the grid."
+            )
+
+
+    # -------------------------
+    # Unique answers
+    # -------------------------
+
+    clue_answers = [
+        clue.get("answer")
+        for clue in clues
+    ]
+
+
+    if len(set(clue_answers)) != 10:
+
+        raise ValueError(
+            "Clue answers must all be unique."
+        )
+
+
+    # -------------------------
+    # Unique clues
+    # -------------------------
+
+    clue_texts = []
+
+
+    for clue in clues:
+
+        text = str(
+            clue.get("clue", "")
+        ).strip().lower()
+
+
+        if not text:
+
+            raise ValueError(
+                "A clue is empty."
+            )
+
+
+        clue_texts.append(text)
+
+
+    if len(set(clue_texts)) != 10:
+
+        raise ValueError(
+            "Duplicate clues detected."
+        )
+
+
+    # -------------------------
+    # Forbidden words
+    # -------------------------
+
+    forbidden = {
+        "SATOR",
+        "AREPO",
+        "TENET"
+    }
+
+
+    for answer in answers:
+
+        if answer in forbidden:
+
+            raise ValueError(
+                f"Forbidden word detected: {answer}"
+            )
+
+
+    return True
+
+
+# ============================================================
 # AI QUALITY CHECK
-# =========================
+# ============================================================
 
-def quality_check(
-    puzzle
-):
+def quality_check(puzzle):
 
-    quality_prompt = f"""
-You are the final quality-control editor
-for a daily Mini Crossword.
+    prompt = f"""
+You are the final editor for "The Grid",
+a daily 5x5 crossword.
 
-Review this crossword extremely carefully.
+Review the ENTIRE puzzle below.
 
-Your job is NOT to rewrite it.
+The puzzle must satisfy ALL of these requirements:
 
-Determine whether the puzzle is acceptable.
+GRID:
 
-Check EVERY clue and answer.
+- Exactly 5 rows.
+- Exactly 5 columns.
+- No black squares.
+- Exactly 25 letters.
+- Every row is a real five-letter English answer.
+- Every column is a real five-letter English answer.
+- All 10 answers are different.
+- Every crossing is correct.
+
+NUMBERING:
+
+- Five Across clues numbered 1 through 5.
+- Five Down clues numbered 1 through 5.
+- Across and Down share the same numbers.
+- There are NO clue numbers 6 through 10.
+
+DIFFICULTY:
+
+- High-school level.
+- Easy to medium.
+- Fair and approachable.
+- Similar in spirit to a short newspaper mini crossword.
+
+ANSWER QUALITY:
+
+Reject the puzzle if it contains:
+
+- SATOR
+- AREPO
+- TENET
+- obscure ancient words
+- archaic words
+- nonsense
+- fake words
+- questionable spellings
+- obscure crossword filler
+- words that are only being used because
+  they happen to fit the grid
+
+CLUE QUALITY:
+
+Review EVERY clue individually.
 
 For every clue:
 
-1. Does the clue actually describe the answer?
-2. Is the answer factually correct?
-3. Is the clue fair?
-4. Is there one clear intended answer?
-5. Is the answer spelled correctly?
-6. Is the clue appropriate for a high school student?
-7. Is the clue too obscure or misleading?
-8. If it uses wordplay, is the wordplay fair?
-9. If it uses a name, movie, song, brand, sport,
-   abbreviation, etc., does the clue correctly
-   refer to that thing?
+1. The clue must accurately describe its answer.
+2. The answer must actually be correct.
+3. The clue must be fair.
+4. The clue must be specific.
+5. The clue should have one intended answer.
+6. The answer should be recognizable to a
+   typical high-school student.
+7. There must be no factual error.
+8. There must be no misleading clue.
+9. There must be no duplicate clue.
+10. The clue should sound natural.
 
-Also check:
+Reject the ENTIRE puzzle if even one clue
+is substantially wrong.
 
-- The grid and answers.
-- Crossword numbering.
-- Shared Across/Down numbers.
-- Duplicate answers.
-- Duplicate clues.
-- Overall solvability.
-
-A technically matching answer is NOT enough.
-
-For example:
-
-Clue: "Animal that says moo"
-Answer: "HORSE"
-
-This MUST be rejected.
-
-Clue: "Animal that says moo"
-Answer: "COW"
-
-This is acceptable.
+Do not approve a puzzle simply because
+the grid technically works.
 
 Return ONLY valid JSON.
 
-Use exactly:
+If the puzzle is good:
 
 {{
     "approved": true,
-    "reason": "Short explanation"
+    "reason": "The puzzle is valid, fair, and appropriate."
 }}
 
-or:
+If anything is wrong:
 
 {{
     "approved": false,
-    "reason": "Short explanation"
+    "reason": "Explain exactly what is wrong."
 }}
 
-Here is the crossword:
+PUZZLE:
 
-{json.dumps(puzzle, indent=4)}
+{json.dumps(
+    puzzle,
+    indent=4
+)}
 """
 
 
     response = client.responses.create(
         model="gpt-5.6-luna",
-        input=quality_prompt
+        input=prompt
     )
 
 
-    raw_text = response.output_text.strip()
+    raw = response.output_text.strip()
 
 
-    if raw_text.startswith("```"):
+    if raw.startswith("```"):
 
-        raw_text = raw_text.replace(
+        raw = raw.replace(
             "```json",
             ""
         )
 
-        raw_text = raw_text.replace(
+        raw = raw.replace(
             "```",
             ""
         )
 
-        raw_text = raw_text.strip()
+        raw = raw.strip()
 
 
-    result = json.loads(
-        raw_text
-    )
+    result = json.loads(raw)
 
 
-    if "approved" not in result:
-        raise ValueError(
-            "AI quality check did not return approval."
-        )
-
-
-    if not result["approved"]:
-
-        reason = result.get(
-            "reason",
-            "AI quality check rejected puzzle."
-        )
-
+    if result.get("approved") is not True:
 
         raise ValueError(
-            f"AI quality check failed: {reason}"
-        )
-
-
-    return result
-
-
-# =========================
-# GRID HELPERS
-# =========================
-
-def starts_across(
-    grid,
-    row,
-    col
-):
-
-    width = len(grid[0])
-
-
-    if grid[row][col] == "#":
-        return False
-
-
-    if (
-        col == 0
-        or grid[row][col - 1] == "#"
-    ):
-
-        return (
-            col + 1 < width
-            and grid[row][col + 1] != "#"
-        )
-
-
-    return False
-
-
-def starts_down(
-    grid,
-    row,
-    col
-):
-
-    height = len(grid)
-
-
-    if grid[row][col] == "#":
-        return False
-
-
-    if (
-        row == 0
-        or grid[row - 1][col] == "#"
-    ):
-
-        return (
-            row + 1 < height
-            and grid[row + 1][col] != "#"
-        )
-
-
-    return False
-
-
-# =========================
-# VALIDATE PUZZLE
-# =========================
-
-def validate_puzzle(
-    puzzle
-):
-
-    # =========================
-    # BASIC FIELDS
-    # =========================
-
-    if "date" not in puzzle:
-        raise ValueError(
-            "Puzzle is missing date."
-        )
-
-
-    if puzzle["date"] != today:
-        raise ValueError(
-            "Puzzle date does not match today's date."
-        )
-
-
-    if "grid" not in puzzle:
-        raise ValueError(
-            "Puzzle is missing grid."
-        )
-
-
-    if "across" not in puzzle:
-        raise ValueError(
-            "Puzzle is missing across clues."
-        )
-
-
-    if "down" not in puzzle:
-        raise ValueError(
-            "Puzzle is missing down clues."
-        )
-
-
-    grid = puzzle["grid"]
-
-
-    # =========================
-    # GRID SIZE
-    # =========================
-
-    height = len(grid)
-
-
-    if height < 5 or height > 8:
-        raise ValueError(
-            "Grid height must be between 5 and 8."
-        )
-
-
-    if not grid:
-        raise ValueError(
-            "Grid is empty."
-        )
-
-
-    width = len(grid[0])
-
-
-    if width < 5 or width > 8:
-        raise ValueError(
-            "Grid width must be between 5 and 8."
-        )
-
-
-    # =========================
-    # GRID CHARACTERS
-    # =========================
-
-    for row in grid:
-
-        if len(row) != width:
-            raise ValueError(
-                "All grid rows must have the same width."
+            "AI quality check failed: "
+            + result.get(
+                "reason",
+                "Unknown reason."
             )
-
-
-        for character in row:
-
-            if (
-                character != "#"
-                and not (
-                    character.isalpha()
-                    and character.isupper()
-                )
-            ):
-
-                raise ValueError(
-                    "Grid may only contain uppercase "
-                    "letters and #."
-                )
-
-
-    # =========================
-    # NUMBERING
-    # =========================
-
-    number_map = {}
-
-    current_number = 0
-
-
-    for row in range(height):
-
-        for col in range(width):
-
-            if grid[row][col] == "#":
-                continue
-
-
-            if (
-                starts_across(
-                    grid,
-                    row,
-                    col
-                )
-                or
-                starts_down(
-                    grid,
-                    row,
-                    col
-                )
-            ):
-
-                current_number += 1
-
-                number_map[
-                    (row, col)
-                ] = current_number
-
-
-    # =========================
-    # EXTRACT GRID ANSWERS
-    # =========================
-
-    def across_answer(
-        row,
-        col
-    ):
-
-        letters = []
-
-
-        while (
-            col < width
-            and grid[row][col] != "#"
-        ):
-
-            letters.append(
-                grid[row][col]
-            )
-
-            col += 1
-
-
-        return "".join(
-            letters
         )
 
 
-    def down_answer(
-        row,
-        col
-    ):
-
-        letters = []
-
-
-        while (
-            row < height
-            and grid[row][col] != "#"
-        ):
-
-            letters.append(
-                grid[row][col]
-            )
-
-            row += 1
-
-
-        return "".join(
-            letters
-        )
-
-
-    actual_across = {}
-    actual_down = {}
-
-
-    for row in range(height):
-
-        for col in range(width):
-
-            if starts_across(
-                grid,
-                row,
-                col
-            ):
-
-                number = number_map[
-                    (row, col)
-                ]
-
-
-                answer = across_answer(
-                    row,
-                    col
-                )
-
-
-                if len(answer) < 2:
-                    raise ValueError(
-                        "Grid contains a one-letter "
-                        "Across entry."
-                    )
-
-
-                actual_across[
-                    number
-                ] = {
-                    "row": row,
-                    "col": col,
-                    "answer": answer
-                }
-
-
-            if starts_down(
-                grid,
-                row,
-                col
-            ):
-
-                number = number_map[
-                    (row, col)
-                ]
-
-
-                answer = down_answer(
-                    row,
-                    col
-                )
-
-
-                if len(answer) < 2:
-                    raise ValueError(
-                        "Grid contains a one-letter "
-                        "Down entry."
-                    )
-
-
-                actual_down[
-                    number
-                ] = {
-                    "row": row,
-                    "col": col,
-                    "answer": answer
-                }
-
-
-    # =========================
-    # CLUE VALIDATION
-    # =========================
-
-    def validate_clues(
-        clues,
-        actual_entries,
-        direction
-    ):
-
-        seen_numbers = set()
-
-
-        for clue in clues:
-
-            if "number" not in clue:
-                raise ValueError(
-                    f"{direction} clue is missing number."
-                )
-
-
-            if "clue" not in clue:
-                raise ValueError(
-                    f"{direction} clue is missing clue text."
-                )
-
-
-            if "answer" not in clue:
-                raise ValueError(
-                    f"{direction} clue is missing answer."
-                )
-
-
-            number = clue["number"]
-
-            answer = clue["answer"].upper()
-
-
-            if not isinstance(
-                number,
-                int
-            ):
-
-                raise ValueError(
-                    f"{direction} clue number must "
-                    f"be an integer."
-                )
-
-
-            if number in seen_numbers:
-
-                raise ValueError(
-                    f"Duplicate {direction} "
-                    f"clue number: {number}"
-                )
-
-
-            seen_numbers.add(
-                number
-            )
-
-
-            if not answer.isalpha():
-
-                raise ValueError(
-                    f"{direction} answer must contain "
-                    f"letters only: {answer}"
-                )
-
-
-            if number not in actual_entries:
-
-                raise ValueError(
-                    f"{direction} clue #{number} "
-                    f"does not start an actual "
-                    f"grid entry."
-                )
-
-
-            expected_answer = actual_entries[
-                number
-            ]["answer"]
-
-
-            if answer != expected_answer:
-
-                raise ValueError(
-                    f"{direction} clue #{number} "
-                    f"is wrong. Grid says "
-                    f"'{expected_answer}' but AI "
-                    f"gave '{answer}'."
-                )
-
-
-        actual_numbers = set(
-            actual_entries.keys()
-        )
-
-
-        clue_numbers = set(
-            seen_numbers
-        )
-
-
-        if actual_numbers != clue_numbers:
-
-            missing = (
-                actual_numbers
-                - clue_numbers
-            )
-
-            extra = (
-                clue_numbers
-                - actual_numbers
-            )
-
-
-            raise ValueError(
-                f"{direction} clue list does not "
-                f"exactly match the grid. "
-                f"Missing: {sorted(missing)} "
-                f"Extra: {sorted(extra)}"
-            )
-
-
-    # Validate Across
-    validate_clues(
-        puzzle["across"],
-        actual_across,
-        "Across"
-    )
-
-
-    # Validate Down
-    validate_clues(
-        puzzle["down"],
-        actual_down,
-        "Down"
-    )
-
-
-    # =========================
-    # SHARED NUMBER VALIDATION
-    # =========================
-
-    all_numbers = (
-        set(actual_across.keys())
-        |
-        set(actual_down.keys())
-    )
-
-
-    for number in all_numbers:
-
-        across_entry = (
-            actual_across.get(number)
-        )
-
-        down_entry = (
-            actual_down.get(number)
-        )
-
-
-        if (
-            across_entry is not None
-            and down_entry is not None
-        ):
-
-            if (
-                across_entry["row"],
-                across_entry["col"]
-            ) != (
-                down_entry["row"],
-                down_entry["col"]
-            ):
-
-                raise ValueError(
-                    f"Number #{number} is assigned "
-                    f"to different starting squares."
-                )
-
-
-    # =========================
-    # NUMBER SEQUENCE
-    # =========================
-
-    expected_numbers = set(
-        range(
-            1,
-            current_number + 1
-        )
-    )
-
-
-    if set(
-        number_map.values()
-    ) != expected_numbers:
-
-        raise ValueError(
-            "Crossword numbering is not sequential."
-        )
-
-
-    # =========================
-    # RETURN VALIDATED DATA
-    # =========================
-
-    return {
-        "puzzle": puzzle,
-        "height": height,
-        "width": width,
-        "number_count": current_number
-    }
-
-
-# =========================
+# ============================================================
 # GENERATION LOOP
-# =========================
+# ============================================================
 
-validated = None
+print()
+print("====================================")
+print("        GENERATING THE GRID")
+print("====================================")
+
+
+successful_puzzle = None
 
 
 for attempt in range(
@@ -967,39 +706,27 @@ for attempt in range(
 
     print()
     print(
-        "===================================="
-    )
-
-    print(
-        f"GENERATING MINI PUZZLE "
-        f"(ATTEMPT {attempt}/{MAX_ATTEMPTS})"
-    )
-
-    print(
-        "===================================="
+        f"ATTEMPT {attempt}/{MAX_ATTEMPTS}"
     )
 
 
     try:
 
-        # -------------------------
-        # Generate
-        # -------------------------
-
         puzzle = generate_puzzle()
 
 
         print(
-            "AI generated puzzle."
+            "AI generated a puzzle."
         )
 
 
-        # -------------------------
-        # AI quality check
-        # -------------------------
+        validate_puzzle(
+            puzzle
+        )
+
 
         print(
-            "Running AI clue quality check..."
+            "Mechanical validation passed."
         )
 
 
@@ -1013,28 +740,12 @@ for attempt in range(
         )
 
 
-        # -------------------------
-        # Mechanical validation
-        # -------------------------
-
-        print(
-            "Running technical validation..."
-        )
-
-
-        validated = validate_puzzle(
-            puzzle
-        )
-
-
-        print(
-            "Technical validation passed."
-        )
+        successful_puzzle = puzzle
 
 
         print()
         print(
-            "✅ PUZZLE APPROVED!"
+            "✅ THE GRID PASSED ALL CHECKS!"
         )
 
 
@@ -1048,40 +759,31 @@ for attempt in range(
             "❌ PUZZLE REJECTED!"
         )
 
+
         print(
             f"Reason: {error}"
         )
 
 
-        if attempt == MAX_ATTEMPTS:
+        if attempt < MAX_ATTEMPTS:
 
-            print()
             print(
-                "❌ ALL GENERATION ATTEMPTS FAILED."
+                "🔄 Generating another Grid..."
             )
 
-            raise
 
+# ============================================================
+# SAVE ONLY APPROVED PUZZLE
+# ============================================================
 
-        print()
-        print(
-            "🔄 Generating a completely new puzzle..."
-        )
+if successful_puzzle is None:
 
+    print()
+    print(
+        "❌ ALL 5 ATTEMPTS FAILED."
+    )
 
-# =========================
-# SAVE
-# =========================
-
-puzzle = validated["puzzle"]
-
-height = validated["height"]
-
-width = validated["width"]
-
-number_count = validated[
-    "number_count"
-]
+    raise SystemExit(1)
 
 
 os.makedirs(
@@ -1097,85 +799,59 @@ with open(
 ) as file:
 
     json.dump(
-        puzzle,
+        successful_puzzle,
         file,
         indent=4
     )
 
 
-# =========================
-# FINAL OUTPUT
-# =========================
+# ============================================================
+# PRINT FINAL PUZZLE
+# ============================================================
 
 print()
-print(
-    "===================================="
-)
-
-print(
-    "🎉 NEW MINI CROSSWORD GENERATED!"
-)
-
-print(
-    "===================================="
-)
-
-print(
-    f"Date: {puzzle['date']}"
-)
+print("====================================")
+print("        🎉 THE GRID IS READY!")
+print("====================================")
 
 print()
 
-print(
-    f"Grid size: {height}x{width}"
-)
-
-print()
-
-print("Grid:")
-
-for row in puzzle["grid"]:
+for row in successful_puzzle["grid"]:
 
     print(row)
 
-print()
-
-print(
-    f"Across clues: {len(puzzle['across'])}"
-)
-
-print(
-    f"Down clues: {len(puzzle['down'])}"
-)
-
-print(
-    f"Numbered squares: {number_count}"
-)
 
 print()
 
-print(
-    "✅ Every answer matches the grid."
-)
-
-print(
-    "✅ Every clue matches its answer."
-)
-
-print(
-    "✅ Every clue number matches its position."
-)
-
-print(
-    "✅ Shared Across/Down numbers are correct."
-)
-
-print(
-    "✅ No one-letter entries."
-)
+print("CLUES:")
 
 print()
 
+for clue in successful_puzzle["clues"]:
+
+    print(
+        f"#{clue['number']} "
+        f"{clue['direction'].upper()}: "
+        f"{clue['clue']} "
+        f"({clue['answer']})"
+    )
+
+
+print()
+print("====================================")
+print("✅ 5x5 grid")
+print("✅ 25 letters")
+print("✅ ZERO black squares")
+print("✅ 5 Across + 5 Down")
+print("✅ Shared 1-5 numbering")
+print("✅ Unique answers")
+print("✅ Unique clues")
+print("✅ Crossings verified")
+print("✅ High-school difficulty requested")
+print("✅ AI clue review passed")
+print("====================================")
+
+print()
 print(
     "Saved to puzzles/mini.json"
 )
