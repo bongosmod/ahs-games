@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AHS Games - Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         ADMIN EDITOR
+         ===================================================== -->
+
+    <main id="editor">
+
+        <header>
+            <h1>The Grid — Admin</h1>
+
+            <p>
+                Create today's Mini Crossword.
+            </p>
+        </header>
+
+
+        <!-- =================================================
+             GRID EDITOR
+             ================================================= -->
+
+        <section class="editor-section">
+
+            <h2>Crossword Grid</h2>
+
+            <p class="instructions">
+                Type letters into the squares.
+                Click a square to turn it into a black square.
+                Click it again to turn it back into a letter.
+            </p>
+
+            <div id="grid" class="grid"></div>
+
+            <p id="grid-status"></p>
+
+        </section>
+
+
+        <!-- =================================================
+             CLUES
+             ================================================= -->
+
+        <section class="clues-section">
+
+            <div class="clue-column">
+
+                <h2>Across</h2>
+
+                <div id="across-clues"></div>
+
+            </div>
+
+
+            <div class="clue-column">
+
+                <h2>Down</h2>
+
+                <div id="down-clues"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BUTTONS
+             ================================================= -->
+
+        <div class="actions">
+
+            <button id="preview-button"
+                    class="secondary-button"
+                    type="button">
+                Preview
+            </button>
+
+            <button id="generate-button"
+                    class="primary-button"
+                    type="button">
+                Generate mini.json
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             RESULT
+             ================================================= -->
+
+        <p id="result"></p>
+
+
+        <!-- =================================================
+             PREVIEW
+             ================================================= -->
+
+        <section class="preview">
+
+            <h2>Preview</h2>
+
+            <div id="preview-grid"></div>
+
+        </section>
+
+    </main>
+
+
+    <script src="admin.js"></script>
+
+</body>
+</html>

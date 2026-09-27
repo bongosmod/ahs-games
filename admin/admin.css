@@ -1,0 +1,323 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background: #14090e;
+    color: #f5e8d8;
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+}
+
+/* ============================================================
+   GENERAL
+   ============================================================ */
+
+.hidden {
+    display: none !important;
+}
+
+#editor {
+    width: min(1100px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 45px 0 70px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #4e2635;
+}
+
+    header h1 {
+        margin: 0;
+        color: #d7aa63;
+        font-size: 42px;
+    }
+
+    header p {
+        margin: 8px 0 0;
+        color: #bda5ad;
+    }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.editor-section,
+.clues-section,
+.preview {
+    margin-bottom: 22px;
+    padding: 28px;
+    background: #21101a;
+    border: 1px solid #4e2635;
+    border-radius: 10px;
+}
+
+h2 {
+    margin: 0 0 10px;
+    color: #d7aa63;
+}
+
+.instructions {
+    margin-top: 0;
+    color: #bda5ad;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   GRID
+   ============================================================ */
+
+.grid {
+    width: min(500px, 100%);
+    margin: 28px auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3px;
+    background: #d7aa63;
+    border: 3px solid #d7aa63;
+}
+
+.grid-cell {
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: #fff8ed;
+    color: #24101a;
+    text-align: center;
+    font-family: inherit;
+    font-size: clamp(24px, 6vw, 44px);
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: text;
+}
+
+    .grid-cell:focus {
+        background: #fff0c8;
+        box-shadow: inset 0 0 0 3px #963e5d;
+    }
+
+    /* ============================================================
+   BLACK SQUARES
+   ============================================================ */
+
+    .grid-cell.black-cell {
+        background: #000000;
+        color: #000000;
+        cursor: pointer;
+    }
+
+        .grid-cell.black-cell:focus {
+            background: #000000;
+            box-shadow: inset 0 0 0 3px #d7aa63;
+        }
+
+/* ============================================================
+   GRID STATUS
+   ============================================================ */
+
+#grid-status {
+    min-height: 24px;
+    margin: 0;
+    text-align: center;
+    color: #bda5ad;
+    font-weight: bold;
+}
+
+/* ============================================================
+   CLUES
+   ============================================================ */
+
+.clues-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+}
+
+.clue-column h2 {
+    margin-bottom: 18px;
+}
+
+.clue-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 11px;
+}
+
+    .clue-row span {
+        flex: 0 0 25px;
+        color: #d7aa63;
+        font-weight: bold;
+    }
+
+.clue-input {
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid #4e2635;
+    border-radius: 6px;
+    background: #14090e;
+    color: #ffffff;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+    .clue-input:focus {
+        border-color: #d7aa63;
+        box-shadow: 0 0 0 2px rgba(215, 170, 99, 0.15);
+    }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+    .actions button {
+        padding: 13px 22px;
+        border-radius: 7px;
+        font-family: inherit;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.15s ease;
+    }
+
+.primary-button {
+    border: 0;
+    background: #963e5d;
+    color: #ffffff;
+}
+
+    .primary-button:hover {
+        background: #ad496b;
+    }
+
+    .primary-button:active {
+        transform: translateY(1px);
+    }
+
+.secondary-button {
+    border: 1px solid #d7aa63;
+    background: transparent;
+    color: #d7aa63;
+}
+
+    .secondary-button:hover {
+        background: #d7aa63;
+        color: #21101a;
+    }
+
+    .secondary-button:active {
+        transform: translateY(1px);
+    }
+
+/* ============================================================
+   RESULT MESSAGE
+   ============================================================ */
+
+#result {
+    min-height: 28px;
+    margin: 15px 0;
+    text-align: center;
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+/* ============================================================
+   PREVIEW
+   ============================================================ */
+
+.preview {
+    text-align: center;
+}
+
+#preview-grid {
+    width: min(350px, 100%);
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3px;
+    background: #d7aa63;
+    border: 3px solid #d7aa63;
+}
+
+.preview-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff8ed;
+    color: #24101a;
+    font-family: inherit;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .preview-cell.black-cell {
+        background: #000000;
+        color: #000000;
+    }
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    #editor {
+        width: calc(100% - 24px);
+        padding-top: 25px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .editor-section,
+    .clues-section,
+    .preview {
+        padding: 20px;
+    }
+
+    .clues-section {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+        .actions button {
+            width: 100%;
+        }
+
+    .grid {
+        gap: 2px;
+        border-width: 2px;
+    }
+
+    #preview-grid {
+        gap: 2px;
+        border-width: 2px;
+    }
+}

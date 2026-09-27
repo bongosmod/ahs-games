@@ -1,4 +1,4 @@
-name: Generate Daily Puzzles
+name: Generate Daily Connections
 
 on:
   schedule:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-puzzles:
+  generate-connections:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,19 +30,13 @@ jobs:
         run: |
           python scripts/generate_connections.py
 
-      - name: Generate Mini Crossword
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          python scripts/generate_mini.py
-
-      - name: Save new puzzles
+      - name: Save new Connections puzzle
         run: |
           git config user.name "AHS Games Bot"
           git config user.email "actions@github.com"
 
-          git add puzzles/connections.json puzzles/mini.json
+          git add puzzles/connections.json
 
-          git diff --cached --quiet || git commit -m "Generate daily puzzles"
+          git diff --cached --quiet || git commit -m "Generate daily Connections"
 
           git push
