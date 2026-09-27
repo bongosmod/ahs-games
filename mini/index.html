@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
@@ -42,16 +41,24 @@
 
     </header>
 
-
     <main>
 
         <div id="message"></div>
-
 
         <div id="grid"
              class="grid"
              aria-label="The Grid crossword"></div>
 
+        <!-- CHECK ANSWERS BUTTON -->
+
+        <div class="check-container">
+
+            <button id="check-answers"
+                    class="check-button">
+                CHECK ANSWERS
+            </button>
+
+        </div>
 
         <section class="clues-container">
 
@@ -65,7 +72,6 @@
                      class="clues"></div>
 
             </div>
-
 
             <div class="clues-column">
 
@@ -82,6 +88,7 @@
 
     </main>
 
+    <!-- HELP -->
 
     <div id="help-overlay"
          class="overlay">
@@ -114,6 +121,10 @@
             </p>
 
             <p>
+                Use CHECK ANSWERS to check your work.
+            </p>
+
+            <p>
                 Complete the entire grid to solve
                 today's puzzle.
             </p>
@@ -122,6 +133,7 @@
 
     </div>
 
+    <!-- GAME COMPLETE -->
 
     <div id="game-overlay"
          class="overlay">
@@ -145,7 +157,6 @@
         </div>
 
     </div>
-
 
     <script src="mini.js"></script>
 
