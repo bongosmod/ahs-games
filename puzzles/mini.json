@@ -1,79 +1,85 @@
 {
-    "date": "2026-09-22",
+    "date": "2026-09-27",
+    "title": "The Grid",
     "grid": [
-        "UP#CI",
-        "SIGHT",
-        "#LIE#",
-        "TOTAL",
-        "AT#TO"
+        "ARETE",
+        "RIGHT",
+        "EGG##",
+        "#SOBE",
+        "##SEE"
     ],
-    "across": [
+    "clues": [
         {
             "number": 1,
-            "clue": "Elevate, as a flag",
-            "answer": "UP"
-        },
-        {
-            "number": 3,
-            "clue": "Continuous integration, briefly",
-            "answer": "CI"
-        },
-        {
-            "number": 5,
-            "clue": "Tell an untruth",
-            "answer": "LIE"
+            "direction": "across",
+            "clue": "Greek idea of living up to your true potential.",
+            "answer": "ARETE"
         },
         {
             "number": 6,
-            "clue": "Add up to",
-            "answer": "TOTAL"
-        },
-        {
-            "number": 8,
-            "clue": "In the direction of",
-            "answer": "AT"
-        },
-        {
-            "number": 9,
-            "clue": "In order to",
-            "answer": "TO"
-        }
-    ],
-    "down": [
-        {
-            "number": 1,
-            "clue": "Pronoun for more than one person",
-            "answer": "US"
-        },
-        {
-            "number": 2,
-            "clue": "One who flies a plane",
-            "answer": "PILOT"
-        },
-        {
-            "number": 3,
-            "clue": "Version-control tool",
-            "answer": "GIT"
-        },
-        {
-            "number": 4,
-            "clue": "Technology department, briefly",
-            "answer": "IT"
-        },
-        {
-            "number": 5,
-            "clue": "Beat at a game or competition",
-            "answer": "CHEAT"
-        },
-        {
-            "number": 6,
-            "clue": "The Greek letter \u03c4, informally",
-            "answer": "TA"
+            "direction": "across",
+            "clue": "It's _____ there!",
+            "answer": "RIGHT"
         },
         {
             "number": 7,
-            "clue": "Expression of surprise",
-            "answer": "LO"
+            "direction": "across",
+            "clue": "A high protein food.",
+            "answer": "EGG"
+        },
+        {
+            "number": 8,
+            "direction": "across",
+            "clue": "Murray teacher that left to teach at UNCW.",
+            "answer": "SOBE"
+        },
+        {
+            "number": 11,
+            "direction": "across",
+            "clue": "With your eyes you can ___.",
+            "answer": "SEE"
+        },
+        {
+            "number": 1,
+            "direction": "down",
+            "clue": "____ you, coming to the tree.",
+            "answer": "ARE"
+        },
+        {
+            "number": 2,
+            "direction": "down",
+            "clue": "Oil drillers.",
+            "answer": "RIGS"
+        },
+        {
+            "number": 3,
+            "direction": "down",
+            "clue": "The food Eleven was obsessed with.",
+            "answer": "EGGOS"
+        },
+        {
+            "number": 4,
+            "direction": "down",
+            "clue": "A popular digraph.",
+            "answer": "TH"
+        },
+        {
+            "number": 5,
+            "direction": "down",
+            "clue": "An alien associated with a bicycle.",
+            "answer": "ET"
+        },
+        {
+            "number": 9,
+            "direction": "down",
+            "clue": "To ___ or not to ___.",
+            "answer": "BE"
+        },
+        {
+            "number": 10,
+            "direction": "down",
+            "clue": "The initials for the actor that played \"Two-Bit\"",
+            "answer": "EE"
         }
     ]
 }
