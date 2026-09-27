@@ -1,43 +1,43 @@
 {
-    "date": "2026-09-22",
+    "date": "2026-09-27",
     "groups": [
         {
-            "name": "Can Precede BOARD",
+            "name": "Words Before HOUSE",
             "words": [
-                "CHESS",
-                "DASH",
-                "SURF",
-                "BILL"
+                "GREEN",
+                "LIGHT",
+                "CLUB",
+                "POWER"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Kinds of BEANS",
+            "name": "Words Before BALL",
             "words": [
-                "COFFEE",
-                "GREEN",
-                "JELLY",
-                "PINTO"
+                "BASE",
+                "FOOT",
+                "BASKET",
+                "VOLLEY"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Precede STONE",
+            "name": "Can Follow CAST",
             "words": [
-                "BIRTH",
-                "LIME",
-                "MILE",
-                "TOUCH"
+                "VOTE",
+                "SHADOW",
+                "SPELL",
+                "NET"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Words with a Silent Initial Letter",
+            "name": "Keyboard Keys",
             "words": [
-                "GNOME",
-                "KNIFE",
-                "PSALM",
-                "WRIST"
+                "SHIFT",
+                "ENTER",
+                "ESCAPE",
+                "DELETE"
             ],
             "className": "group-purple"
         }
