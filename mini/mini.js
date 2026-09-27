@@ -10,7 +10,6 @@
     let puzzle = null;
 
     let grid = [];
-
     let userGrid = [];
 
     let selectedRow = 0;
@@ -26,7 +25,7 @@
     // ========================================================
 
     const gridElement =
-        document.getElementById("mini-grid");
+        document.getElementById("grid");
 
     const acrossCluesElement =
         document.getElementById("across-clues");
@@ -34,11 +33,38 @@
     const downCluesElement =
         document.getElementById("down-clues");
 
-    const titleElement =
-        document.getElementById("puzzle-title");
+    const messageElement =
+        document.getElementById("message");
 
-    const statusElement =
-        document.getElementById("puzzle-status");
+    const helpButton =
+        document.getElementById("help-button");
+
+    const helpOverlay =
+        document.getElementById("help-overlay");
+
+    const closeHelp =
+        document.getElementById("close-help");
+
+    const gameOverlay =
+        document.getElementById("game-overlay");
+
+    const closeGameButton =
+        document.getElementById("play-again");
+
+
+    // ========================================================
+    // BASIC HTML CHECK
+    // ========================================================
+
+    if (!gridElement) {
+
+        console.error(
+            "Mini Crossword error: #grid was not found."
+        );
+
+        return;
+
+    }
 
 
     // ========================================================
@@ -71,17 +97,15 @@
 
             setupPuzzle();
 
-
         }
 
         catch (error) {
 
             console.error(error);
 
+            if (messageElement) {
 
-            if (statusElement) {
-
-                statusElement.textContent =
+                messageElement.textContent =
                     "Couldn't load today's puzzle.";
 
             }
@@ -97,30 +121,59 @@
 
     function setupPuzzle() {
 
+        /*
+         * The admin editor generates rows like:
+         *
+         * "ARETE"
+         * "RIGHT"
+         * "EGG##"
+         *
+         * Convert each string into an array of characters
+         * so the game can work with individual cells.
+         */
+
         grid =
-            puzzle.grid.map(
-                row => [...row]
+            puzzle.grid.map(row => {
+
+                if (typeof row === "string") {
+
+                    return [...row];
+
+                }
+
+                return [...row];
+
+            });
+
+
+        /*
+         * Make sure the grid is actually 5x5.
+         */
+
+        if (
+            grid.length !== GRID_SIZE ||
+            grid.some(row => row.length !== GRID_SIZE)
+        ) {
+
+            throw new Error(
+                "Puzzle grid must be exactly 5×5."
             );
-
-
-        userGrid =
-            grid.map(
-                row =>
-                    row.map(
-                        cell =>
-                            cell === BLACK_SQUARE
-                                ? BLACK_SQUARE
-                                : ""
-                    )
-            );
-
-
-        if (titleElement) {
-
-            titleElement.textContent =
-                puzzle.title || "The Grid";
 
         }
+
+
+        /*
+         * Create the player's empty grid.
+         */
+
+        userGrid =
+            grid.map(row =>
+                row.map(cell =>
+                    cell === BLACK_SQUARE
+                        ? BLACK_SQUARE
+                        : ""
+                )
+            );
 
 
         createGrid();
@@ -140,7 +193,11 @@
 
         const entries = [];
 
-        for (let row = 0; row < GRID_SIZE; row++) {
+        for (
+            let row = 0;
+            row < GRID_SIZE;
+            row++
+        ) {
 
             for (
                 let column = 0;
@@ -183,7 +240,6 @@
 
         }
 
-
         return entries;
 
     }
@@ -197,7 +253,11 @@
 
         const entries = [];
 
-        for (let row = 0; row < GRID_SIZE; row++) {
+        for (
+            let row = 0;
+            row < GRID_SIZE;
+            row++
+        ) {
 
             for (
                 let column = 0;
@@ -239,7 +299,6 @@
             }
 
         }
-
 
         return entries;
 
@@ -283,9 +342,7 @@
 
 
         const sortedStarts =
-            Array.from(
-                starts.keys()
-            )
+            Array.from(starts.keys())
                 .map(key => {
 
                     const parts =
@@ -310,7 +367,8 @@
                 });
 
 
-        const numberMap = new Map();
+        const numberMap =
+            new Map();
 
 
         sortedStarts.forEach(
@@ -342,7 +400,11 @@
             getNumberMap();
 
 
-        for (let row = 0; row < GRID_SIZE; row++) {
+        for (
+            let row = 0;
+            row < GRID_SIZE;
+            row++
+        ) {
 
             for (
                 let column = 0;
@@ -379,14 +441,11 @@
                         "black-cell"
                     );
 
-
                     cell.disabled = true;
-
 
                     gridElement.appendChild(
                         cell
                     );
-
 
                     continue;
 
@@ -480,7 +539,6 @@
     function createClues() {
 
         acrossCluesElement.innerHTML = "";
-
         downCluesElement.innerHTML = "";
 
 
@@ -641,7 +699,11 @@
         numberMap
     ) {
 
-        for (let row = 0; row < GRID_SIZE; row++) {
+        for (
+            let row = 0;
+            row < GRID_SIZE;
+            row++
+        ) {
 
             for (
                 let column = 0;
@@ -728,8 +790,8 @@
 
 
         /*
-         * Clicking the currently selected cell
-         * switches Across <-> Down when both exist.
+         * Clicking the currently selected cell switches
+         * Across <-> Down if both directions exist.
          */
 
         if (
@@ -1148,7 +1210,7 @@
 
 
             // ================================================
-            // ARROW KEYS
+            // ARROWS
             // ================================================
 
             if (
@@ -1157,10 +1219,7 @@
 
                 event.preventDefault();
 
-                moveDirection(
-                    0,
-                    -1
-                );
+                moveDirection(0, -1);
 
                 return;
 
@@ -1173,10 +1232,7 @@
 
                 event.preventDefault();
 
-                moveDirection(
-                    0,
-                    1
-                );
+                moveDirection(0, 1);
 
                 return;
 
@@ -1189,10 +1245,7 @@
 
                 event.preventDefault();
 
-                moveDirection(
-                    -1,
-                    0
-                );
+                moveDirection(-1, 0);
 
                 return;
 
@@ -1205,10 +1258,7 @@
 
                 event.preventDefault();
 
-                moveDirection(
-                    1,
-                    0
-                );
+                moveDirection(1, 0);
 
                 return;
 
@@ -1234,7 +1284,7 @@
 
 
     // ========================================================
-    // UPDATE LETTER ON SCREEN
+    // UPDATE LETTER
     // ========================================================
 
     function updateCellLetter() {
@@ -1307,7 +1357,6 @@
                 const start =
                     getCurrentEntry();
 
-
                 selectedColumn =
                     start.column;
 
@@ -1345,7 +1394,6 @@
 
                 const start =
                     getCurrentEntry();
-
 
                 selectedRow =
                     start.row;
@@ -1474,9 +1522,7 @@
             column;
 
 
-        if (
-            rowChange !== 0
-        ) {
+        if (rowChange !== 0) {
 
             selectedDirection =
                 "down";
@@ -1484,9 +1530,7 @@
         }
 
 
-        if (
-            columnChange !== 0
-        ) {
+        if (columnChange !== 0) {
 
             selectedDirection =
                 "across";
@@ -1505,7 +1549,11 @@
 
     function checkCompletion() {
 
-        for (let row = 0; row < GRID_SIZE; row++) {
+        for (
+            let row = 0;
+            row < GRID_SIZE;
+            row++
+        ) {
 
             for (
                 let column = 0;
@@ -1539,9 +1587,9 @@
         completed = true;
 
 
-        if (statusElement) {
+        if (messageElement) {
 
-            statusElement.textContent =
+            messageElement.textContent =
                 "🎉 Puzzle complete!";
 
         }
@@ -1552,7 +1600,94 @@
         );
 
 
+        if (gameOverlay) {
+
+            gameOverlay.classList.add(
+                "show"
+            );
+
+        }
+
+
         return true;
+
+    }
+
+
+    // ========================================================
+    // HELP OVERLAY
+    // ========================================================
+
+    if (helpButton && helpOverlay) {
+
+        helpButton.addEventListener(
+            "click",
+            () => {
+
+                helpOverlay.classList.add(
+                    "show"
+                );
+
+            }
+        );
+
+    }
+
+
+    if (closeHelp && helpOverlay) {
+
+        closeHelp.addEventListener(
+            "click",
+            () => {
+
+                helpOverlay.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+    }
+
+
+    if (helpOverlay) {
+
+        helpOverlay.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === helpOverlay
+                ) {
+
+                    helpOverlay.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // ========================================================
+    // GAME OVERLAY
+    // ========================================================
+
+    if (closeGameButton && gameOverlay) {
+
+        closeGameButton.addEventListener(
+            "click",
+            () => {
+
+                gameOverlay.classList.remove(
+                    "show"
+                );
+
+            }
+        );
 
     }
 
