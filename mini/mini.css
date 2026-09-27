@@ -1,7 +1,7 @@
 ﻿
 /* =========================================
    AHS GAMES - THE GRID
-   GARNET + GOLD THEME
+   GARNET + GOLD
 ========================================= */
 * {
     box-sizing: border-box;
@@ -15,10 +15,10 @@ body {
 }
 
 body {
-    background: radial-gradient( circle at top, #641f32 0%, #4b1626 38%, #310d18 100% );
-    color: #f7e8b0;
-    font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh;
+    background: #4a1427;
+    color: #f3e5b5;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -28,11 +28,10 @@ body {
 
 header {
     width: 100%;
+    padding: 24px 20px 18px;
     text-align: center;
-    padding: 28px 20px 20px;
-    border-bottom: 1px solid rgba(224, 183, 82, 0.25);
-    background: linear-gradient( 180deg, rgba(91, 25, 44, 0.95), rgba(58, 14, 27, 0.9) );
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+    background: #54182c;
+    border-bottom: 2px solid #a98538;
 }
 
 .top-bar {
@@ -45,17 +44,16 @@ header {
 
     .top-bar h1 {
         margin: 0;
-        font-size: 32px;
-        font-weight: 800;
-        letter-spacing: 1px;
-        color: #f2ca62;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        color: #e2bd5c;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
     }
 
 header > p {
-    margin: 8px 0 0;
-    color: #e4c982;
-    font-size: 15px;
+    margin: 7px 0 0;
+    color: #d8c38a;
+    font-size: 14px;
 }
 
 
@@ -65,27 +63,26 @@ header > p {
 
 .back-button,
 #help-button {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #cda94f;
-    border-radius: 10px;
-    background: #5a172a;
-    color: #f2ca62;
+    border: 1px solid #b89545;
+    border-radius: 5px;
+    background: #641c33;
+    color: #e2bd5c;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 21px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease;
 }
 
     .back-button:hover,
     #help-button:hover {
-        background: #76213a;
-        border-color: #f2ca62;
-        transform: translateY(-1px);
+        background: #74213b;
+        border-color: #d5b45c;
     }
 
     .back-button:active,
@@ -101,7 +98,7 @@ header > p {
 main {
     width: min(900px, 94%);
     margin: 0 auto;
-    padding: 30px 0 60px;
+    padding: 28px 0 55px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,10 +110,10 @@ main {
 ========================================= */
 
 #message {
-    min-height: 24px;
-    margin-bottom: 14px;
-    color: #f2ca62;
-    font-size: 15px;
+    min-height: 22px;
+    margin-bottom: 12px;
+    color: #e2bd5c;
+    font-size: 14px;
     font-weight: 700;
     text-align: center;
 }
@@ -127,22 +124,20 @@ main {
 ========================================= */
 
 .grid {
-    width: min(500px, 90vw);
+    width: min(480px, 90vw);
     aspect-ratio: 1 / 1;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    gap: 2px;
-    padding: 2px;
-    background: #0d080a;
-    border: 3px solid #d0a94f;
-    border-radius: 4px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    gap: 1px;
+    padding: 1px;
+    background: #161014;
+    border: 2px solid #b89545;
 }
 
 
 /* =========================================
-   INDIVIDUAL CELL
+   CELLS
 ========================================= */
 
 .mini-cell {
@@ -150,9 +145,9 @@ main {
     width: 100%;
     height: 100%;
     padding: 0;
-    border: 1px solid #b98d3c;
-    background: linear-gradient( 145deg, #fff3c7, #ead38c );
-    color: #40101f;
+    border: 1px solid #b99b55;
+    background: #f0e3b5;
+    color: #421020;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     overflow: hidden;
@@ -166,9 +161,8 @@ main {
 
     .mini-cell.black {
         background: #000000 !important;
-        border: 1px solid #000000 !important;
+        border-color: #000000 !important;
         cursor: default;
-        box-shadow: none;
     }
 
         .mini-cell.black:hover {
@@ -177,7 +171,7 @@ main {
 
 
 /* =========================================
-   CELL NUMBER
+   CELL NUMBERS
 ========================================= */
 
 .cell-number {
@@ -185,16 +179,16 @@ main {
     top: 3px;
     left: 4px;
     z-index: 2;
-    color: #4a1323;
-    font-size: clamp(9px, 1.5vw, 13px);
-    font-weight: 800;
+    color: #4c1525;
+    font-size: clamp(9px, 1.5vw, 12px);
+    font-weight: 700;
     line-height: 1;
     pointer-events: none;
 }
 
 
 /* =========================================
-   LETTER
+   LETTERS
 ========================================= */
 
 .cell-letter {
@@ -204,8 +198,8 @@ main {
     align-items: center;
     justify-content: center;
     padding-top: 5px;
-    color: #3b0d1a;
-    font-size: clamp(22px, 5vw, 38px);
+    color: #3f101e;
+    font-size: clamp(21px, 5vw, 36px);
     font-weight: 700;
     line-height: 1;
     pointer-events: none;
@@ -217,7 +211,7 @@ main {
 ========================================= */
 
 .mini-cell.word-selected {
-    background: linear-gradient( 145deg, #f8e4a5, #e1bd62 );
+    background: #ead28c;
 }
 
 
@@ -226,82 +220,73 @@ main {
 ========================================= */
 
 .mini-cell.selected {
-    background: linear-gradient( 145deg, #f4d16b, #d5a63f );
-    border: 2px solid #7b2039;
+    background: #dfb84f;
+    border: 2px solid #641b32;
     z-index: 3;
 }
 
 
 /* =========================================
-   INCORRECT ANSWER
+   INCORRECT
 ========================================= */
 
 .mini-cell.incorrect {
-    background: linear-gradient( 145deg, #e6a0a0, #c96767 );
-    border-color: #8f2525;
+    background: #d88989;
+    border-color: #8d3030;
 }
 
     .mini-cell.incorrect .cell-letter {
-        color: #5b1010;
+        color: #571010;
     }
 
 
 /* =========================================
-   COMPLETED CELL
+   COMPLETED
 ========================================= */
 
 .mini-cell.completed {
-    background: linear-gradient( 145deg, #f4d57d, #c99b39 );
-    border-color: #7a1d37;
+    background: #d5ae4d;
+    border-color: #641b32;
 }
 
     .mini-cell.completed .cell-letter {
-        color: #3a0c18;
+        color: #3f101e;
     }
 
 
 /* =========================================
-   CHECK ANSWERS AREA
+   CHECK ANSWERS
 ========================================= */
 
 .check-container {
-    width: min(500px, 90vw);
+    width: min(480px, 90vw);
+    margin-top: 16px;
     display: flex;
     justify-content: center;
-    margin-top: 18px;
 }
-
-
-/* =========================================
-   CHECK ANSWERS BUTTON
-========================================= */
 
 .check-button {
     width: 100%;
-    min-height: 52px;
-    padding: 12px 20px;
-    border: 2px solid #d8b45a;
-    border-radius: 10px;
-    background: linear-gradient( 180deg, #751f39 0%, #59152b 100% );
-    color: #f5d477;
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 1.2px;
+    min-height: 48px;
+    padding: 11px 18px;
+    border: 1px solid #c5a653;
+    border-radius: 5px;
+    background: #641b32;
+    color: #e6c568;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease;
 }
 
     .check-button:hover {
-        background: linear-gradient( 180deg, #8a2845 0%, #691a32 100% );
-        border-color: #f2ce6d;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-        transform: translateY(-1px);
+        background: #75203a;
+        border-color: #dfc16d;
     }
 
     .check-button:active {
-        transform: translateY(1px);
-        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+        background: #54162a;
     }
 
 
@@ -314,56 +299,57 @@ main {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 35px;
-    margin-top: 40px;
+    margin-top: 38px;
 }
 
 .clues-column h2 {
-    margin: 0 0 12px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #c59d48;
-    color: #f2ca62;
-    font-size: 21px;
+    margin: 0 0 11px;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #a98538;
+    color: #e2bd5c;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 
 /* =========================================
-   CLUE BUTTONS
+   CLUES
 ========================================= */
 
 .clues {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
 }
 
 .clue {
     width: 100%;
-    padding: 8px 9px;
+    padding: 7px 8px;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     background: transparent;
-    color: #f0dfad;
-    font-size: 15px;
-    line-height: 1.35;
+    color: #e2d5ad;
+    font-size: 14px;
+    line-height: 1.4;
     text-align: left;
     cursor: pointer;
-    transition: background 0.12s ease, color 0.12s ease;
+    transition: background 0.1s ease, color 0.1s ease;
 }
 
     .clue:hover {
-        background: rgba(220, 176, 72, 0.13);
-        color: #fff0bd;
+        background: #5d1a30;
+        color: #f1e5bd;
     }
 
     .clue.active {
-        background: rgba(210, 163, 57, 0.24);
-        color: #f5d477;
+        background: #682039;
+        color: #e7c565;
         font-weight: 700;
     }
 
 .clue-number {
-    color: #d8b45a;
-    font-weight: 800;
+    color: #c4a24d;
+    font-weight: 700;
 }
 
 
@@ -378,12 +364,11 @@ main {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(18, 5, 10, 0.78);
-    backdrop-filter: blur(5px);
+    background: rgba(20, 6, 12, 0.75);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
     z-index: 1000;
 }
 
@@ -400,25 +385,24 @@ main {
 
 .modal {
     position: relative;
-    width: min(460px, 94vw);
-    padding: 35px 30px;
-    border: 1px solid #d3aa4d;
-    border-radius: 14px;
-    background: linear-gradient( 145deg, #621b31, #3d101e );
-    color: #f4e4ad;
+    width: min(450px, 94vw);
+    padding: 30px;
+    border: 1px solid #b89545;
+    border-radius: 7px;
+    background: #54182c;
+    color: #eadcb1;
     text-align: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
     .modal h2 {
-        margin: 0 0 14px;
-        color: #f2ca62;
-        font-size: 27px;
+        margin: 0 0 13px;
+        color: #e2bd5c;
+        font-size: 25px;
     }
 
     .modal p {
         margin: 10px 0;
-        line-height: 1.55;
+        line-height: 1.5;
     }
 
 
@@ -428,43 +412,42 @@ main {
 
 .close-button {
     position: absolute;
-    top: 10px;
-    right: 12px;
+    top: 8px;
+    right: 10px;
     width: 34px;
     height: 34px;
     border: none;
     background: transparent;
-    color: #e8c96e;
-    font-size: 28px;
+    color: #d8b95f;
+    font-size: 27px;
     cursor: pointer;
 }
 
     .close-button:hover {
-        color: #fff0b5;
+        color: #f0d984;
     }
 
 
 /* =========================================
-   PRIMARY BUTTON
+   WIN BUTTON
 ========================================= */
 
 .primary-button {
-    margin-top: 18px;
-    padding: 12px 22px;
-    border: 1px solid #e1bd5e;
-    border-radius: 8px;
-    background: #6b1c36;
-    color: #f3d273;
+    margin-top: 16px;
+    padding: 11px 21px;
+    border: 1px solid #c5a653;
+    border-radius: 5px;
+    background: #641b32;
+    color: #e6c568;
     font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 0.8px;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.15s ease, transform 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease;
 }
 
     .primary-button:hover {
-        background: #842445;
-        transform: translateY(-1px);
+        background: #75203a;
+        border-color: #dfc16d;
     }
 
 
@@ -482,11 +465,6 @@ main {
         font-size: 26px;
     }
 
-    .clues-container {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-
     main {
         padding-top: 22px;
     }
@@ -497,6 +475,11 @@ main {
 
     .check-container {
         width: min(92vw, 430px);
+    }
+
+    .clues-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
 
     .clue {
