@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
@@ -10,9 +13,12 @@
 
     <link rel="stylesheet"
           href="mini.css">
+
 </head>
 
+
 <body>
+
 
     <header>
 
@@ -24,16 +30,20 @@
                 ←
             </a>
 
+
             <h1>
                 The Grid
             </h1>
 
+
             <button id="help-button"
-                    aria-label="How to play">
+                    aria-label="How to play"
+                    type="button">
                 ?
             </button>
 
         </div>
+
 
         <p>
             A quick 5×5 crossword.
@@ -41,26 +51,34 @@
 
     </header>
 
+
+
     <main>
 
+
         <div id="message"></div>
+
 
         <div id="grid"
              class="grid"
              aria-label="The Grid crossword"></div>
 
-        <!-- CHECK ANSWERS BUTTON -->
+
 
         <div class="check-container">
 
             <button id="check-answers"
-                    class="check-button">
+                    class="check-button"
+                    type="button">
                 CHECK ANSWERS
             </button>
 
         </div>
 
+
+
         <section class="clues-container">
+
 
             <div class="clues-column">
 
@@ -68,10 +86,13 @@
                     Across
                 </h2>
 
+
                 <div id="across-clues"
                      class="clues"></div>
 
             </div>
+
+
 
             <div class="clues-column">
 
@@ -79,16 +100,20 @@
                     Down
                 </h2>
 
+
                 <div id="down-clues"
                      class="clues"></div>
 
             </div>
 
+
         </section>
 
     </main>
 
-    <!-- HELP -->
+
+
+    <!-- HELP OVERLAY -->
 
     <div id="help-overlay"
          class="overlay">
@@ -98,17 +123,21 @@
 
             <button id="close-help"
                     class="close-button"
-                    aria-label="Close">
+                    aria-label="Close"
+                    type="button">
                 ×
             </button>
+
 
             <h2>
                 How to Play
             </h2>
 
+
             <p>
                 Fill in the 5×5 grid using the clues.
             </p>
+
 
             <p>
                 Click a square and type a letter.
@@ -116,13 +145,16 @@
                 between Across and Down.
             </p>
 
+
             <p>
                 Use the arrow keys to move around the grid.
             </p>
 
+
             <p>
                 Use CHECK ANSWERS to check your work.
             </p>
+
 
             <p>
                 Complete the entire grid to solve
@@ -133,7 +165,9 @@
 
     </div>
 
-    <!-- GAME COMPLETE -->
+
+
+    <!-- WIN OVERLAY -->
 
     <div id="game-overlay"
          class="overlay">
@@ -145,18 +179,23 @@
                 You Won!
             </h2>
 
+
             <p id="game-description">
                 You completed The Grid!
             </p>
 
+
             <button id="play-again"
-                    class="primary-button">
+                    class="primary-button"
+                    type="button">
                 ADMIRE PUZZLE
             </button>
 
         </div>
 
     </div>
+
+
 
     <script src="mini.js"></script>
 
