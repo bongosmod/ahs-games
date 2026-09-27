@@ -1,16 +1,7 @@
 ﻿document.addEventListener("DOMContentLoaded", () => {
 
-    // ========================================================
-    // SETTINGS
-    // ========================================================
-
     const GRID_SIZE = 5;
     const BLACK_SQUARE = "#";
-
-
-    // ========================================================
-    // ELEMENTS
-    // ========================================================
 
     const gridElement = document.getElementById("grid");
     const acrossCluesElement = document.getElementById("across-clues");
@@ -24,10 +15,11 @@
     const gridStatus = document.getElementById("grid-status");
     const result = document.getElementById("result");
 
-
-    // ========================================================
-    // GRID DATA
-    // ========================================================
+    /*
+    ============================================================
+    GRID
+    ============================================================
+    */
 
     const grid = [];
 
@@ -36,27 +28,19 @@
         down: {}
     };
 
-
-    // ========================================================
-    // CREATE EMPTY GRID
-    // ========================================================
-
     for (let row = 0; row < GRID_SIZE; row++) {
-
         grid[row] = [];
 
         for (let column = 0; column < GRID_SIZE; column++) {
-
             grid[row][column] = "";
-
         }
-
     }
 
-
-    // ========================================================
-    // CREATE GRID
-    // ========================================================
+    /*
+    ============================================================
+    CREATE GRID
+    ============================================================
+    */
 
     function createGrid() {
 
@@ -69,58 +53,54 @@
                 const cell = document.createElement("input");
 
                 cell.type = "text";
-
                 cell.className = "grid-cell";
-
                 cell.maxLength = 1;
-
                 cell.autocomplete = "off";
 
                 cell.dataset.row = row;
-
                 cell.dataset.column = column;
 
-                cell.value = grid[row][column] === BLACK_SQUARE
-                    ? ""
-                    : grid[row][column];
-
-
-                // ==========================================
-                // BLACK SQUARE
-                // ==========================================
+                /*
+                ------------------------------------------------
+                BLACK SQUARE
+                ------------------------------------------------
+                */
 
                 if (grid[row][column] === BLACK_SQUARE) {
 
                     cell.classList.add("black-cell");
-
                     cell.value = "";
-
                     cell.readOnly = true;
+
+                } else {
+
+                    cell.value = grid[row][column];
 
                 }
 
-
-                // ==========================================
-                // CLICK
-                // ==========================================
+                /*
+                ------------------------------------------------
+                CLICK
+                ------------------------------------------------
+                */
 
                 cell.addEventListener("click", (event) => {
 
                     /*
-                     * Holding Shift while clicking a cell
-                     * makes it a black square.
-                     *
-                     * Clicking a black square normally
-                     * turns it back into a letter.
-                     */
+                    Shift-click turns a square black.
+                    */
 
                     if (event.shiftKey) {
 
                         toggleBlackSquare(row, column);
-
                         return;
 
                     }
+
+                    /*
+                    Clicking an existing black square turns it
+                    back into a normal letter square.
+                    */
 
                     if (grid[row][column] === BLACK_SQUARE) {
 
@@ -130,10 +110,11 @@
 
                 });
 
-
-                // ==========================================
-                // DOUBLE CLICK
-                // ==========================================
+                /*
+                ------------------------------------------------
+                DOUBLE CLICK
+                ------------------------------------------------
+                */
 
                 cell.addEventListener("dblclick", () => {
 
@@ -141,10 +122,11 @@
 
                 });
 
-
-                // ==========================================
-                // LETTER INPUT
-                // ==========================================
+                /*
+                ------------------------------------------------
+                INPUT
+                ------------------------------------------------
+                */
 
                 cell.addEventListener("input", () => {
 
@@ -159,88 +141,80 @@
                     grid[row][column] = value;
 
                     updateClues();
-
                     updatePreview();
-
                     updateStatus();
 
                 });
 
-
-                // ==========================================
-                // KEYBOARD NAVIGATION
-                // ==========================================
+                /*
+                ------------------------------------------------
+                KEYBOARD NAVIGATION
+                ------------------------------------------------
+                */
 
                 cell.addEventListener("keydown", (event) => {
 
                     let nextRow = row;
-
                     let nextColumn = column;
-
 
                     if (event.key === "ArrowRight") {
 
                         nextColumn++;
 
-                    }
-
-                    else if (event.key === "ArrowLeft") {
+                    } else if (event.key === "ArrowLeft") {
 
                         nextColumn--;
 
-                    }
-
-                    else if (event.key === "ArrowDown") {
+                    } else if (event.key === "ArrowDown") {
 
                         nextRow++;
 
-                    }
-
-                    else if (event.key === "ArrowUp") {
+                    } else if (event.key === "ArrowUp") {
 
                         nextRow--;
 
-                    }
-
-                    else if (
+                    } else if (
                         event.key === "Backspace" &&
                         cell.value === ""
                     ) {
 
                         nextColumn--;
 
-                    }
-
-                    else {
+                    } else {
 
                         return;
 
                     }
 
-
                     event.preventDefault();
 
-
-                    // Move across rows
+                    /*
+                    Move to next row when going past the
+                    right side.
+                    */
 
                     if (nextColumn >= GRID_SIZE) {
 
                         nextColumn = 0;
-
                         nextRow++;
 
                     }
 
+                    /*
+                    Move to previous row when going past
+                    the left side.
+                    */
+
                     if (nextColumn < 0) {
 
                         nextColumn = GRID_SIZE - 1;
-
                         nextRow--;
 
                     }
 
-
-                    // Stop at board edges
+                    /*
+                    Stop if outside the grid.
+                    */
 
                     if (
                         nextRow < 0 ||
@@ -253,14 +227,9 @@
 
                     }
 
-
-                    focusCell(
-                        nextRow,
-                        nextColumn
-                    );
+                    focusCell(nextRow, nextColumn);
 
                 });
-
 
                 gridElement.appendChild(cell);
 
@@ -270,10 +239,11 @@
 
     }
 
-
-    // ========================================================
-    // TOGGLE BLACK SQUARE
-    // ========================================================
+    /*
+    ============================================================
+    TOGGLE BLACK SQUARE
+    ============================================================
+    */
 
     function toggleBlackSquare(row, column) {
 
@@ -281,29 +251,24 @@
 
             grid[row][column] = "";
 
-        }
-
-        else {
+        } else {
 
             grid[row][column] = BLACK_SQUARE;
 
         }
 
-
         createGrid();
-
         updateClues();
-
         updatePreview();
-
         updateStatus();
 
     }
 
-
-    // ========================================================
-    // FOCUS CELL
-    // ========================================================
+    /*
+    ============================================================
+    FOCUS CELL
+    ============================================================
+    */
 
     function focusCell(row, column) {
 
@@ -311,71 +276,56 @@
             `[data-row="${row}"][data-column="${column}"]`
         );
 
-
         if (!cell) {
-
             return;
-
         }
-
 
         if (cell.classList.contains("black-cell")) {
-
             return;
-
         }
 
-
         cell.focus();
-
         cell.select();
 
     }
 
-
-    // ========================================================
-    // FIND ACROSS STARTS
-    // ========================================================
+    /*
+    ============================================================
+    GET ACROSS WORDS
+    ============================================================
+    */
 
     function getAcrossEntries() {
 
         const entries = [];
-
         let number = 0;
-
 
         for (let row = 0; row < GRID_SIZE; row++) {
 
             for (let column = 0; column < GRID_SIZE; column++) {
 
                 if (grid[row][column] === BLACK_SQUARE) {
-
                     continue;
-
                 }
-
 
                 const leftIsBlack =
                     column === 0 ||
                     grid[row][column - 1] === BLACK_SQUARE;
 
-
                 const hasAnotherCell =
                     column + 1 < GRID_SIZE &&
                     grid[row][column + 1] !== BLACK_SQUARE;
 
+                /*
+                A word must contain at least two squares.
+                */
 
-                if (
-                    leftIsBlack &&
-                    hasAnotherCell
-                ) {
+                if (leftIsBlack && hasAnotherCell) {
 
                     number++;
 
                     let answer = "";
-
                     let currentColumn = column;
-
 
                     while (
                         currentColumn < GRID_SIZE &&
@@ -389,7 +339,6 @@
 
                     }
 
-
                     entries.push({
                         number,
                         row,
@@ -403,55 +352,47 @@
 
         }
 
-
         return entries;
 
     }
 
-
-    // ========================================================
-    // FIND DOWN ENTRIES
-    // ========================================================
+    /*
+    ============================================================
+    GET DOWN WORDS
+    ============================================================
+    */
 
     function getDownEntries() {
 
         const entries = [];
-
         let number = 0;
-
 
         for (let row = 0; row < GRID_SIZE; row++) {
 
             for (let column = 0; column < GRID_SIZE; column++) {
 
                 if (grid[row][column] === BLACK_SQUARE) {
-
                     continue;
-
                 }
-
 
                 const aboveIsBlack =
                     row === 0 ||
                     grid[row - 1][column] === BLACK_SQUARE;
 
-
                 const hasAnotherCell =
                     row + 1 < GRID_SIZE &&
                     grid[row + 1][column] !== BLACK_SQUARE;
 
+                /*
+                A word must contain at least two squares.
+                */
 
-                if (
-                    aboveIsBlack &&
-                    hasAnotherCell
-                ) {
+                if (aboveIsBlack && hasAnotherCell) {
 
                     number++;
 
                     let answer = "";
-
                     let currentRow = row;
-
 
                     while (
                         currentRow < GRID_SIZE &&
@@ -465,7 +406,6 @@
 
                     }
 
-
                     entries.push({
                         number,
                         row,
@@ -479,105 +419,93 @@
 
         }
 
-
         return entries;
 
     }
 
-
-    // ========================================================
-    // GET ALL NUMBERED START CELLS
-    // ========================================================
+    /*
+    ============================================================
+    STANDARD CROSSWORD NUMBERING
+    ============================================================
+    */
 
     function getNumberedEntries() {
 
         const across = getAcrossEntries();
-
         const down = getDownEntries();
-
-
-        /*
-         * Standard crossword numbering:
-         *
-         * A cell gets ONE number if it begins either
-         * an Across word, a Down word, or both.
-         *
-         * This prevents weird numbering like:
-         *
-         * #7 Across
-         * #7 Down
-         *
-         * being generated independently.
-         */
 
         const starts = new Map();
 
+        /*
+        Find every square where a word begins.
+        */
 
         for (const entry of across) {
 
             const key =
                 `${entry.row},${entry.column}`;
 
-
             if (!starts.has(key)) {
 
-                starts.set(
-                    key,
-                    entry
-                );
+                starts.set(key, entry);
 
             }
 
         }
-
 
         for (const entry of down) {
 
             const key =
                 `${entry.row},${entry.column}`;
 
-
             if (!starts.has(key)) {
 
-                starts.set(
-                    key,
-                    entry
-                );
+                starts.set(key, entry);
 
             }
 
         }
 
+        /*
+        Sort starting squares from top-left to bottom-right.
+        */
 
         const sortedStarts =
             Array.from(starts.values())
                 .sort((a, b) => {
 
                     if (a.row !== b.row) {
-
                         return a.row - b.row;
-
                     }
 
                     return a.column - b.column;
 
                 });
 
-
         const numberMap = new Map();
 
+        /*
+        Give each starting square ONE number.
 
-        sortedStarts.forEach(
-            (entry, index) => {
+        This means a square that begins both Across and Down
+        shares the same number.
 
-                numberMap.set(
-                    `${entry.row},${entry.column}`,
-                    index + 1
-                );
+        Example:
 
-            }
-        );
+        #1 Across
+        #1 Down
 
+        rather than creating separate numbers.
+        */
+
+        sortedStarts.forEach((entry, index) => {
+
+            numberMap.set(
+                `${entry.row},${entry.column}`,
+                index + 1
+            );
+
+        });
 
         for (const entry of across) {
 
@@ -588,7 +516,6 @@
 
         }
 
-
         for (const entry of down) {
 
             entry.number =
@@ -597,7 +524,6 @@
                 );
 
         }
-
 
         return {
             across,
@@ -606,16 +532,20 @@
 
     }
 
-
-    // ========================================================
-    // CREATE CLUE INPUTS
-    // ========================================================
+    /*
+    ============================================================
+    UPDATE CLUES
+    ============================================================
+    */
 
     function updateClues() {
 
         const entries =
             getNumberedEntries();
 
+        /*
+        Save the clues currently typed in.
+        */
 
         const oldAcross = {
             ...clueInputs.across
@@ -625,28 +555,23 @@
             ...clueInputs.down
         };
 
-
         clueInputs.across = {};
-
         clueInputs.down = {};
 
-
         acrossCluesElement.innerHTML = "";
-
         downCluesElement.innerHTML = "";
 
-
-        // ====================================================
-        // ACROSS
-        // ====================================================
+        /*
+        --------------------------------------------------------
+        ACROSS
+        --------------------------------------------------------
+        */
 
         for (const entry of entries.across) {
 
-            const row =
-                document.createElement("div");
+            const row = document.createElement("div");
 
             row.className = "clue-row";
-
 
             const number =
                 document.createElement("span");
@@ -654,12 +579,10 @@
             number.textContent =
                 entry.number;
 
-
             const input =
                 document.createElement("input");
 
             input.type = "text";
-
             input.className = "clue-input";
 
             input.placeholder =
@@ -668,35 +591,30 @@
             input.value =
                 oldAcross[entry.number] || "";
 
-
             input.dataset.number =
                 entry.number;
-
 
             clueInputs.across[entry.number] =
                 input;
 
-
             row.appendChild(number);
-
             row.appendChild(input);
 
             acrossCluesElement.appendChild(row);
 
         }
 
-
-        // ====================================================
-        // DOWN
-        // ====================================================
+        /*
+        --------------------------------------------------------
+        DOWN
+        --------------------------------------------------------
+        */
 
         for (const entry of entries.down) {
 
-            const row =
-                document.createElement("div");
+            const row = document.createElement("div");
 
             row.className = "clue-row";
-
 
             const number =
                 document.createElement("span");
@@ -704,12 +622,10 @@
             number.textContent =
                 entry.number;
 
-
             const input =
                 document.createElement("input");
 
             input.type = "text";
-
             input.className = "clue-input";
 
             input.placeholder =
@@ -718,17 +634,13 @@
             input.value =
                 oldDown[entry.number] || "";
 
-
             input.dataset.number =
                 entry.number;
-
 
             clueInputs.down[entry.number] =
                 input;
 
-
             row.appendChild(number);
-
             row.appendChild(input);
 
             downCluesElement.appendChild(row);
@@ -737,20 +649,15 @@
 
     }
 
-
-    // ========================================================
-    // GET DATE
-    // ========================================================
+    /*
+    ============================================================
+    GET TODAY
+    ============================================================
+    */
 
     function getToday() {
 
-        const now =
-            new Date();
-
-
-        /*
-         * Convert the current time to New York time.
-         */
+        const now = new Date();
 
         const formatter =
             new Intl.DateTimeFormat(
@@ -763,57 +670,24 @@
                 }
             );
 
-
         return formatter.format(now);
 
     }
 
-
-    // ========================================================
-    // GET GRID ANSWERS
-    // ========================================================
-
-    function getAcrossAnswers() {
-
-        const entries =
-            getNumberedEntries();
-
-
-        return entries.across.map(
-            entry => ({
-                number: entry.number,
-                answer: entry.answer
-            })
-        );
-
-    }
-
-
-    function getDownAnswers() {
-
-        const entries =
-            getNumberedEntries();
-
-
-        return entries.down.map(
-            entry => ({
-                number: entry.number,
-                answer: entry.answer
-            })
-        );
-
-    }
-
-
-    // ========================================================
-    // VALIDATE GRID
-    // ========================================================
+    /*
+    ============================================================
+    VALIDATE GRID
+    ============================================================
+    */
 
     function validateGrid() {
 
         const entries =
             getNumberedEntries();
 
+        /*
+        Make sure there is at least one word.
+        */
 
         if (
             entries.across.length === 0 &&
@@ -826,10 +700,9 @@
 
         }
 
-
-        // ====================================================
-        // CHECK WORD LENGTHS
-        // ====================================================
+        /*
+        Make sure every word is at least two letters.
+        */
 
         for (const entry of entries.across) {
 
@@ -844,7 +717,6 @@
 
         }
 
-
         for (const entry of entries.down) {
 
             if (entry.answer.length < 2) {
@@ -858,10 +730,10 @@
 
         }
 
-
-        // ====================================================
-        // CHECK THAT EVERY NON-BLACK CELL IS FILLED
-        // ====================================================
+        /*
+        Make sure every non-black square contains
+        exactly one letter.
+        */
 
         for (let row = 0; row < GRID_SIZE; row++) {
 
@@ -873,7 +745,6 @@
 
                 const value =
                     grid[row][column];
-
 
                 if (
                     value !== BLACK_SQUARE &&
@@ -891,10 +762,11 @@
 
         }
 
-
-        // ====================================================
-        // CHECK DUPLICATE ANSWERS
-        // ====================================================
+        /*
+        --------------------------------------------------------
+        CHECK DUPLICATE ANSWERS
+        --------------------------------------------------------
+        */
 
         const answers = [
             ...entries.across.map(
@@ -905,19 +777,16 @@
             )
         ];
 
-
         const completedAnswers =
             answers.filter(
                 answer => answer.length > 0
             );
-
 
         const duplicates =
             completedAnswers.filter(
                 (answer, index) =>
                     completedAnswers.indexOf(answer) !== index
             );
-
 
         if (duplicates.length > 0) {
 
@@ -928,40 +797,38 @@
 
         }
 
-
         return true;
 
     }
 
-
-    // ========================================================
-    // VALIDATE CLUES
-    // ========================================================
+    /*
+    ============================================================
+    VALIDATE CLUES
+    ============================================================
+    */
 
     function validateClues() {
 
         const entries =
             getNumberedEntries();
 
-
         const clues = [];
 
-
-        // ====================================================
-        // ACROSS CLUES
-        // ====================================================
+        /*
+        --------------------------------------------------------
+        ACROSS CLUES
+        --------------------------------------------------------
+        */
 
         for (const entry of entries.across) {
 
             const input =
                 clueInputs.across[entry.number];
 
-
             const clue =
                 input
                     ? input.value.trim()
                     : "";
-
 
             if (!clue) {
 
@@ -970,7 +837,6 @@
                 );
 
             }
-
 
             clues.push({
                 number: entry.number,
@@ -981,22 +847,21 @@
 
         }
 
-
-        // ====================================================
-        // DOWN CLUES
-        // ====================================================
+        /*
+        --------------------------------------------------------
+        DOWN CLUES
+        --------------------------------------------------------
+        */
 
         for (const entry of entries.down) {
 
             const input =
                 clueInputs.down[entry.number];
 
-
             const clue =
                 input
                     ? input.value.trim()
                     : "";
-
 
             if (!clue) {
 
@@ -1005,7 +870,6 @@
                 );
 
             }
-
 
             clues.push({
                 number: entry.number,
@@ -1016,10 +880,11 @@
 
         }
 
-
-        // ====================================================
-        // DUPLICATE CLUES
-        // ====================================================
+        /*
+        --------------------------------------------------------
+        CHECK FOR DUPLICATE CLUES
+        --------------------------------------------------------
+        */
 
         const clueTexts =
             clues.map(
@@ -1029,10 +894,8 @@
                         .trim()
             );
 
-
         const uniqueClues =
             new Set(clueTexts);
-
 
         if (
             uniqueClues.size !== clueTexts.length
@@ -1044,15 +907,15 @@
 
         }
 
-
         return clues;
 
     }
 
-
-    // ========================================================
-    // BUILD PUZZLE
-    // ========================================================
+    /*
+    ============================================================
+    BUILD PUZZLE
+    ============================================================
+    */
 
     function buildPuzzle() {
 
@@ -1061,27 +924,36 @@
         const clues =
             validateClues();
 
+        /*
+        IMPORTANT:
+        Convert each grid row from:
+
+        ["A", "R", "E", "T", "E"]
+
+        into:
+
+        "ARETE"
+
+        This is the format your Mini Crossword game expects.
+        */
+
+        const formattedGrid =
+            grid.map(row => row.join(""));
 
         return {
-
             date: getToday(),
-
             title: "The Grid",
-
-            grid: grid.map(
-                row => [...row]
-            ),
-
+            grid: formattedGrid,
             clues
-
         };
 
     }
 
-
-    // ========================================================
-    // UPDATE STATUS
-    // ========================================================
+    /*
+    ============================================================
+    UPDATE STATUS
+    ============================================================
+    */
 
     function updateStatus() {
 
@@ -1090,7 +962,6 @@
             const entries =
                 getNumberedEntries();
 
-
             const filled =
                 grid.flat().filter(
                     cell =>
@@ -1098,13 +969,11 @@
                         cell !== BLACK_SQUARE
                 ).length;
 
-
             const black =
                 grid.flat().filter(
                     cell =>
                         cell === BLACK_SQUARE
                 ).length;
-
 
             gridStatus.textContent =
                 `${filled}/25 letters • ` +
@@ -1112,10 +981,7 @@
                 `${entries.across.length} Across • ` +
                 `${entries.down.length} Down`;
 
-
-        }
-
-        catch (error) {
+        } catch (error) {
 
             gridStatus.textContent =
                 error.message;
@@ -1124,15 +990,15 @@
 
     }
 
-
-    // ========================================================
-    // UPDATE PREVIEW
-    // ========================================================
+    /*
+    ============================================================
+    UPDATE PREVIEW
+    ============================================================
+    */
 
     function updatePreview() {
 
         previewGridElement.innerHTML = "";
-
 
         for (let row = 0; row < GRID_SIZE; row++) {
 
@@ -1145,10 +1011,8 @@
                 const cell =
                     document.createElement("div");
 
-
                 cell.className =
                     "preview-cell";
-
 
                 if (
                     grid[row][column] === BLACK_SQUARE
@@ -1158,15 +1022,12 @@
                         "black-cell"
                     );
 
-                }
-
-                else {
+                } else {
 
                     cell.textContent =
                         grid[row][column];
 
                 }
-
 
                 previewGridElement.appendChild(
                     cell
@@ -1178,10 +1039,11 @@
 
     }
 
-
-    // ========================================================
-    // PREVIEW BUTTON
-    // ========================================================
+    /*
+    ============================================================
+    PREVIEW BUTTON
+    ============================================================
+    */
 
     previewButton.addEventListener(
         "click",
@@ -1192,18 +1054,13 @@
                 const puzzle =
                     buildPuzzle();
 
-
                 updatePreview();
-
 
                 result.textContent =
                     "Preview looks valid! " +
                     `${puzzle.clues.length} clues ready.`;
 
-
-            }
-
-            catch (error) {
+            } catch (error) {
 
                 result.textContent =
                     "❌ " + error.message;
@@ -1213,10 +1070,11 @@
         }
     );
 
-
-    // ========================================================
-    // GENERATE JSON
-    // ========================================================
+    /*
+    ============================================================
+    GENERATE MINI.JSON
+    ============================================================
+    */
 
     generateButton.addEventListener(
         "click",
@@ -1224,12 +1082,14 @@
 
             result.textContent = "";
 
-
             try {
 
                 const puzzle =
                     buildPuzzle();
 
+                /*
+                Convert the puzzle object into formatted JSON.
+                */
 
                 const json =
                     JSON.stringify(
@@ -1238,6 +1098,9 @@
                         4
                     );
 
+                /*
+                Create the downloadable file.
+                */
 
                 const blob =
                     new Blob(
@@ -1247,48 +1110,35 @@
                         }
                     );
 
-
                 const url =
                     URL.createObjectURL(
                         blob
                     );
 
-
                 const link =
                     document.createElement("a");
 
-
                 link.href = url;
-
-                link.download =
-                    "mini.json";
-
+                link.download = "mini.json";
 
                 document.body.appendChild(
                     link
                 );
 
-
                 link.click();
-
 
                 document.body.removeChild(
                     link
                 );
 
-
                 URL.revokeObjectURL(
                     url
                 );
 
-
                 result.textContent =
                     "✅ mini.json generated successfully!";
 
-
-            }
-
-            catch (error) {
+            } catch (error) {
 
                 result.textContent =
                     "❌ " + error.message;
@@ -1298,17 +1148,15 @@
         }
     );
 
-
-    // ========================================================
-    // START EDITOR
-    // ========================================================
+    /*
+    ============================================================
+    INITIALIZE
+    ============================================================
+    */
 
     createGrid();
-
     updateClues();
-
     updatePreview();
-
     updateStatus();
 
 });
