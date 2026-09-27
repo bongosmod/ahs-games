@@ -1,196 +1,249 @@
-﻿* {
+﻿
+/* ================================
+   AHS GAMES - THE GRID
+   ================================ */
+* {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
-    background: #faf9f7;
-    color: #171717;
     font-family: Arial, Helvetica, sans-serif;
+    background: #f7f3ea;
+    color: #222;
 }
 
-
-/* =========================
+/* ================================
    HEADER
-   ========================= */
+   ================================ */
 
 header {
-    padding: 35px 20px 20px;
-    text-align: center;
+    width: 100%;
+    padding: 18px 20px 12px;
+    border-bottom: 1px solid #d6cdbd;
+    background: #fffdf8;
 }
 
 .top-bar {
-    width: min( 700px, 92% );
-    margin: 0 auto;
     display: grid;
-    grid-template-columns: 45px 1fr 45px;
+    grid-template-columns: 50px 1fr 50px;
     align-items: center;
-    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
     .top-bar h1 {
         margin: 0;
-        color: #651d32;
-        font-size: 38px;
-        font-weight: 800;
+        text-align: center;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 32px;
+        font-weight: 700;
     }
-
-header > p {
-    margin: 8px 0 0;
-    color: #666666;
-    font-size: 14px;
-}
-
-
-/* =========================
-   HEADER BUTTONS
-   ========================= */
 
 .back-button,
 #help-button {
     width: 42px;
     height: 42px;
+    border: 1px solid #cfc5b5;
+    border-radius: 50%;
+    background: transparent;
+    color: #222;
+    font-size: 24px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #dedbd4;
-    border-radius: 50%;
-    background: white;
-    color: #651d32;
-    font-size: 22px;
-    font-weight: bold;
     text-decoration: none;
-    cursor: pointer;
-    transition: background 0.15s ease, transform 0.15s ease;
 }
 
     .back-button:hover,
     #help-button:hover {
-        background: #fff4d6;
-        transform: translateY(-2px);
+        background: #eee8dc;
     }
 
-    .back-button:active,
-    #help-button:active {
-        transform: translateY(0);
-    }
+header > p {
+    margin: 8px 0 0;
+    text-align: center;
+    color: #666;
+    font-size: 15px;
+}
 
-
-/* =========================
+/* ================================
    MAIN
-   ========================= */
+   ================================ */
 
 main {
-    width: min( 700px, 92% );
+    width: 100%;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 5px 0 50px;
+    padding: 25px 20px 50px;
 }
-
-
-/* =========================
-   MESSAGE
-   ========================= */
 
 #message {
-    min-height: 25px;
-    margin: 0 0 12px;
+    min-height: 24px;
+    margin-bottom: 12px;
     text-align: center;
-    color: #651d32;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
 }
 
-
-/* =========================
-   5x5 GRID
-   ========================= */
+/* ================================
+   CROSSWORD GRID
+   ================================ */
 
 .grid {
-    width: min( 500px, 92vw );
+    width: min(90vw, 500px);
     aspect-ratio: 1 / 1;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     display: grid;
-    grid-template-columns: repeat( 5, 1fr );
-    grid-template-rows: repeat( 5, 1fr );
-    border: 3px solid #651d32;
-    background: #651d32;
-    box-shadow: 0 4px 15px rgba( 0, 0, 0, 0.08 );
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    border: 2px solid #222;
+    background: #222;
 }
 
+/*
+   IMPORTANT:
 
-/* =========================
-   GRID CELLS
-   ========================= */
+   Each crossword square is position: relative.
+   This allows the clue number to sit in the
+   TOP-LEFT of the square without affecting
+   the letter's position.
 
-.grid-cell {
+   This works dynamically with ANY future
+   mini.json puzzle.
+*/
+
+.mini-cell {
     position: relative;
     width: 100%;
     height: 100%;
     padding: 0;
-    border: 1px solid #aaa7a0;
-    outline: none;
-    background: white;
-    color: #171717;
-    font-size: clamp( 25px, 6vw, 42px );
-    font-weight: 700;
-    text-align: center;
+    margin: 0;
+    border: 1px solid #222;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
-    transition: background 0.1s ease;
+    overflow: hidden;
 }
 
-    .grid-cell:hover {
-        background: #fffdf5;
+    /* Black crossword squares */
+
+    .mini-cell.black {
+        background: #222;
+        border-color: #222;
+        cursor: default;
     }
 
+/* ================================
+   CELL NUMBERS
+   ================================ */
 
-    /* Current cell */
+/*
+   The number is absolutely positioned
+   INSIDE the square.
 
-    .grid-cell.selected {
-        background: #d6b75a;
-        box-shadow: inset 0 0 0 3px #651d32;
+   It does NOT participate in the flex layout,
+   so it cannot push the letter around.
+*/
+
+.cell-number {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    z-index: 3;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(9px, 1.8vw, 13px);
+    line-height: 1;
+    font-weight: 500;
+    color: #222;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ================================
+   LETTERS
+   ================================ */
+
+.cell-letter {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(22px, 5vw, 34px);
+    line-height: 1;
+    font-weight: 500;
+    color: #111;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ================================
+   SELECTED CELL
+   ================================ */
+
+.mini-cell.selected {
+    background: #c9d9ff;
+}
+
+/* ================================
+   SELECTED WORD
+   ================================ */
+
+.mini-cell.word-selected {
+    background: #e4ecff;
+}
+
+/*
+   Selected cell gets the stronger
+   highlight so you can easily see
+   where you are typing.
+*/
+
+.mini-cell.selected {
+    background: #aebfff;
+}
+
+/* Keep black squares black */
+
+.mini-cell.black.selected,
+.mini-cell.black.word-selected {
+    background: #222;
+}
+
+/* ================================
+   COMPLETED CELLS
+   ================================ */
+
+.mini-cell.completed {
+    background: #e7e7e7;
+}
+
+    .mini-cell.completed.selected {
+        background: #c9d9ff;
     }
 
-
-    /* Other cells in current word */
-
-    .grid-cell.word-selected {
-        background: #fff4d6;
-    }
-
-
-    /* Correct cells after solving */
-
-    .grid-cell.correct {
-        background: #ead9a5;
-        color: #651d32;
-    }
-
-
-/* =========================
+/* ================================
    CLUES
-   ========================= */
+   ================================ */
 
 .clues-container {
-    width: min( 650px, 92vw );
-    margin: 35px auto 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 35px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .clues-column h2 {
-    margin: 0 0 8px;
-    padding: 0 0 8px;
-    border-bottom: 3px solid #d6b75a;
-    color: #651d32;
-    font-size: 21px;
+    margin: 0 0 12px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    border-bottom: 2px solid #222;
+    padding-bottom: 6px;
 }
-
-
-/* =========================
-   INDIVIDUAL CLUES
-   ========================= */
 
 .clues {
     display: flex;
@@ -200,176 +253,140 @@ main {
 
 .clue {
     width: 100%;
-    padding: 9px 8px;
-    border: none;
-    border-radius: 6px;
+    padding: 8px 10px;
+    border: 0;
     background: transparent;
-    color: #171717;
-    font-size: 14px;
-    line-height: 1.4;
     text-align: left;
+    font-size: 15px;
+    line-height: 1.35;
     cursor: pointer;
-    transition: background 0.12s ease;
 }
 
     .clue:hover {
-        background: #fff4d6;
+        background: #eee8dc;
     }
 
-    .clue:focus {
-        outline: 2px solid #d6b75a;
-        outline-offset: 1px;
+    .clue.active {
+        background: #dce5ff;
     }
 
 .clue-number {
-    display: inline-block;
-    min-width: 24px;
-    color: #651d32;
-    font-weight: 800;
+    font-weight: 700;
+    margin-right: 5px;
 }
 
-
-/* =========================
+/* ================================
    OVERLAYS
-   ========================= */
+   ================================ */
 
 .overlay {
     position: fixed;
     inset: 0;
-    z-index: 100;
+    background: rgba(0, 0, 0, 0.45);
     display: none;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba( 40, 15, 22, 0.55 );
+    z-index: 1000;
 }
 
     .overlay.show {
         display: flex;
     }
 
-
-/* =========================
-   MODALS
-   ========================= */
-
 .modal {
     position: relative;
-    width: min( 430px, 100% );
+    width: min(90vw, 500px);
     padding: 35px;
-    border-radius: 12px;
-    background: white;
+    background: #fffdf8;
+    border: 1px solid #cfc5b5;
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
     text-align: center;
-    box-shadow: 0 15px 50px rgba( 0, 0, 0, 0.25 );
 }
 
     .modal h2 {
-        margin: 0 0 15px;
-        color: #651d32;
-        font-size: 27px;
+        margin-top: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 28px;
     }
 
     .modal p {
-        margin: 10px 0;
-        color: #555555;
-        font-size: 15px;
-        line-height: 1.55;
+        color: #555;
+        line-height: 1.5;
     }
-
-
-/* =========================
-   CLOSE BUTTON
-   ========================= */
 
 .close-button {
     position: absolute;
-    top: 8px;
+    top: 10px;
     right: 12px;
     width: 35px;
     height: 35px;
-    border: none;
-    border-radius: 50%;
+    border: 0;
     background: transparent;
-    color: #651d32;
-    font-size: 27px;
+    font-size: 28px;
     cursor: pointer;
 }
 
-    .close-button:hover {
-        background: #fff4d6;
-    }
-
-
-/* =========================
-   WIN BUTTON
-   ========================= */
-
 .primary-button {
-    margin-top: 20px;
-    padding: 12px 24px;
-    border: 2px solid #651d32;
-    border-radius: 24px;
-    background: #651d32;
+    margin-top: 15px;
+    padding: 11px 20px;
+    border: 0;
+    border-radius: 5px;
+    background: #222;
     color: white;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.15s ease, transform 0.15s ease;
 }
 
     .primary-button:hover {
-        background: #4d1526;
-        transform: translateY(-1px);
+        background: #444;
     }
 
-
-/* =========================
+/* ================================
    MOBILE
-   ========================= */
+   ================================ */
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 
-    header {
-        padding: 25px 15px 15px;
+    main {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
     .top-bar {
-        width: 100%;
-        grid-template-columns: 40px 1fr 40px;
-        gap: 6px;
+        grid-template-columns: 42px 1fr 42px;
     }
 
         .top-bar h1 {
-            font-size: 30px;
+            font-size: 27px;
         }
 
     .back-button,
     #help-button {
         width: 36px;
         height: 36px;
-        font-size: 19px;
-    }
-
-    main {
-        width: 94%;
-        padding-top: 0;
+        font-size: 20px;
     }
 
     .grid {
-        width: 94vw;
-    }
-
-    .grid-cell {
-        font-size: clamp( 21px, 8vw, 34px );
+        width: min(94vw, 500px);
     }
 
     .clues-container {
         grid-template-columns: 1fr;
         gap: 25px;
-        width: 94vw;
     }
 
-    .modal {
-        padding: 30px 22px;
+    .cell-number {
+        top: 2px;
+        left: 2px;
+        font-size: 9px;
+    }
+
+    .cell-letter {
+        font-size: clamp(20px, 8vw, 32px);
     }
 }
+
