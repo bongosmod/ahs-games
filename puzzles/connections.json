@@ -1,43 +1,43 @@
 {
-    "date": "2026-09-27",
+    "date": "2026-09-28",
     "groups": [
         {
-            "name": "Words Before HOUSE",
+            "name": "TYPES OF HATS",
             "words": [
-                "GREEN",
-                "LIGHT",
-                "CLUB",
-                "POWER"
+                "BERET",
+                "BOWLER",
+                "FEDORA",
+                "PANAMA"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Words Before BALL",
+            "name": "CAN FOLLOW FIRE",
             "words": [
-                "BASE",
-                "FOOT",
-                "BASKET",
-                "VOLLEY"
+                "FLY",
+                "HOUSE",
+                "PLACE",
+                "WORK"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Follow CAST",
+            "name": "CAN FOLLOW ROCK",
             "words": [
-                "VOTE",
-                "SHADOW",
-                "SPELL",
-                "NET"
+                "BAND",
+                "BOTTOM",
+                "LOBSTER",
+                "STAR"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Keyboard Keys",
+            "name": "___MAN",
             "words": [
-                "SHIFT",
-                "ENTER",
-                "ESCAPE",
-                "DELETE"
+                "BAT",
+                "IRON",
+                "MAIL",
+                "SNOW"
             ],
             "className": "group-purple"
         }
