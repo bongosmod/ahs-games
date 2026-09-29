@@ -1,43 +1,43 @@
 {
-    "date": "2026-09-28",
+    "date": "2026-09-29",
     "groups": [
         {
-            "name": "TYPES OF HATS",
+            "name": "CAN FOLLOW POP",
             "words": [
-                "BERET",
-                "BOWLER",
-                "FEDORA",
-                "PANAMA"
+                "CORN",
+                "QUIZ",
+                "STAR",
+                "FLY"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN FOLLOW FIRE",
+            "name": "CAN FOLLOW TREE",
             "words": [
-                "FLY",
                 "HOUSE",
-                "PLACE",
-                "WORK"
+                "FROG",
+                "LINE",
+                "RING"
             ],
             "className": "group-green"
         },
         {
-            "name": "CAN FOLLOW ROCK",
+            "name": "ALFRED HITCHCOCK FILMS",
             "words": [
-                "BAND",
-                "BOTTOM",
-                "LOBSTER",
-                "STAR"
+                "PSYCHO",
+                "VERTIGO",
+                "ROPE",
+                "BIRDS"
             ],
             "className": "group-blue"
         },
         {
-            "name": "___MAN",
+            "name": "READ THE SAME BACKWARD",
             "words": [
-                "BAT",
-                "IRON",
-                "MAIL",
-                "SNOW"
+                "CIVIC",
+                "KAYAK",
+                "LEVEL",
+                "RADAR"
             ],
             "className": "group-purple"
         }
