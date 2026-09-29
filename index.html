@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,29 +26,69 @@
 
     </header>
 
+
     <main>
 
+        <!-- CONNECTIONS -->
+
         <div class="game-card">
+
             <h2>Connections</h2>
-            <p>Find the four groups of four.</p>
+
+            <p>
+                Find the four groups of four.
+            </p>
 
             <a href="connections/index.html">
                 Play Connections
             </a>
+
         </div>
 
+
+        <!-- THE GRID -->
+
         <div class="game-card">
+
             <h2>The Grid</h2>
-            <p>A quick crossword for your day.</p>
+
+            <p>
+                A quick crossword for your day.
+            </p>
 
             <a href="mini/index.html">
                 Play Mini Crossword
             </a>
+
+        </div>
+
+
+        <!-- WORDSMITH -->
+
+        <div class="game-card wordsmith-card">
+
+            <h2>Wordsmith</h2>
+
+            <div class="coming-soon">
+                Coming soon...
+            </div>
+
+            <p>
+                A Wordle-style game featuring 4 different game modes.
+            </p>
+
+            <button id="preview-button"
+                    class="preview-button"
+                    type="button">
+                👁 PREVIEW
+            </button>
+
         </div>
 
     </main>
 
-    <!-- Information Popup -->
+
+    <!-- INFORMATION POPUP -->
 
     <div id="info-overlay"
          class="info-overlay">
@@ -84,32 +125,189 @@
 
     </div>
 
+
+    <!-- WORDSMITH PREVIEW POPUP -->
+
+    <div id="preview-overlay"
+         class="info-overlay">
+
+        <div class="info-modal wordsmith-modal">
+
+            <button id="close-preview"
+                    class="close-info"
+                    type="button"
+                    aria-label="Close preview">
+                ×
+            </button>
+
+            <h2>Wordsmith</h2>
+
+            <div class="coming-soon modal-coming-soon">
+                Coming soon...
+            </div>
+
+            <p>
+                A Wordle-style game featuring
+                <strong>4 different game modes.</strong>
+            </p>
+
+
+            <div class="mode-list">
+
+                <div class="mode">
+
+                    <h3>CLASSIC</h3>
+
+                    <p>
+                        <strong>5-letter words</strong>
+                    </p>
+
+                    <span>
+                        The standard Wordsmith experience.
+                    </span>
+
+                </div>
+
+
+                <div class="mode">
+
+                    <h3>SHORT</h3>
+
+                    <p>
+                        <strong>4-letter words</strong>
+                    </p>
+
+                    <span>
+                        A shorter version of the game
+                        with four-letter words.
+                    </span>
+
+                </div>
+
+
+                <div class="mode">
+
+                    <h3>LARGE</h3>
+
+                    <p>
+                        <strong>6-letter words</strong>
+                    </p>
+
+                    <span>
+                        More letters. More possibilities.
+                    </span>
+
+                </div>
+
+
+                <div class="mode">
+
+                    <h3>EXTREME</h3>
+
+                    <p>
+                        <strong>Very niche, unknown words</strong>
+                    </p>
+
+                    <span>
+                        Obscure words for players who
+                        really want to test their vocabulary.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p class="wordsmith-ending">
+                Wordsmith is coming soon to AHS Games.
+            </p>
+
+        </div>
+
+    </div>
+
+
     <script>
+
+        // ================================
+        // INFORMATION POPUP
+        // ================================
 
         const infoButton = document.getElementById("info-button");
         const closeInfo = document.getElementById("close-info");
         const infoOverlay = document.getElementById("info-overlay");
 
+
         infoButton.addEventListener("click", () => {
+
             infoOverlay.classList.add("show");
+
         });
 
+
         closeInfo.addEventListener("click", () => {
+
             infoOverlay.classList.remove("show");
+
         });
+
 
         infoOverlay.addEventListener("click", (event) => {
 
             if (event.target === infoOverlay) {
+
                 infoOverlay.classList.remove("show");
+
             }
 
         });
 
+
+        // ================================
+        // WORDSMITH PREVIEW
+        // ================================
+
+        const previewButton = document.getElementById("preview-button");
+        const closePreview = document.getElementById("close-preview");
+        const previewOverlay = document.getElementById("preview-overlay");
+
+
+        previewButton.addEventListener("click", () => {
+
+            previewOverlay.classList.add("show");
+
+        });
+
+
+        closePreview.addEventListener("click", () => {
+
+            previewOverlay.classList.remove("show");
+
+        });
+
+
+        previewOverlay.addEventListener("click", (event) => {
+
+            if (event.target === previewOverlay) {
+
+                previewOverlay.classList.remove("show");
+
+            }
+
+        });
+
+
+        // ================================
+        // ESCAPE KEY
+        // ================================
+
         document.addEventListener("keydown", (event) => {
 
             if (event.key === "Escape") {
+
                 infoOverlay.classList.remove("show");
+                previewOverlay.classList.remove("show");
+
             }
 
         });
@@ -118,3 +316,4 @@
 
 </body>
 </html>
+```
