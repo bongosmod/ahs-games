@@ -2,48 +2,78 @@
     "date": "2026-09-29",
     "title": "The Grid",
     "grid": [
-        "#####",
-        "#TAG#",
-        "#EXE#",
-        "#BEE#",
-        "#####"
+        "GAVIN",
+        "ORANO",
+        "RG###",
+        "EON##",
+        "#NEAR"
     ],
     "clues": [
         {
             "number": 1,
             "direction": "across",
-            "clue": "Popular game kids play.",
-            "answer": "TAG"
+            "clue": "Ashley's freshman class president.",
+            "answer": "GAVIN"
         },
         {
-            "number": 4,
+            "number": 6,
             "direction": "across",
-            "clue": "File extension that stands for executable.",
-            "answer": "EXE"
+            "clue": "French nuclear power company.",
+            "answer": "ORANO"
         },
         {
-            "number": 5,
+            "number": 7,
             "direction": "across",
-            "clue": "A buzzing animal.",
-            "answer": "BEE"
+            "clue": "Offensive lineman who plays on the right side of the center.",
+            "answer": "RG"
+        },
+        {
+            "number": 8,
+            "direction": "across",
+            "clue": "An extremely long time.",
+            "answer": "EON"
+        },
+        {
+            "number": 10,
+            "direction": "across",
+            "clue": "The opposite of far.",
+            "answer": "NEAR"
         },
         {
             "number": 1,
             "direction": "down",
-            "clue": "Mil. program to share GI Bill perks with family.",
-            "answer": "TEB"
+            "clue": "45th vice president of the United States from 1993 to 2001 under President Bill Clinton.",
+            "answer": "GORE"
         },
         {
             "number": 2,
             "direction": "down",
-            "clue": "A tool used for cutting wood.",
-            "answer": "AXE"
+            "clue": "Element with the symbol \"Ar\"",
+            "answer": "ARGON"
         },
         {
             "number": 3,
             "direction": "down",
-            "clue": "Golly ____!",
-            "answer": "GEE"
+            "clue": "Abbreviation for the state of Virginia",
+            "answer": "VA"
+        },
+        {
+            "number": 4,
+            "direction": "down",
+            "clue": "The opposite of out.",
+            "answer": "IN"
+        },
+        {
+            "number": 5,
+            "direction": "down",
+            "clue": "A word a child might not like to hear.",
+            "answer": "NO"
+        },
+        {
+            "number": 9,
+            "direction": "down",
+            "clue": "The symbol for the element neon.",
+            "answer": "NE"
         }
     ]
 }
