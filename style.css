@@ -26,6 +26,7 @@ header p {
     font-size: 18px;
 }
 
+
 /* ================================
    INFORMATION BUTTON
 ================================ */
@@ -77,7 +78,9 @@ main {
 .game-card {
     width: 300px;
     padding: 30px;
+
     background: #1e1e1e;
+
     border-radius: 15px;
     border: 1px solid #333;
 }
@@ -92,6 +95,7 @@ main {
 
 .game-card a {
     display: inline-block;
+
     margin-top: 15px;
     padding: 12px 20px;
 
@@ -99,6 +103,7 @@ main {
     color: black;
 
     text-decoration: none;
+
     border-radius: 8px;
 
     font-weight: bold;
@@ -110,7 +115,56 @@ main {
 
 
 /* ================================
-   INFORMATION POPUP
+   WORDSMITH CARD
+================================ */
+
+.wordsmith-card {
+    border-color: #4a4a4a;
+}
+
+.wordsmith-card h2 {
+    margin-bottom: 5px;
+}
+
+.coming-soon {
+    color: #aaa;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.wordsmith-card p {
+    line-height: 1.5;
+}
+
+.preview-button {
+    display: inline-block;
+
+    margin-top: 15px;
+    padding: 12px 20px;
+
+    background: #333;
+    color: white;
+
+    border: 1px solid #555;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.preview-button:hover {
+    background: #444;
+}
+
+
+/* ================================
+   POPUPS
 ================================ */
 
 .info-overlay {
@@ -210,6 +264,72 @@ main {
 
 
 /* ================================
+   WORDSMITH PREVIEW
+================================ */
+
+.wordsmith-modal {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-coming-soon {
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.mode-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.mode {
+    padding: 17px 13px;
+
+    background: #151515;
+
+    border: 1px solid #333;
+    border-radius: 8px;
+
+    text-align: left;
+}
+
+.mode h3 {
+    margin: 0 0 6px;
+
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.mode p {
+    margin: 0 0 7px;
+
+    color: #ddd;
+
+    font-size: 14px;
+}
+
+.mode span {
+    display: block;
+
+    color: #888;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.wordsmith-ending {
+    margin-top: 25px !important;
+
+    color: #aaa !important;
+
+    font-weight: bold;
+}
+
+
+/* ================================
    MOBILE
 ================================ */
 
@@ -243,6 +363,10 @@ main {
 
     .info-modal {
         padding: 30px 22px;
+    }
+
+    .mode-list {
+        grid-template-columns: 1fr;
     }
 
 }
