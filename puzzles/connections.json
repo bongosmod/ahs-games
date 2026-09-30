@@ -1,43 +1,43 @@
 {
-    "date": "2026-09-29",
+    "date": "2026-09-30",
     "groups": [
         {
-            "name": "CAN FOLLOW POP",
+            "name": "Can Precede HOUSE",
             "words": [
-                "CORN",
-                "QUIZ",
-                "STAR",
-                "FLY"
+                "FIRE",
+                "FARM",
+                "COURT",
+                "PENT"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN FOLLOW TREE",
+            "name": "Can Precede BEAN",
             "words": [
-                "HOUSE",
-                "FROG",
-                "LINE",
-                "RING"
+                "KIDNEY",
+                "LIMA",
+                "RUNNER",
+                "JELLY"
             ],
             "className": "group-green"
         },
         {
-            "name": "ALFRED HITCHCOCK FILMS",
+            "name": "Can Follow BRAIN",
             "words": [
-                "PSYCHO",
-                "VERTIGO",
-                "ROPE",
-                "BIRDS"
+                "TRUST",
+                "DRAIN",
+                "FREEZE",
+                "CHILD"
             ],
             "className": "group-blue"
         },
         {
-            "name": "READ THE SAME BACKWARD",
+            "name": "Associated with RINGS",
             "words": [
-                "CIVIC",
-                "KAYAK",
-                "LEVEL",
-                "RADAR"
+                "SATURN",
+                "BOXING",
+                "ONION",
+                "CIRCUS"
             ],
             "className": "group-purple"
         }
