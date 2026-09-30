@@ -1,4 +1,3 @@
-
 const GRID_SIZE = 5;
 
 
@@ -1557,6 +1556,19 @@ async function updateCompletionCounter() {
         );
 
 
+        /*
+            Save the last known count locally.
+            This lets the completed screen still
+            show a count if the read request later
+            has a problem.
+        */
+
+        localStorage.setItem(
+            "ahs-games-mini-count-" + puzzleDate,
+            String(result)
+        );
+
+
         displayCompletionCount(
             result
         );
@@ -1569,11 +1581,6 @@ async function updateCompletionCounter() {
             error
         );
 
-
-        /*
-            If the counter fails, the puzzle
-            still works normally.
-        */
 
         displayCompletionCount(
             null
@@ -1608,10 +1615,6 @@ async function getCompletionCount(
 
                     headers: {
                         "apikey":
-                            SUPABASE_KEY,
-
-                        "Authorization":
-                            "Bearer " +
                             SUPABASE_KEY
                     }
                 }
@@ -1620,8 +1623,12 @@ async function getCompletionCount(
 
         if (!response.ok) {
 
+            const errorText =
+                await response.text();
+
             throw new Error(
-                "Could not retrieve completion count."
+                "Supabase error: " +
+                errorText
             );
 
         }
@@ -1636,8 +1643,18 @@ async function getCompletionCount(
             data.length > 0
         ) {
 
+            const count =
+                data[0].completion_count;
+
+
+            localStorage.setItem(
+                "ahs-games-mini-count-" + puzzleDate,
+                String(count)
+            );
+
+
             displayCompletionCount(
-                data[0].completion_count
+                count
             );
 
         } else {
@@ -1654,9 +1671,32 @@ async function getCompletionCount(
         );
 
 
-        displayCompletionCount(
-            null
-        );
+        /*
+            If Supabase cannot be read, use the
+            last count this browser successfully
+            received instead of showing an error.
+        */
+
+        const savedCount =
+            localStorage.getItem(
+                "ahs-games-mini-count-" +
+                puzzleDate
+            );
+
+
+        if (savedCount !== null) {
+
+            displayCompletionCount(
+                Number(savedCount)
+            );
+
+        } else {
+
+            displayCompletionCount(
+                null
+            );
+
+        }
 
     }
 
@@ -1721,11 +1761,18 @@ function displayCompletionCount(
 
         } else {
 
-            gameOverlay
-                .querySelector(".modal")
-                .appendChild(
+            const modal =
+                gameOverlay.querySelector(
+                    ".modal"
+                );
+
+            if (modal) {
+
+                modal.appendChild(
                     counterElement
                 );
+
+            }
 
         }
 
@@ -1761,9 +1808,17 @@ function displayCompletionCount(
     }
 
 
+    const personText =
+        numericCount === 1
+            ? "person"
+            : "people";
+
+
     counterElement.textContent =
         numericCount.toLocaleString() +
-        " people completed today's puzzle aswell!";
+        " " +
+        personText +
+        " completed today's puzzle!";
 
 }
 
