@@ -7,7 +7,7 @@ const GRID_SIZE = 5;
 ========================================= */
 
 const SUPABASE_URL =
-    "https://wwtlupmofwvryoslptdq.supabase.co/rest/v1/";
+    "https://wwtlupmofwvryoslptdq.supabase.co";
 
 const SUPABASE_KEY =
     "sb_publishable_YmDkQ9n4mnyVFXT58RGR2g_g-ccUB0X";
