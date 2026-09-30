@@ -1,5 +1,21 @@
-﻿
+
 const GRID_SIZE = 5;
+
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+    "https://wwtlupmofwvryoslptdq.supabase.co/rest/v1/";
+
+const SUPABASE_KEY =
+    "sb_publishable_YmDkQ9n4mnyVFXT58RGR2g_g-ccUB0X";
+
+
+/* =========================================
+   GAME VARIABLES
+========================================= */
 
 let puzzle = null;
 let answerGrid = [];
@@ -1436,6 +1452,323 @@ function checkAnswers() {
 
 
 /* =========================================
+   SUPABASE COMPLETION COUNTER
+========================================= */
+
+async function updateCompletionCounter() {
+
+    if (
+        !puzzle ||
+        !puzzle.date
+    ) {
+
+        console.error(
+            "Could not update completion count: puzzle date missing."
+        );
+
+        return;
+
+    }
+
+
+    const puzzleDate =
+        puzzle.date;
+
+
+    const storageKey =
+        "ahs-games-mini-completed-" +
+        puzzleDate;
+
+
+    /*
+        Prevent this browser from counting
+        the same puzzle more than once.
+    */
+
+    if (
+        localStorage.getItem(storageKey) === "true"
+    ) {
+
+        console.log(
+            "This browser already counted today's completion."
+        );
+
+        await getCompletionCount(puzzleDate);
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/rest/v1/rpc/increment_daily_completion",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            SUPABASE_KEY
+                    },
+
+                    body: JSON.stringify({
+                        target_date:
+                            puzzleDate
+                    })
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            throw new Error(
+                "Supabase error: " +
+                errorText
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        /*
+            Mark this puzzle as completed
+            on this browser.
+        */
+
+        localStorage.setItem(
+            storageKey,
+            "true"
+        );
+
+
+        displayCompletionCount(
+            result
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Could not update completion counter:",
+            error
+        );
+
+
+        /*
+            If the counter fails, the puzzle
+            still works normally.
+        */
+
+        displayCompletionCount(
+            null
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   GET CURRENT COMPLETION COUNT
+========================================= */
+
+async function getCompletionCount(
+    puzzleDate
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/rest/v1/daily_completions" +
+                "?puzzle_date=eq." +
+                encodeURIComponent(
+                    puzzleDate
+                ) +
+                "&select=completion_count",
+                {
+                    method: "GET",
+
+                    headers: {
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            SUPABASE_KEY
+                    }
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not retrieve completion count."
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            Array.isArray(data) &&
+            data.length > 0
+        ) {
+
+            displayCompletionCount(
+                data[0].completion_count
+            );
+
+        } else {
+
+            displayCompletionCount(0);
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Could not get completion count:",
+            error
+        );
+
+
+        displayCompletionCount(
+            null
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   DISPLAY COMPLETION COUNT
+========================================= */
+
+function displayCompletionCount(
+    count
+) {
+
+    if (!gameOverlay) {
+        return;
+    }
+
+
+    let counterElement =
+        document.getElementById(
+            "completion-counter"
+        );
+
+
+    /*
+        Create the counter automatically
+        so we don't have to change mini/index.html.
+    */
+
+    if (!counterElement) {
+
+        counterElement =
+            document.createElement("p");
+
+        counterElement.id =
+            "completion-counter";
+
+
+        counterElement.style.margin =
+            "12px 0 0";
+
+
+        counterElement.style.color =
+            "#cdbd91";
+
+
+        counterElement.style.fontSize =
+            "14px";
+
+
+        counterElement.style.fontWeight =
+            "600";
+
+
+        if (gameDescription) {
+
+            gameDescription.insertAdjacentElement(
+                "afterend",
+                counterElement
+            );
+
+        } else {
+
+            gameOverlay
+                .querySelector(".modal")
+                .appendChild(
+                    counterElement
+                );
+
+        }
+
+    }
+
+
+    if (
+        count === null ||
+        count === undefined
+    ) {
+
+        counterElement.textContent =
+            "Today's completion count is unavailable.";
+
+        return;
+
+    }
+
+
+    const numericCount =
+        Number(count);
+
+
+    if (
+        Number.isNaN(numericCount)
+    ) {
+
+        counterElement.textContent =
+            "Today's completion count is unavailable.";
+
+        return;
+
+    }
+
+
+    counterElement.textContent =
+        numericCount.toLocaleString() +
+        " people completed today's puzzle";
+
+}
+
+
+/* =========================================
    COMPLETE PUZZLE
 ========================================= */
 
@@ -1500,6 +1833,14 @@ function completePuzzle() {
         );
 
     }
+
+
+    /*
+        Update the global completion count
+        after the win screen appears.
+    */
+
+    updateCompletionCounter();
 
 }
 
