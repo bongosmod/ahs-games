@@ -1763,7 +1763,7 @@ function displayCompletionCount(
 
     counterElement.textContent =
         numericCount.toLocaleString() +
-        " people completed today's puzzle";
+        " people completed today's puzzle aswell!";
 
 }
 
