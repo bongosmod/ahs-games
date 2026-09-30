@@ -1,79 +1,67 @@
 {
-    "date": "2026-09-29",
+    "date": "2026-10-1",
     "title": "The Grid",
     "grid": [
-        "GAVIN",
-        "ORANO",
-        "RG###",
-        "EON##",
-        "#NEAR"
+        "#POLL",
+        "RADIO",
+        "OVALS",
+        "AES##",
+        "D####"
     ],
     "clues": [
         {
             "number": 1,
             "direction": "across",
-            "clue": "Ashley's freshman class president.",
-            "answer": "GAVIN"
+            "clue": "A type of survey that collects opinions from a group of people.",
+            "answer": "POLL"
+        },
+        {
+            "number": 5,
+            "direction": "across",
+            "clue": "A feature inside of many cars.",
+            "answer": "RADIO"
         },
         {
             "number": 6,
             "direction": "across",
-            "clue": "French nuclear power company.",
-            "answer": "ORANO"
+            "clue": "Many squished circles.",
+            "answer": "OVALS"
         },
         {
             "number": 7,
             "direction": "across",
-            "clue": "Offensive lineman who plays on the right side of the center.",
-            "answer": "RG"
-        },
-        {
-            "number": 8,
-            "direction": "across",
-            "clue": "An extremely long time.",
-            "answer": "EON"
-        },
-        {
-            "number": 10,
-            "direction": "across",
-            "clue": "The opposite of far.",
-            "answer": "NEAR"
+            "clue": "Abbreviation for a global power generation and utility company located in Virginia.",
+            "answer": "AES"
         },
         {
             "number": 1,
             "direction": "down",
-            "clue": "45th vice president of the United States from 1993 to 2001 under President Bill Clinton.",
-            "answer": "GORE"
+            "clue": "What a car would usually drive on.",
+            "answer": "PAVE"
         },
         {
             "number": 2,
             "direction": "down",
-            "clue": "Element with the symbol \"Ar\"",
-            "answer": "ARGON"
+            "clue": "To cover a surface with concrete.",
+            "answer": "ODAS"
         },
         {
             "number": 3,
             "direction": "down",
-            "clue": "Abbreviation for the state of Virginia",
-            "answer": "VA"
+            "clue": "Abbreviation for an automated marine structure or buoy used to collect and transmit real-time weather and oceanographic data.",
+            "answer": "LIL"
         },
         {
             "number": 4,
             "direction": "down",
-            "clue": "The opposite of out.",
-            "answer": "IN"
+            "clue": "A nickname many rappers use at the start of their name.",
+            "answer": "LOS"
         },
         {
             "number": 5,
             "direction": "down",
-            "clue": "A word a child might not like to hear.",
-            "answer": "NO"
-        },
-        {
-            "number": 9,
-            "direction": "down",
-            "clue": "The symbol for the element neon.",
-            "answer": "NE"
+            "clue": "Spanish for the word \"the\" used before masculine plural nouns..",
+            "answer": "ROAD"
         }
     ]
 }
