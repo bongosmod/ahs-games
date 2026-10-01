@@ -1,67 +1,73 @@
 {
-    "date": "2026-10-1",
+    "date": "2026-10-01",
     "title": "The Grid",
     "grid": [
-        "#POLL",
-        "RADIO",
-        "OVALS",
-        "AES##",
-        "D####"
+        "###HI",
+        "##HOG",
+        "#POT#",
+        "YUP##",
+        "ON###"
     ],
     "clues": [
         {
             "number": 1,
             "direction": "across",
-            "clue": "A type of survey that collects opinions from a group of people.",
-            "answer": "POLL"
+            "clue": "A short way to greet someone.",
+            "answer": "HI"
+        },
+        {
+            "number": 3,
+            "direction": "across",
+            "clue": "A large domesticated pig raised for meat.",
+            "answer": "HOG"
+        },
+        {
+            "number": 4,
+            "direction": "across",
+            "clue": "A container used for cooking.",
+            "answer": "POT"
         },
         {
             "number": 5,
             "direction": "across",
-            "clue": "A feature inside of many cars.",
-            "answer": "RADIO"
+            "clue": "A flat way of saying yes.",
+            "answer": "YUP"
         },
         {
             "number": 6,
             "direction": "across",
-            "clue": "Many squished circles.",
-            "answer": "OVALS"
-        },
-        {
-            "number": 7,
-            "direction": "across",
-            "clue": "Abbreviation for a global power generation and utility company located in Virginia.",
-            "answer": "AES"
+            "clue": "To touch or support the top of a surface.",
+            "answer": "ON"
         },
         {
             "number": 1,
             "direction": "down",
-            "clue": "What a car would usually drive on.",
-            "answer": "ROAD"
+            "clue": "A high temperature.",
+            "answer": "HOT"
         },
         {
             "number": 2,
             "direction": "down",
-            "clue": "To cover a surface with concrete.",
-            "answer": "PAVE"
+            "clue": "An abbreviation for a popular picture sharing app.",
+            "answer": "IG"
         },
         {
             "number": 3,
             "direction": "down",
-            "clue": "Abbreviation for an automated marine structure or buoy used to collect and transmit real-time weather and oceanographic data.",
-            "answer": "ODAS"
+            "clue": "A quicky, springy jump.",
+            "answer": "HOP"
         },
         {
             "number": 4,
             "direction": "down",
-            "clue": "A nickname many rappers use at the start of their name.",
-            "answer": "LIL"
+            "clue": "A joke that relies on wordplay.",
+            "answer": "PUN"
         },
         {
             "number": 5,
             "direction": "down",
-            "clue": "Spanish for the word \"the\" used before masculine plural nouns..",
-            "answer": "LOS"
+            "clue": "\"___, what's up?\"",
+            "answer": "YO"
         }
     ]
 }
