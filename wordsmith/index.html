@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Wordsmith - AHS Games</title>
+
+    <link rel="stylesheet"
+          href="wordsmith.css">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="top-bar">
+
+            <a href="../index.html"
+               class="back-button"
+               aria-label="Back to AHS Games">
+                ←
+            </a>
+
+            <h1>WORDSMITH</h1>
+
+            <button id="help-button"
+                    class="help-button"
+                    aria-label="How to play">
+                ?
+            </button>
+
+        </div>
+
+        <p class="subtitle">
+            Classic Mode
+        </p>
+
+    </header>
+
+
+    <main>
+
+        <div id="message"
+             class="message">
+        </div>
+
+
+        <div id="game-board"
+             class="game-board"
+             aria-label="Wordsmith game board">
+        </div>
+
+
+        <div id="keyboard"
+             class="keyboard"
+             aria-label="Keyboard">
+        </div>
+
+
+    </main>
+
+
+    <!-- HELP -->
+
+    <div id="help-overlay"
+         class="overlay">
+
+        <div class="modal">
+
+            <button id="close-help"
+                    class="close-button"
+                    aria-label="Close">
+                ×
+            </button>
+
+            <h2>How to Play</h2>
+
+            <p>
+                Guess the hidden five-letter word
+                in six tries.
+            </p>
+
+            <p>
+                Green means the letter is in the
+                correct position.
+            </p>
+
+            <p>
+                Gold means the letter is in the
+                word, but in the wrong position.
+            </p>
+
+            <p>
+                Gray means the letter is not
+                in the word.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- WIN / LOSS -->
+
+    <div id="game-overlay"
+         class="overlay">
+
+        <div class="modal">
+
+            <h2 id="game-title">
+                You Won!
+            </h2>
+
+            <p id="game-description">
+                You found today's word!
+            </p>
+
+            <p id="answer-display">
+            </p>
+
+            <button id="close-game"
+                    class="primary-button">
+                ADMIRE PUZZLE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="wordsmith.js"></script>
+
+</body>
+
+</html>
