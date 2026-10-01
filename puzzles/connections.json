@@ -1,43 +1,43 @@
 {
-    "date": "2026-09-30",
+    "date": "2026-10-01",
     "groups": [
         {
-            "name": "Can Precede HOUSE",
+            "name": "CARD SUITS",
             "words": [
-                "FIRE",
-                "FARM",
-                "COURT",
-                "PENT"
+                "CLUB",
+                "DIAMOND",
+                "HEART",
+                "SPADE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Can Precede BEAN",
+            "name": "FICTIONAL DETECTIVES",
             "words": [
-                "KIDNEY",
-                "LIMA",
-                "RUNNER",
-                "JELLY"
+                "HOLMES",
+                "POIROT",
+                "MARPLE",
+                "COLOMBO"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Follow BRAIN",
+            "name": "WORDS THAT CAN FOLLOW WALK",
             "words": [
-                "TRUST",
-                "DRAIN",
-                "FREEZE",
-                "CHILD"
+                "MOON",
+                "CAT",
+                "SIDE",
+                "CAKE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Associated with RINGS",
+            "name": "WORDS THAT CAN FOLLOW THUNDER",
             "words": [
-                "SATURN",
-                "BOXING",
-                "ONION",
-                "CIRCUS"
+                "BOLT",
+                "CLAP",
+                "STORM",
+                "BIRD"
             ],
             "className": "group-purple"
         }
