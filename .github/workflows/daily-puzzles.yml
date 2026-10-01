@@ -1,4 +1,4 @@
-name: Generate Daily Connections
+name: Generate Daily Puzzles
 
 on:
   schedule:
@@ -8,35 +8,71 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-connections:
+  generate-puzzles:
     runs-on: ubuntu-latest
 
     steps:
+      # =========================================
+      # CHECK OUT REPOSITORY
+      # =========================================
+
       - name: Checkout repository
         uses: actions/checkout@v4
+
+
+      # =========================================
+      # SET UP PYTHON
+      # =========================================
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
+
+      # =========================================
+      # INSTALL OPENAI
+      # =========================================
+
       - name: Install OpenAI
         run: |
           pip install openai
 
-      - name: Generate Connections puzzle
+
+      # =========================================
+      # GENERATE CONNECTIONS
+      # =========================================
+
+      - name: Generate daily Connections
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           python scripts/generate_connections.py
 
-      - name: Save new Connections puzzle
+
+      # =========================================
+      # GENERATE WORDSMITH
+      # =========================================
+
+      - name: Generate daily Wordsmith
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python scripts/generate_wordsmith.py
+
+
+      # =========================================
+      # SAVE PUZZLES
+      # =========================================
+
+      - name: Save new puzzles
         run: |
           git config user.name "AHS Games Bot"
           git config user.email "actions@github.com"
 
           git add puzzles/connections.json
+          git add puzzles/wordsmith.json
 
-          git diff --cached --quiet || git commit -m "Generate daily Connections"
+          git diff --cached --quiet || git commit -m "Generate daily puzzles"
 
           git push
