@@ -37,31 +37,31 @@
             "number": 1,
             "direction": "down",
             "clue": "What a car would usually drive on.",
-            "answer": "PAVE"
+            "answer": "ROAD"
         },
         {
             "number": 2,
             "direction": "down",
             "clue": "To cover a surface with concrete.",
-            "answer": "ODAS"
+            "answer": "PAVE"
         },
         {
             "number": 3,
             "direction": "down",
             "clue": "Abbreviation for an automated marine structure or buoy used to collect and transmit real-time weather and oceanographic data.",
-            "answer": "LIL"
+            "answer": "ODAS"
         },
         {
             "number": 4,
             "direction": "down",
             "clue": "A nickname many rappers use at the start of their name.",
-            "answer": "LOS"
+            "answer": "LIL"
         },
         {
             "number": 5,
             "direction": "down",
             "clue": "Spanish for the word \"the\" used before masculine plural nouns..",
-            "answer": "ROAD"
+            "answer": "LOS"
         }
     ]
 }
