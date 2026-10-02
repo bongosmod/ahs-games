@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-01",
+    "date": "2026-10-02",
     "groups": [
         {
-            "name": "CARD SUITS",
+            "name": "PASTA SHAPES",
             "words": [
-                "CLUB",
-                "DIAMOND",
-                "HEART",
-                "SPADE"
+                "PENNE",
+                "RAVIOLI",
+                "GNOCCHI",
+                "FUSILLI"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "FICTIONAL DETECTIVES",
+            "name": "CAN PRECEDE HOUSE",
             "words": [
-                "HOLMES",
-                "POIROT",
-                "MARPLE",
-                "COLOMBO"
+                "TREE",
+                "FULL",
+                "LIGHT",
+                "POWER"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS THAT CAN FOLLOW WALK",
+            "name": "CAN FOLLOW BOOK",
             "words": [
-                "MOON",
-                "CAT",
-                "SIDE",
-                "CAKE"
+                "MARK",
+                "CASE",
+                "KEEPER",
+                "WORM"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS THAT CAN FOLLOW THUNDER",
+            "name": "CAN PRECEDE BALL",
             "words": [
-                "BOLT",
-                "CLAP",
-                "STORM",
-                "BIRD"
+                "FIRE",
+                "FOOT",
+                "EYE",
+                "MEAT"
             ],
             "className": "group-purple"
         }
