@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-02",
+    "date": "2026-10-03",
     "groups": [
         {
-            "name": "PASTA SHAPES",
+            "name": "Can Precede BEAN",
             "words": [
-                "PENNE",
-                "RAVIOLI",
-                "GNOCCHI",
-                "FUSILLI"
+                "COFFEE",
+                "JELLY",
+                "LIMA",
+                "PINTO"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN PRECEDE HOUSE",
+            "name": "Can Precede BALL",
             "words": [
-                "TREE",
-                "FULL",
-                "LIGHT",
-                "POWER"
+                "BASKET",
+                "BASE",
+                "FOOT",
+                "HAND"
             ],
             "className": "group-green"
         },
         {
-            "name": "CAN FOLLOW BOOK",
+            "name": "Can Precede BOARD",
             "words": [
-                "MARK",
-                "CASE",
-                "KEEPER",
-                "WORM"
+                "CHESS",
+                "IRONING",
+                "SKATE",
+                "SURF"
             ],
             "className": "group-blue"
         },
         {
-            "name": "CAN PRECEDE BALL",
+            "name": "Can Follow UNDER-",
             "words": [
-                "FIRE",
-                "FOOT",
-                "EYE",
-                "MEAT"
+                "GROUND",
+                "SCORE",
+                "STUDY",
+                "WEAR"
             ],
             "className": "group-purple"
         }
