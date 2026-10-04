@@ -1,73 +1,61 @@
 {
-    "date": "2026-10-02",
+    "date": "2026-10-04",
     "title": "The Grid",
     "grid": [
-        "###HI",
-        "##HOG",
-        "#POT#",
-        "YUP##",
-        "ON###"
+        "ABUZZ",
+        "NAP#Z",
+        "TOPAZ",
+        "##E#Z",
+        "PEREZ"
     ],
     "clues": [
         {
             "number": 1,
             "direction": "across",
-            "clue": "A short way to greet someone.",
-            "answer": "HI"
-        },
-        {
-            "number": 3,
-            "direction": "across",
-            "clue": "A large domesticated pig raised for meat.",
-            "answer": "HOG"
-        },
-        {
-            "number": 4,
-            "direction": "across",
-            "clue": "A container used for cooking.",
-            "answer": "POT"
+            "clue": "An adjective that means filled with a low, continuous humming sound.",
+            "answer": "ABUZZ"
         },
         {
             "number": 5,
             "direction": "across",
-            "clue": "A flat way of saying yes.",
-            "answer": "YUP"
+            "clue": "A short sleep.",
+            "answer": "NAP"
         },
         {
             "number": 6,
             "direction": "across",
-            "clue": "To touch or support the top of a surface.",
-            "answer": "ON"
+            "clue": "A silicate mineral that forms a vibrant gemstone symbolizing love, strength, and wisdom.",
+            "answer": "TOPAZ"
+        },
+        {
+            "number": 7,
+            "direction": "across",
+            "clue": "Last name of Ashley High School's principal.",
+            "answer": "PEREZ"
         },
         {
             "number": 1,
             "direction": "down",
-            "clue": "A high temperature.",
-            "answer": "HOT"
+            "clue": "First part of the Avenger's name that shrinks really small.",
+            "answer": "ANT"
         },
         {
             "number": 2,
             "direction": "down",
-            "clue": "An abbreviation for a popular picture sharing app.",
-            "answer": "IG"
+            "clue": "Name of the Pixar Oscar-winning short film involving a dumpling.",
+            "answer": "BAO"
         },
         {
             "number": 3,
             "direction": "down",
-            "clue": "A quicky, springy jump.",
-            "answer": "HOP"
+            "clue": "To be higher in physical position, level, rank, or order.",
+            "answer": "UPPER"
         },
         {
             "number": 4,
             "direction": "down",
-            "clue": "A joke that relies on wordplay.",
-            "answer": "PUN"
-        },
-        {
-            "number": 5,
-            "direction": "down",
-            "clue": "\"___, what's up?\"",
-            "answer": "YO"
+            "clue": "A prolonged expression of sleep.",
+            "answer": "ZZZZZ"
         }
     ]
 }
