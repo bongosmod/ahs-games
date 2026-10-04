@@ -1,113 +1,112 @@
-
 /* =========================================
-   WORDSMITH CLASSIC MODE
+   WORDSMITH
+   CLASSIC MODE
 ========================================= */
 
 const WORD_LENGTH = 5;
-const MAX_GUESSES = 6;
-
-
-/* =========================================
-   TEMPORARY WORD
-========================================= */
-
-/*
-    This is temporary.
-
-    Later, the AI-generated
-    wordsmith.json will replace this.
-*/
-
-const ANSWER = "CRANE";
+const MAX_ATTEMPTS = 6;
 
 
 /* =========================================
    GAME VARIABLES
 ========================================= */
 
+let answer = "";
 let currentRow = 0;
-let currentGuess = "";
-
-let gameOver = false;
-
+let currentCol = 0;
 let board = [];
-
-let keyboardKeys = {};
+let gameOver = false;
 
 
 /* =========================================
    HTML ELEMENTS
 ========================================= */
 
-const gameBoard =
-    document.getElementById("game-board");
+const boardElement =
+    document.getElementById("wordsmith-board");
 
-const keyboard =
-    document.getElementById("keyboard");
+const keyboardElement =
+    document.getElementById("wordsmith-keyboard");
 
-const message =
-    document.getElementById("message");
+const messageElement =
+    document.getElementById("wordsmith-message");
 
-const helpButton =
-    document.getElementById("help-button");
-
-const helpOverlay =
-    document.getElementById("help-overlay");
-
-const closeHelp =
-    document.getElementById("close-help");
-
-const gameOverlay =
-    document.getElementById("game-overlay");
-
-const gameTitle =
-    document.getElementById("game-title");
-
-const gameDescription =
-    document.getElementById("game-description");
-
-const answerDisplay =
-    document.getElementById("answer-display");
-
-const closeGame =
-    document.getElementById("close-game");
+const restartButton =
+    document.getElementById("wordsmith-restart");
 
 
 /* =========================================
-   CREATE BOARD
+   LOAD PUZZLE
 ========================================= */
 
-function createBoard() {
+async function loadPuzzle() {
 
-    gameBoard.innerHTML = "";
+    try {
 
-    board = [];
-
-
-    for (
-        let row = 0;
-        row < MAX_GUESSES;
-        row++
-    ) {
-
-        board[row] = [];
+        const response = await fetch(
+            "../puzzles/wordsmith.json?timestamp=" +
+            Date.now()
+        );
 
 
-        for (
-            let col = 0;
-            col < WORD_LENGTH;
-            col++
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not load today's Wordsmith puzzle."
+            );
+
+        }
+
+
+        const puzzle =
+            await response.json();
+
+
+        if (
+            !puzzle.word ||
+            typeof puzzle.word !== "string"
         ) {
 
-            const tile =
-                document.createElement("div");
+            throw new Error(
+                "Wordsmith puzzle is missing its answer."
+            );
 
-            tile.className = "tile";
+        }
 
 
-            board[row][col] = tile;
+        answer =
+            puzzle.word
+                .trim()
+                .toUpperCase();
 
-            gameBoard.appendChild(tile);
+
+        if (
+            answer.length !== WORD_LENGTH ||
+            !/^[A-Z]+$/.test(answer)
+        ) {
+
+            throw new Error(
+                "Wordsmith answer is invalid."
+            );
+
+        }
+
+
+        startGame();
+
+
+    } catch (error) {
+
+        console.error(
+            "Wordsmith failed to load:",
+            error
+        );
+
+
+        if (messageElement) {
+
+            messageElement.textContent =
+                "Couldn't load today's Wordsmith.";
 
         }
 
@@ -117,190 +116,353 @@ function createBoard() {
 
 
 /* =========================================
-   KEYBOARD
+   START GAME
 ========================================= */
 
-function createKeyboard() {
+function startGame() {
 
-    keyboard.innerHTML = "";
+    currentRow = 0;
+    currentCol = 0;
 
-    keyboardKeys = {};
-
-
-    const rows = [
-        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-        ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-        ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "BACK"]
-    ];
+    gameOver = false;
 
 
-    rows.forEach(function (rowLetters) {
-
-        const row =
-            document.createElement("div");
-
-        row.className =
-            "keyboard-row";
+    board = [];
 
 
-        rowLetters.forEach(function (letter) {
+    for (
+        let row = 0;
+        row < MAX_ATTEMPTS;
+        row++
+    ) {
 
-            const button =
-                document.createElement("button");
+        board[row] = [];
 
-            button.type = "button";
+        for (
+            let col = 0;
+            col < WORD_LENGTH;
+            col++
+        ) {
 
-            button.className = "key";
+            board[row][col] = "";
 
-            button.textContent =
-                letter === "BACK"
-                    ? "⌫"
-                    : letter;
+        }
 
-
-            if (
-                letter === "ENTER" ||
-                letter === "BACK"
-            ) {
-
-                button.classList.add("wide");
-
-            }
+    }
 
 
-            button.addEventListener(
-                "click",
-                function () {
+    createBoard();
 
-                    handleKey(letter);
-
-                }
-            );
+    createKeyboard();
 
 
-            keyboardKeys[letter] =
-                button;
+    if (messageElement) {
 
+        messageElement.textContent = "";
 
-            row.appendChild(button);
-
-        });
-
-
-        keyboard.appendChild(row);
-
-    });
+    }
 
 }
 
 
 /* =========================================
-   HANDLE KEY
+   CREATE BOARD
 ========================================= */
 
-function handleKey(key) {
+function createBoard() {
+
+    if (!boardElement) {
+        return;
+    }
+
+
+    boardElement.innerHTML = "";
+
+
+    for (
+        let row = 0;
+        row < MAX_ATTEMPTS;
+        row++
+    ) {
+
+        const rowElement =
+            document.createElement("div");
+
+
+        rowElement.className =
+            "wordsmith-row";
+
+
+        for (
+            let col = 0;
+            col < WORD_LENGTH;
+            col++
+        ) {
+
+            const cell =
+                document.createElement("div");
+
+
+            cell.className =
+                "wordsmith-cell";
+
+
+            cell.dataset.row =
+                row;
+
+            cell.dataset.col =
+                col;
+
+
+            rowElement.appendChild(
+                cell
+            );
+
+        }
+
+
+        boardElement.appendChild(
+            rowElement
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   CREATE KEYBOARD
+========================================= */
+
+function createKeyboard() {
+
+    if (!keyboardElement) {
+        return;
+    }
+
+
+    keyboardElement.innerHTML = "";
+
+
+    const rows = [
+        "QWERTYUIOP",
+        "ASDFGHJKL",
+        "ZXCVBNM"
+    ];
+
+
+    rows.forEach(
+        function (letters) {
+
+            const row =
+                document.createElement("div");
+
+
+            row.className =
+                "wordsmith-keyboard-row";
+
+
+            letters.split("").forEach(
+                function (letter) {
+
+                    const button =
+                        document.createElement("button");
+
+
+                    button.type = "button";
+
+                    button.className =
+                        "wordsmith-key";
+
+                    button.textContent =
+                        letter;
+
+                    button.dataset.letter =
+                        letter;
+
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            enterLetter(
+                                letter
+                            );
+
+                        }
+                    );
+
+
+                    row.appendChild(
+                        button
+                    );
+
+                }
+            );
+
+
+            keyboardElement.appendChild(
+                row
+            );
+
+        }
+    );
+
+
+    const bottomRow =
+        document.createElement("div");
+
+
+    bottomRow.className =
+        "wordsmith-keyboard-row";
+
+
+    const enterButton =
+        document.createElement("button");
+
+
+    enterButton.type = "button";
+
+    enterButton.className =
+        "wordsmith-key wordsmith-wide-key";
+
+    enterButton.textContent =
+        "ENTER";
+
+
+    enterButton.addEventListener(
+        "click",
+        submitGuess
+    );
+
+
+    bottomRow.appendChild(
+        enterButton
+    );
+
+
+    const backspaceButton =
+        document.createElement("button");
+
+
+    backspaceButton.type =
+        "button";
+
+    backspaceButton.className =
+        "wordsmith-key wordsmith-wide-key";
+
+    backspaceButton.textContent =
+        "⌫";
+
+
+    backspaceButton.addEventListener(
+        "click",
+        deleteLetter
+    );
+
+
+    bottomRow.appendChild(
+        backspaceButton
+    );
+
+
+    keyboardElement.appendChild(
+        bottomRow
+    );
+
+}
+
+
+/* =========================================
+   ENTER LETTER
+========================================= */
+
+function enterLetter(letter) {
 
     if (gameOver) {
         return;
     }
 
 
-    if (key === "ENTER") {
-
-        submitGuess();
-
-        return;
-
-    }
-
-
-    if (key === "BACK") {
-
-        removeLetter();
-
-        return;
-
-    }
-
-
-    if (/^[A-Z]$/.test(key)) {
-
-        addLetter(key);
-
-    }
-
-}
-
-
-/* =========================================
-   ADD LETTER
-========================================= */
-
-function addLetter(letter) {
-
     if (
-        currentGuess.length >= WORD_LENGTH
+        currentCol >= WORD_LENGTH
     ) {
         return;
     }
 
 
-    currentGuess += letter;
+    board[currentRow][currentCol] =
+        letter;
 
 
-    updateCurrentRow();
+    updateBoard();
+
+
+    currentCol++;
 
 }
 
 
 /* =========================================
-   REMOVE LETTER
+   DELETE LETTER
 ========================================= */
 
-function removeLetter() {
+function deleteLetter() {
 
-    if (
-        currentGuess.length === 0
-    ) {
+    if (gameOver) {
         return;
     }
 
 
-    currentGuess =
-        currentGuess.slice(0, -1);
+    if (currentCol <= 0) {
+        return;
+    }
 
 
-    updateCurrentRow();
+    currentCol--;
+
+
+    board[currentRow][currentCol] =
+        "";
+
+
+    updateBoard();
 
 }
 
 
 /* =========================================
-   UPDATE CURRENT ROW
+   UPDATE BOARD
 ========================================= */
 
-function updateCurrentRow() {
+function updateBoard() {
 
-    for (
-        let col = 0;
-        col < WORD_LENGTH;
-        col++
-    ) {
-
-        const tile =
-            board[currentRow][col];
+    if (!boardElement) {
+        return;
+    }
 
 
-        tile.textContent =
-            currentGuess[col] || "";
-
-
-        tile.classList.toggle(
-            "filled",
-            Boolean(currentGuess[col])
+    const cells =
+        boardElement.querySelectorAll(
+            ".wordsmith-cell"
         );
 
-    }
+
+    cells.forEach(
+        function (cell) {
+
+            const row =
+                Number(cell.dataset.row);
+
+            const col =
+                Number(cell.dataset.col);
+
+
+            cell.textContent =
+                board[row][col];
+
+        }
+    );
 
 }
 
@@ -311,8 +473,13 @@ function updateCurrentRow() {
 
 function submitGuess() {
 
+    if (gameOver) {
+        return;
+    }
+
+
     if (
-        currentGuess.length !== WORD_LENGTH
+        currentCol !== WORD_LENGTH
     ) {
 
         showMessage(
@@ -325,45 +492,44 @@ function submitGuess() {
 
 
     const guess =
-        currentGuess.toUpperCase();
+        board[currentRow].join("");
 
 
     /*
-        Temporary validation.
+        For now we allow any five-letter
+        guess to be submitted.
 
-        Later we can add a full
-        dictionary / allowed-word list.
+        We can add a word dictionary later.
     */
 
 
-    checkGuess(guess);
+    evaluateGuess(
+        guess
+    );
 
 }
 
 
 /* =========================================
-   CHECK GUESS
+   EVALUATE GUESS
 ========================================= */
 
-function checkGuess(guess) {
+function evaluateGuess(guess) {
 
-    const answerLetters =
-        ANSWER.split("");
-
-    const guessLetters =
-        guess.split("");
-
-
-    const results =
+    const result =
         Array(WORD_LENGTH).fill(
-            "absent"
+            "incorrect"
         );
+
+
+    const remaining =
+        answer.split("");
 
 
     /*
         FIRST PASS
-
-        Find exact matches.
+        Correct letters
+        in correct positions.
     */
 
     for (
@@ -373,19 +539,14 @@ function checkGuess(guess) {
     ) {
 
         if (
-            guessLetters[i] ===
-            answerLetters[i]
+            guess[i] === answer[i]
         ) {
 
-            results[i] =
+            result[i] =
                 "correct";
 
 
-            answerLetters[i] =
-                null;
-
-
-            guessLetters[i] =
+            remaining[i] =
                 null;
 
         }
@@ -395,9 +556,8 @@ function checkGuess(guess) {
 
     /*
         SECOND PASS
-
-        Find letters that exist
-        somewhere else.
+        Correct letters
+        in wrong positions.
     */
 
     for (
@@ -407,25 +567,27 @@ function checkGuess(guess) {
     ) {
 
         if (
-            guessLetters[i] === null
+            result[i] === "correct"
         ) {
+
             continue;
+
         }
 
 
         const index =
-            answerLetters.indexOf(
-                guessLetters[i]
+            remaining.indexOf(
+                guess[i]
             );
 
 
         if (index !== -1) {
 
-            results[i] =
+            result[i] =
                 "present";
 
 
-            answerLetters[index] =
+            remaining[index] =
                 null;
 
         }
@@ -433,20 +595,20 @@ function checkGuess(guess) {
     }
 
 
-    showGuess(
-        guess,
-        results
+    revealRow(
+        currentRow,
+        result
     );
 
 
     updateKeyboard(
         guess,
-        results
+        result
     );
 
 
     if (
-        guess === ANSWER
+        guess === answer
     ) {
 
         winGame();
@@ -458,11 +620,12 @@ function checkGuess(guess) {
 
     currentRow++;
 
-    currentGuess = "";
+
+    currentCol = 0;
 
 
     if (
-        currentRow >= MAX_GUESSES
+        currentRow >= MAX_ATTEMPTS
     ) {
 
         loseGame();
@@ -473,35 +636,42 @@ function checkGuess(guess) {
 
 
 /* =========================================
-   SHOW GUESS
+   REVEAL ROW
 ========================================= */
 
-function showGuess(
-    guess,
-    results
+function revealRow(
+    row,
+    result
 ) {
 
+    if (!boardElement) {
+        return;
+    }
+
+
     for (
-        let i = 0;
-        i < WORD_LENGTH;
-        i++
+        let col = 0;
+        col < WORD_LENGTH;
+        col++
     ) {
 
-        const tile =
-            board[currentRow][i];
+        const cell =
+            boardElement.querySelector(
+                '.wordsmith-cell[data-row="' +
+                row +
+                '"][data-col="' +
+                col +
+                '"]'
+            );
 
 
-        tile.textContent =
-            guess[i];
+        if (!cell) {
+            continue;
+        }
 
 
-        tile.classList.remove(
-            "filled"
-        );
-
-
-        tile.classList.add(
-            results[i]
+        cell.classList.add(
+            result[col]
         );
 
     }
@@ -515,8 +685,13 @@ function showGuess(
 
 function updateKeyboard(
     guess,
-    results
+    result
 ) {
+
+    if (!keyboardElement) {
+        return;
+    }
+
 
     for (
         let i = 0;
@@ -529,7 +704,11 @@ function updateKeyboard(
 
 
         const button =
-            keyboardKeys[letter];
+            keyboardElement.querySelector(
+                '[data-letter="' +
+                letter +
+                '"]'
+            );
 
 
         if (!button) {
@@ -539,40 +718,52 @@ function updateKeyboard(
 
         /*
             Correct always wins.
-
-            Present beats absent.
         */
 
         if (
-            results[i] === "correct"
+            result[i] === "correct"
         ) {
 
             button.classList.remove(
                 "present",
-                "absent"
+                "incorrect"
             );
 
             button.classList.add(
                 "correct"
             );
 
-        } else if (
-            results[i] === "present" &&
+            continue;
+
+        }
+
+
+        /*
+            Present beats incorrect.
+        */
+
+        if (
+            result[i] === "present" &&
             !button.classList.contains(
                 "correct"
             )
         ) {
 
             button.classList.remove(
-                "absent"
+                "incorrect"
             );
 
             button.classList.add(
                 "present"
             );
 
-        } else if (
-            results[i] === "absent" &&
+            continue;
+
+        }
+
+
+        if (
+            result[i] === "incorrect" &&
             !button.classList.contains(
                 "correct"
             ) &&
@@ -582,7 +773,7 @@ function updateKeyboard(
         ) {
 
             button.classList.add(
-                "absent"
+                "incorrect"
             );
 
         }
@@ -602,31 +793,22 @@ function winGame() {
 
 
     showMessage(
-        "You found the word!"
+        "You got it! 🎉"
     );
 
 
-    gameTitle.textContent =
-        "You Won!";
+    if (restartButton) {
 
+        restartButton.textContent =
+            "Play Again";
 
-    gameDescription.textContent =
-        "You found today's Wordsmith word!";
-
-
-    answerDisplay.textContent =
-        ANSWER;
-
-
-    gameOverlay.classList.add(
-        "show"
-    );
+    }
 
 }
 
 
 /* =========================================
-   LOSS
+   LOSE
 ========================================= */
 
 function loseGame() {
@@ -635,25 +817,18 @@ function loseGame() {
 
 
     showMessage(
-        "Better luck tomorrow."
+        "The word was " +
+        answer +
+        "."
     );
 
 
-    gameTitle.textContent =
-        "Game Over";
+    if (restartButton) {
 
+        restartButton.textContent =
+            "Try Again";
 
-    gameDescription.textContent =
-        "The word was:";
-
-
-    answerDisplay.textContent =
-        ANSWER;
-
-
-    gameOverlay.classList.add(
-        "show"
-    );
+    }
 
 }
 
@@ -662,31 +837,39 @@ function loseGame() {
    MESSAGE
 ========================================= */
 
-function showMessage(text) {
+function showMessage(message) {
 
-    message.textContent =
-        text;
+    if (!messageElement) {
+        return;
+    }
 
 
-    setTimeout(
+    messageElement.textContent =
+        message;
+
+}
+
+
+/* =========================================
+   RESTART
+========================================= */
+
+if (restartButton) {
+
+    restartButton.addEventListener(
+        "click",
         function () {
 
-            if (!gameOver) {
+            startGame();
 
-                message.textContent =
-                    "";
-
-            }
-
-        },
-        2000
+        }
     );
 
 }
 
 
 /* =========================================
-   PHYSICAL KEYBOARD
+   KEYBOARD INPUT
 ========================================= */
 
 document.addEventListener(
@@ -699,14 +882,29 @@ document.addEventListener(
 
 
         if (
-            /^[a-zA-Z]$/.test(event.key)
+            /^[a-zA-Z]$/.test(
+                event.key
+            )
         ) {
 
             event.preventDefault();
 
-            addLetter(
+            enterLetter(
                 event.key.toUpperCase()
             );
+
+            return;
+
+        }
+
+
+        if (
+            event.key === "Backspace"
+        ) {
+
+            event.preventDefault();
+
+            deleteLetter();
 
             return;
 
@@ -721,19 +919,6 @@ document.addEventListener(
 
             submitGuess();
 
-            return;
-
-        }
-
-
-        if (
-            event.key === "Backspace"
-        ) {
-
-            event.preventDefault();
-
-            removeLetter();
-
         }
 
     }
@@ -741,72 +926,14 @@ document.addEventListener(
 
 
 /* =========================================
-   HELP
+   START
 ========================================= */
 
-helpButton.addEventListener(
-    "click",
+document.addEventListener(
+    "DOMContentLoaded",
     function () {
 
-        helpOverlay.classList.add(
-            "show"
-        );
+        loadPuzzle();
 
     }
 );
-
-
-closeHelp.addEventListener(
-    "click",
-    function () {
-
-        helpOverlay.classList.remove(
-            "show"
-        );
-
-    }
-);
-
-
-helpOverlay.addEventListener(
-    "click",
-    function (event) {
-
-        if (
-            event.target ===
-            helpOverlay
-        ) {
-
-            helpOverlay.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   CLOSE GAME
-========================================= */
-
-closeGame.addEventListener(
-    "click",
-    function () {
-
-        gameOverlay.classList.remove(
-            "show"
-        );
-
-    }
-);
-
-
-/* =========================================
-   START GAME
-========================================= */
-
-createBoard();
-
-createKeyboard();
