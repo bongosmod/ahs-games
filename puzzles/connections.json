@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-03",
+    "date": "2026-10-04",
     "groups": [
         {
-            "name": "Can Precede BEAN",
+            "name": "HATS",
             "words": [
-                "COFFEE",
-                "JELLY",
-                "LIMA",
-                "PINTO"
+                "FEDORA",
+                "BERET",
+                "BOWLER",
+                "PANAMA"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Can Precede BALL",
+            "name": "WORDS THAT CAN PRECEDE BOARD",
             "words": [
-                "BASKET",
-                "BASE",
-                "FOOT",
-                "HAND"
+                "DASH",
+                "SCORE",
+                "SURF",
+                "KEY"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Precede BOARD",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "CHESS",
-                "IRONING",
-                "SKATE",
-                "SURF"
+                "KNIGHT",
+                "GNOME",
+                "PSALM",
+                "WRIST"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Can Follow UNDER-",
+            "name": "WORDS THAT CAN PRECEDE STONE",
             "words": [
-                "GROUND",
-                "SCORE",
-                "STUDY",
-                "WEAR"
+                "MILE",
+                "SAND",
+                "TOUCH",
+                "BRIM"
             ],
             "className": "group-purple"
         }
