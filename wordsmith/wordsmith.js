@@ -14,7 +14,9 @@ const MAX_ATTEMPTS = 6;
 let answer = "";
 let currentRow = 0;
 let currentCol = 0;
+
 let board = [];
+
 let gameOver = false;
 
 
@@ -22,17 +24,38 @@ let gameOver = false;
    HTML ELEMENTS
 ========================================= */
 
+const messageElement =
+    document.getElementById("message");
+
 const boardElement =
-    document.getElementById("wordsmith-board");
+    document.getElementById("game-board");
 
 const keyboardElement =
-    document.getElementById("wordsmith-keyboard");
+    document.getElementById("keyboard");
 
-const messageElement =
-    document.getElementById("wordsmith-message");
+const helpButton =
+    document.getElementById("help-button");
 
-const restartButton =
-    document.getElementById("wordsmith-restart");
+const helpOverlay =
+    document.getElementById("help-overlay");
+
+const closeHelpButton =
+    document.getElementById("close-help");
+
+const gameOverlay =
+    document.getElementById("game-overlay");
+
+const gameTitle =
+    document.getElementById("game-title");
+
+const gameDescription =
+    document.getElementById("game-description");
+
+const answerDisplay =
+    document.getElementById("answer-display");
+
+const closeGameButton =
+    document.getElementById("close-game");
 
 
 /* =========================================
@@ -43,10 +66,11 @@ async function loadPuzzle() {
 
     try {
 
-        const response = await fetch(
-            "../puzzles/wordsmith.json?timestamp=" +
-            Date.now()
-        );
+        const response =
+            await fetch(
+                "../puzzles/wordsmith.json?timestamp=" +
+                Date.now()
+            );
 
 
         if (!response.ok) {
@@ -122,6 +146,7 @@ async function loadPuzzle() {
 function startGame() {
 
     currentRow = 0;
+
     currentCol = 0;
 
     gameOver = false;
@@ -138,6 +163,7 @@ function startGame() {
 
         board[row] = [];
 
+
         for (
             let col = 0;
             col < WORD_LENGTH;
@@ -151,9 +177,13 @@ function startGame() {
     }
 
 
-    createBoard();
+    if (gameOverlay) {
 
-    createKeyboard();
+        gameOverlay.classList.remove(
+            "show"
+        );
+
+    }
 
 
     if (messageElement) {
@@ -161,6 +191,11 @@ function startGame() {
         messageElement.textContent = "";
 
     }
+
+
+    createBoard();
+
+    createKeyboard();
 
 }
 
@@ -244,65 +279,73 @@ function createKeyboard() {
     keyboardElement.innerHTML = "";
 
 
-    const rows = [
+    const keyboardRows = [
         "QWERTYUIOP",
         "ASDFGHJKL",
         "ZXCVBNM"
     ];
 
 
-    rows.forEach(
+    keyboardRows.forEach(
         function (letters) {
 
-            const row =
+            const rowElement =
                 document.createElement("div");
 
 
-            row.className =
+            rowElement.className =
                 "wordsmith-keyboard-row";
 
 
-            letters.split("").forEach(
-                function (letter) {
+            letters
+                .split("")
+                .forEach(
+                    function (letter) {
 
-                    const button =
-                        document.createElement("button");
-
-
-                    button.type = "button";
-
-                    button.className =
-                        "wordsmith-key";
-
-                    button.textContent =
-                        letter;
-
-                    button.dataset.letter =
-                        letter;
-
-
-                    button.addEventListener(
-                        "click",
-                        function () {
-
-                            enterLetter(
-                                letter
+                        const button =
+                            document.createElement(
+                                "button"
                             );
 
-                        }
-                    );
+
+                        button.type =
+                            "button";
 
 
-                    row.appendChild(
-                        button
-                    );
+                        button.className =
+                            "wordsmith-key";
 
-                }
-            );
+
+                        button.textContent =
+                            letter;
+
+
+                        button.dataset.letter =
+                            letter;
+
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                enterLetter(
+                                    letter
+                                );
+
+                            }
+                        );
+
+
+                        rowElement.appendChild(
+                            button
+                        );
+
+                    }
+                );
 
 
             keyboardElement.appendChild(
-                row
+                rowElement
             );
 
         }
@@ -321,10 +364,13 @@ function createKeyboard() {
         document.createElement("button");
 
 
-    enterButton.type = "button";
+    enterButton.type =
+        "button";
+
 
     enterButton.className =
         "wordsmith-key wordsmith-wide-key";
+
 
     enterButton.textContent =
         "ENTER";
@@ -348,8 +394,10 @@ function createKeyboard() {
     backspaceButton.type =
         "button";
 
+
     backspaceButton.className =
         "wordsmith-key wordsmith-wide-key";
+
 
     backspaceButton.textContent =
         "⌫";
@@ -387,7 +435,9 @@ function enterLetter(letter) {
     if (
         currentCol >= WORD_LENGTH
     ) {
+
         return;
+
     }
 
 
@@ -452,10 +502,15 @@ function updateBoard() {
         function (cell) {
 
             const row =
-                Number(cell.dataset.row);
+                Number(
+                    cell.dataset.row
+                );
+
 
             const col =
-                Number(cell.dataset.col);
+                Number(
+                    cell.dataset.col
+                );
 
 
             cell.textContent =
@@ -495,14 +550,6 @@ function submitGuess() {
         board[currentRow].join("");
 
 
-    /*
-        For now we allow any five-letter
-        guess to be submitted.
-
-        We can add a word dictionary later.
-    */
-
-
     evaluateGuess(
         guess
     );
@@ -517,7 +564,9 @@ function submitGuess() {
 function evaluateGuess(guess) {
 
     const result =
-        Array(WORD_LENGTH).fill(
+        Array(
+            WORD_LENGTH
+        ).fill(
             "incorrect"
         );
 
@@ -528,8 +577,7 @@ function evaluateGuess(guess) {
 
     /*
         FIRST PASS
-        Correct letters
-        in correct positions.
+        Correct positions.
     */
 
     for (
@@ -556,8 +604,8 @@ function evaluateGuess(guess) {
 
     /*
         SECOND PASS
-        Correct letters
-        in wrong positions.
+        Correct letter,
+        wrong position.
     */
 
     for (
@@ -619,7 +667,6 @@ function evaluateGuess(guess) {
 
 
     currentRow++;
-
 
     currentCol = 0;
 
@@ -716,10 +763,6 @@ function updateKeyboard(
         }
 
 
-        /*
-            Correct always wins.
-        */
-
         if (
             result[i] === "correct"
         ) {
@@ -729,18 +772,16 @@ function updateKeyboard(
                 "incorrect"
             );
 
+
             button.classList.add(
                 "correct"
             );
+
 
             continue;
 
         }
 
-
-        /*
-            Present beats incorrect.
-        */
 
         if (
             result[i] === "present" &&
@@ -753,9 +794,11 @@ function updateKeyboard(
                 "incorrect"
             );
 
+
             button.classList.add(
                 "present"
             );
+
 
             continue;
 
@@ -784,7 +827,7 @@ function updateKeyboard(
 
 
 /* =========================================
-   WIN
+   WIN GAME
 ========================================= */
 
 function winGame() {
@@ -793,14 +836,39 @@ function winGame() {
 
 
     showMessage(
-        "You got it! 🎉"
+        "You got it!"
     );
 
 
-    if (restartButton) {
+    if (gameTitle) {
 
-        restartButton.textContent =
-            "Play Again";
+        gameTitle.textContent =
+            "You Won!";
+
+    }
+
+
+    if (gameDescription) {
+
+        gameDescription.textContent =
+            "You found today's word!";
+
+    }
+
+
+    if (answerDisplay) {
+
+        answerDisplay.textContent =
+            answer;
+
+    }
+
+
+    if (gameOverlay) {
+
+        gameOverlay.classList.add(
+            "show"
+        );
 
     }
 
@@ -808,7 +876,7 @@ function winGame() {
 
 
 /* =========================================
-   LOSE
+   LOSE GAME
 ========================================= */
 
 function loseGame() {
@@ -823,10 +891,36 @@ function loseGame() {
     );
 
 
-    if (restartButton) {
+    if (gameTitle) {
 
-        restartButton.textContent =
-            "Try Again";
+        gameTitle.textContent =
+            "Game Over";
+
+    }
+
+
+    if (gameDescription) {
+
+        gameDescription.textContent =
+            "Better luck tomorrow!";
+
+    }
+
+
+    if (answerDisplay) {
+
+        answerDisplay.textContent =
+            "The word was " +
+            answer;
+
+    }
+
+
+    if (gameOverlay) {
+
+        gameOverlay.classList.add(
+            "show"
+        );
 
     }
 
@@ -851,16 +945,86 @@ function showMessage(message) {
 
 
 /* =========================================
-   RESTART
+   HELP
 ========================================= */
 
-if (restartButton) {
+if (
+    helpButton &&
+    helpOverlay
+) {
 
-    restartButton.addEventListener(
+    helpButton.addEventListener(
         "click",
         function () {
 
-            startGame();
+            helpOverlay.classList.add(
+                "show"
+            );
+
+        }
+    );
+
+}
+
+
+if (
+    closeHelpButton &&
+    helpOverlay
+) {
+
+    closeHelpButton.addEventListener(
+        "click",
+        function () {
+
+            helpOverlay.classList.remove(
+                "show"
+            );
+
+        }
+    );
+
+}
+
+
+if (helpOverlay) {
+
+    helpOverlay.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target ===
+                helpOverlay
+            ) {
+
+                helpOverlay.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   CLOSE WIN / LOSS
+========================================= */
+
+if (
+    closeGameButton &&
+    gameOverlay
+) {
+
+    closeGameButton.addEventListener(
+        "click",
+        function () {
+
+            gameOverlay.classList.remove(
+                "show"
+            );
 
         }
     );
@@ -882,6 +1046,16 @@ document.addEventListener(
 
 
         if (
+            event.target.tagName === "INPUT" ||
+            event.target.tagName === "TEXTAREA"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
             /^[a-zA-Z]$/.test(
                 event.key
             )
@@ -889,9 +1063,11 @@ document.addEventListener(
 
             event.preventDefault();
 
+
             enterLetter(
                 event.key.toUpperCase()
             );
+
 
             return;
 
@@ -904,7 +1080,9 @@ document.addEventListener(
 
             event.preventDefault();
 
+
             deleteLetter();
+
 
             return;
 
@@ -916,6 +1094,7 @@ document.addEventListener(
         ) {
 
             event.preventDefault();
+
 
             submitGuess();
 
