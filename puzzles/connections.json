@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-04",
+    "date": "2026-10-05",
     "groups": [
         {
-            "name": "HATS",
+            "name": "___ BOARD",
             "words": [
-                "FEDORA",
-                "BERET",
-                "BOWLER",
-                "PANAMA"
+                "DASH",
+                "SKATE",
+                "SCORE",
+                "SOUND"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "WORDS THAT CAN PRECEDE BOARD",
+            "name": "___ COAT",
             "words": [
-                "DASH",
-                "SCORE",
-                "SURF",
-                "KEY"
+                "LAB",
+                "RAIN",
+                "TOP",
+                "SUGAR"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS WITH A SILENT FIRST LETTER",
+            "name": "STAR___",
             "words": [
-                "KNIGHT",
-                "GNOME",
-                "PSALM",
-                "WRIST"
+                "BURST",
+                "DUST",
+                "FISH",
+                "LIGHT"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS THAT CAN PRECEDE STONE",
+            "name": "___HOUSE",
             "words": [
-                "MILE",
-                "SAND",
-                "TOUCH",
-                "BRIM"
+                "CLUB",
+                "GREEN",
+                "POWER",
+                "WARE"
             ],
             "className": "group-purple"
         }
