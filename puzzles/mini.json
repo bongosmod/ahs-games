@@ -1,61 +1,49 @@
 {
-    "date": "2026-10-04",
+    "date": "2026-10-06",
     "title": "The Grid",
     "grid": [
-        "ABUZZ",
-        "NAP#Z",
-        "TOPAZ",
-        "##E#Z",
-        "PEREZ"
+        "#####",
+        "#EEL#",
+        "#YOO#",
+        "#ESL#",
+        "#####"
     ],
     "clues": [
         {
             "number": 1,
             "direction": "across",
-            "clue": "An adjective that means filled with a low, continuous humming sound.",
-            "answer": "ABUZZ"
+            "clue": "An aquatic animal similar to a snake that is electric.",
+            "answer": "EEL"
         },
         {
-            "number": 6,
+            "number": 4,
             "direction": "across",
-            "clue": "A short sleep.",
-            "answer": "NAP"
+            "clue": "Chocolate drink brand, ___ Hoo",
+            "answer": "YOO"
         },
         {
-            "number": 8,
+            "number": 5,
             "direction": "across",
-            "clue": "A silicate mineral that forms a vibrant gemstone symbolizing love, strength, and wisdom.",
-            "answer": "TOPAZ"
-        },
-        {
-            "number": 12,
-            "direction": "across",
-            "clue": "Last name of Ashley High School's principal.",
-            "answer": "PEREZ"
+            "clue": "Classes for immigrants learning English, for short.",
+            "answer": "ESL"
         },
         {
             "number": 1,
             "direction": "down",
-            "clue": "First part of the Avenger's name that shrinks really small.",
-            "answer": "ANT"
+            "clue": "A sensory organ that humans have two of.",
+            "answer": "EYE"
         },
         {
             "number": 2,
             "direction": "down",
-            "clue": "Name of the Pixar Oscar-winning short film involving a dumpling.",
-            "answer": "BAO"
+            "clue": "A popular lotion brand.",
+            "answer": "EOS"
         },
         {
             "number": 3,
             "direction": "down",
-            "clue": "To be higher in physical position, level, rank, or order.",
-            "answer": "UPPER"
-        },
-        {
-            "number": 5,
-            "direction": "down",
-            "clue": "A prolonged expression of sleep.",
-            "answer": "ZZZZZ"
+            "clue": "A popular internet acronym people say when something is funny.",
+            "answer": "LOL"
         }
     ]
 }
