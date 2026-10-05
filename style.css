@@ -118,6 +118,8 @@ main {
 ================================ */
 
 .wordsmith-card {
+    position: relative;
+
     border-color: #4a4a4a;
 }
 
@@ -137,6 +139,63 @@ main {
 
 .wordsmith-card p {
     line-height: 1.5;
+}
+
+
+/* ================================
+   CLASSIC MODE BADGE
+================================ */
+
+.classic-badge {
+    position: absolute;
+
+    top: -13px;
+    right: -13px;
+
+    padding: 9px 13px;
+
+    background: rgba(255, 255, 255, 0.94);
+    color: #111;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 0.4px;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.35);
+
+    pointer-events: none;
+
+    animation: classicPulse 2.2s ease-in-out infinite;
+
+    z-index: 10;
+}
+
+
+/* ================================
+   CLASSIC MODE PULSE
+================================ */
+
+@keyframes classicPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
 }
 
 
@@ -172,62 +231,8 @@ main {
 .preview-button:hover {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.45);
+
     transform: translateY(-2px);
-}
-
-
-/* ================================
-   CLASSIC MODE BADGE
-================================ */
-
-.classic-badge {
-    position: fixed;
-
-    right: 25px;
-    bottom: 25px;
-
-    padding: 12px 18px;
-
-    background: rgba(255, 255, 255, 0.92);
-    color: #111;
-
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: 10px;
-
-    font-size: 13px;
-    font-weight: bold;
-
-    letter-spacing: 0.5px;
-
-    box-shadow:
-        0 6px 20px rgba(0, 0, 0, 0.35);
-
-    pointer-events: none;
-
-    animation: classicPulse 2.2s ease-in-out infinite;
-
-    z-index: 900;
-}
-
-
-/* ================================
-   CLASSIC MODE PULSE
-================================ */
-
-@keyframes classicPulse {
-
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.08);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-
 }
 
 
@@ -278,7 +283,8 @@ main {
 
     text-align: center;
 
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.5);
 }
 
 .info-modal h2 {
@@ -368,12 +374,12 @@ main {
     }
 
     .classic-badge {
-        right: 15px;
-        bottom: 15px;
+        top: -10px;
+        right: -8px;
 
-        padding: 10px 14px;
+        padding: 8px 10px;
 
-        font-size: 11px;
+        font-size: 10px;
     }
 
 }
