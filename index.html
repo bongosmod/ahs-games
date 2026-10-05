@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,22 +69,29 @@
             <h2>Wordsmith</h2>
 
             <div class="coming-soon">
-                Coming soon...
+                Classic Mode Available!
             </div>
 
             <p>
                 A Wordle-style game featuring 4 different game modes.
             </p>
 
-            <button id="preview-button"
-                    class="preview-button"
-                    type="button">
-                👁 PREVIEW
-            </button>
+            <a href="wordsmith/index.html"
+               class="preview-button">
+                ▶ PLAY
+            </a>
 
         </div>
 
     </main>
+
+
+    <!-- CLASSIC MODE AVAILABLE BADGE -->
+
+    <div class="classic-badge"
+         aria-hidden="true">
+        CLASSIC MODE AVAILABLE!
+    </div>
 
 
     <!-- INFORMATION POPUP -->
@@ -119,107 +125,6 @@
 
             <p>
                 <strong>Enjoy!</strong>
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- WORDSMITH PREVIEW POPUP -->
-
-    <div id="preview-overlay"
-         class="info-overlay">
-
-        <div class="info-modal wordsmith-modal">
-
-            <button id="close-preview"
-                    class="close-info"
-                    type="button"
-                    aria-label="Close preview">
-                ×
-            </button>
-
-            <h2>Wordsmith</h2>
-
-            <div class="coming-soon modal-coming-soon">
-                Coming soon...
-            </div>
-
-            <p>
-                A Wordle-style game featuring
-                <strong>4 different game modes.</strong>
-            </p>
-
-
-            <div class="mode-list">
-
-                <div class="mode">
-
-                    <h3>CLASSIC</h3>
-
-                    <p>
-                        <strong>5-letter words</strong>
-                    </p>
-
-                    <span>
-                        The standard Wordsmith experience.
-                    </span>
-
-                </div>
-
-
-                <div class="mode">
-
-                    <h3>SHORT</h3>
-
-                    <p>
-                        <strong>4-letter words</strong>
-                    </p>
-
-                    <span>
-                        A shorter version of the game
-                        with four-letter words.
-                    </span>
-
-                </div>
-
-
-                <div class="mode">
-
-                    <h3>LARGE</h3>
-
-                    <p>
-                        <strong>6-letter words</strong>
-                    </p>
-
-                    <span>
-                        More letters. More possibilities.
-                    </span>
-
-                </div>
-
-
-                <div class="mode">
-
-                    <h3>EXTREME</h3>
-
-                    <p>
-                        <strong>Very niche, unknown words</strong>
-                    </p>
-
-                    <span>
-                        Obscure words for players who
-                        really want to test their vocabulary.
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <p class="wordsmith-ending">
-                Wordsmith is coming soon to AHS Games.
             </p>
 
         </div>
@@ -264,40 +169,6 @@
 
 
         // ================================
-        // WORDSMITH PREVIEW
-        // ================================
-
-        const previewButton = document.getElementById("preview-button");
-        const closePreview = document.getElementById("close-preview");
-        const previewOverlay = document.getElementById("preview-overlay");
-
-
-        previewButton.addEventListener("click", () => {
-
-            previewOverlay.classList.add("show");
-
-        });
-
-
-        closePreview.addEventListener("click", () => {
-
-            previewOverlay.classList.remove("show");
-
-        });
-
-
-        previewOverlay.addEventListener("click", (event) => {
-
-            if (event.target === previewOverlay) {
-
-                previewOverlay.classList.remove("show");
-
-            }
-
-        });
-
-
-        // ================================
         // ESCAPE KEY
         // ================================
 
@@ -306,7 +177,6 @@
             if (event.key === "Escape") {
 
                 infoOverlay.classList.remove("show");
-                previewOverlay.classList.remove("show");
 
             }
 
@@ -316,4 +186,3 @@
 
 </body>
 </html>
-
