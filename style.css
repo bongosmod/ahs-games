@@ -139,26 +139,95 @@ main {
     line-height: 1.5;
 }
 
+
+/* ================================
+   WORDSMITH PLAY BUTTON
+================================ */
+
 .preview-button {
     display: inline-block;
 
     margin-top: 15px;
-    padding: 12px 20px;
+    padding: 12px 24px;
 
-    background: #333;
+    background: rgba(255, 255, 255, 0.08);
     color: white;
 
-    border: 1px solid #555;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 8px;
 
     font-size: 14px;
     font-weight: bold;
 
+    text-decoration: none;
+
     cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .preview-button:hover {
-    background: #444;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+}
+
+
+/* ================================
+   CLASSIC MODE BADGE
+================================ */
+
+.classic-badge {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    padding: 12px 18px;
+
+    background: rgba(255, 255, 255, 0.92);
+    color: #111;
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.35);
+
+    pointer-events: none;
+
+    animation: classicPulse 2.2s ease-in-out infinite;
+
+    z-index: 900;
+}
+
+
+/* ================================
+   CLASSIC MODE PULSE
+================================ */
+
+@keyframes classicPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
 }
 
 
@@ -263,72 +332,6 @@ main {
 
 
 /* ================================
-   WORDSMITH PREVIEW
-================================ */
-
-.wordsmith-modal {
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.modal-coming-soon {
-    margin-top: -10px;
-    margin-bottom: 20px;
-}
-
-.mode-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-
-    margin-top: 25px;
-}
-
-.mode {
-    padding: 17px 13px;
-
-    background: #151515;
-
-    border: 1px solid #333;
-    border-radius: 8px;
-
-    text-align: left;
-}
-
-.mode h3 {
-    margin: 0 0 6px;
-
-    font-size: 15px;
-    letter-spacing: 0.5px;
-}
-
-.mode p {
-    margin: 0 0 7px;
-
-    color: #ddd;
-
-    font-size: 14px;
-}
-
-.mode span {
-    display: block;
-
-    color: #888;
-
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.wordsmith-ending {
-    margin-top: 25px !important;
-
-    color: #aaa !important;
-
-    font-weight: bold;
-}
-
-
-/* ================================
    MOBILE
 ================================ */
 
@@ -364,8 +367,13 @@ main {
         padding: 30px 22px;
     }
 
-    .mode-list {
-        grid-template-columns: 1fr;
+    .classic-badge {
+        right: 15px;
+        bottom: 15px;
+
+        padding: 10px 14px;
+
+        font-size: 11px;
     }
 
 }
