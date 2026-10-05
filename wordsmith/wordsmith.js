@@ -59,7 +59,7 @@ const closeGameButton =
 
 
 /* =========================================
-   LOAD PUZZLE
+   LOAD DAILY PUZZLE
 ========================================= */
 
 async function loadPuzzle() {
@@ -92,7 +92,7 @@ async function loadPuzzle() {
         ) {
 
             throw new Error(
-                "Wordsmith puzzle is missing its answer."
+                "Wordsmith puzzle is missing its word."
             );
 
         }
@@ -106,18 +106,17 @@ async function loadPuzzle() {
 
         if (
             answer.length !== WORD_LENGTH ||
-            !/^[A-Z]+$/.test(answer)
+            !/^[A-Z]{5}$/.test(answer)
         ) {
 
             throw new Error(
-                "Wordsmith answer is invalid."
+                "Wordsmith answer must be exactly five letters."
             );
 
         }
 
 
         startGame();
-
 
     } catch (error) {
 
@@ -193,6 +192,29 @@ function startGame() {
     }
 
 
+    if (gameTitle) {
+
+        gameTitle.textContent =
+            "You Won!";
+
+    }
+
+
+    if (gameDescription) {
+
+        gameDescription.textContent =
+            "You found today's word!";
+
+    }
+
+
+    if (answerDisplay) {
+
+        answerDisplay.textContent = "";
+
+    }
+
+
     createBoard();
 
     createKeyboard();
@@ -201,7 +223,7 @@ function startGame() {
 
 
 /* =========================================
-   CREATE BOARD
+   CREATE WORDLE BOARD
 ========================================= */
 
 function createBoard() {
@@ -220,45 +242,32 @@ function createBoard() {
         row++
     ) {
 
-        const rowElement =
-            document.createElement("div");
-
-
-        rowElement.className =
-            "wordsmith-row";
-
-
         for (
             let col = 0;
             col < WORD_LENGTH;
             col++
         ) {
 
-            const cell =
+            const tile =
                 document.createElement("div");
 
 
-            cell.className =
-                "wordsmith-cell";
+            tile.className =
+                "tile";
 
 
-            cell.dataset.row =
+            tile.dataset.row =
                 row;
 
-            cell.dataset.col =
+            tile.dataset.col =
                 col;
 
 
-            rowElement.appendChild(
-                cell
+            boardElement.appendChild(
+                tile
             );
 
         }
-
-
-        boardElement.appendChild(
-            rowElement
-        );
 
     }
 
@@ -287,14 +296,49 @@ function createKeyboard() {
 
 
     keyboardRows.forEach(
-        function (letters) {
+        function (letters, rowIndex) {
 
             const rowElement =
                 document.createElement("div");
 
 
             rowElement.className =
-                "wordsmith-keyboard-row";
+                "keyboard-row";
+
+
+            /*
+                ENTER BUTTON ON THIRD ROW
+            */
+
+            if (rowIndex === 2) {
+
+                const enterButton =
+                    document.createElement("button");
+
+
+                enterButton.type =
+                    "button";
+
+
+                enterButton.className =
+                    "key wide";
+
+
+                enterButton.textContent =
+                    "ENTER";
+
+
+                enterButton.addEventListener(
+                    "click",
+                    submitGuess
+                );
+
+
+                rowElement.appendChild(
+                    enterButton
+                );
+
+            }
 
 
             letters
@@ -313,7 +357,7 @@ function createKeyboard() {
 
 
                         button.className =
-                            "wordsmith-key";
+                            "key";
 
 
                         button.textContent =
@@ -344,78 +388,46 @@ function createKeyboard() {
                 );
 
 
+            /*
+                BACKSPACE BUTTON ON THIRD ROW
+            */
+
+            if (rowIndex === 2) {
+
+                const backspaceButton =
+                    document.createElement("button");
+
+
+                backspaceButton.type =
+                    "button";
+
+
+                backspaceButton.className =
+                    "key wide";
+
+
+                backspaceButton.textContent =
+                    "⌫";
+
+
+                backspaceButton.addEventListener(
+                    "click",
+                    deleteLetter
+                );
+
+
+                rowElement.appendChild(
+                    backspaceButton
+                );
+
+            }
+
+
             keyboardElement.appendChild(
                 rowElement
             );
 
         }
-    );
-
-
-    const bottomRow =
-        document.createElement("div");
-
-
-    bottomRow.className =
-        "wordsmith-keyboard-row";
-
-
-    const enterButton =
-        document.createElement("button");
-
-
-    enterButton.type =
-        "button";
-
-
-    enterButton.className =
-        "wordsmith-key wordsmith-wide-key";
-
-
-    enterButton.textContent =
-        "ENTER";
-
-
-    enterButton.addEventListener(
-        "click",
-        submitGuess
-    );
-
-
-    bottomRow.appendChild(
-        enterButton
-    );
-
-
-    const backspaceButton =
-        document.createElement("button");
-
-
-    backspaceButton.type =
-        "button";
-
-
-    backspaceButton.className =
-        "wordsmith-key wordsmith-wide-key";
-
-
-    backspaceButton.textContent =
-        "⌫";
-
-
-    backspaceButton.addEventListener(
-        "click",
-        deleteLetter
-    );
-
-
-    bottomRow.appendChild(
-        backspaceButton
-    );
-
-
-    keyboardElement.appendChild(
-        bottomRow
     );
 
 }
@@ -445,10 +457,10 @@ function enterLetter(letter) {
         letter;
 
 
-    updateBoard();
-
-
     currentCol++;
+
+
+    updateBoard();
 
 }
 
@@ -492,29 +504,47 @@ function updateBoard() {
     }
 
 
-    const cells =
+    const tiles =
         boardElement.querySelectorAll(
-            ".wordsmith-cell"
+            ".tile"
         );
 
 
-    cells.forEach(
-        function (cell) {
+    tiles.forEach(
+        function (tile) {
 
             const row =
                 Number(
-                    cell.dataset.row
+                    tile.dataset.row
                 );
 
 
             const col =
                 Number(
-                    cell.dataset.col
+                    tile.dataset.col
                 );
 
 
-            cell.textContent =
+            const letter =
                 board[row][col];
+
+
+            tile.textContent =
+                letter;
+
+
+            tile.classList.remove(
+                "filled"
+            );
+
+
+            if (letter !== "") {
+
+                tile.classList.add(
+                    "filled"
+                );
+
+            }
 
         }
     );
@@ -567,7 +597,7 @@ function evaluateGuess(guess) {
         Array(
             WORD_LENGTH
         ).fill(
-            "incorrect"
+            "absent"
         );
 
 
@@ -577,7 +607,7 @@ function evaluateGuess(guess) {
 
     /*
         FIRST PASS
-        Correct positions.
+        Find exact matches.
     */
 
     for (
@@ -604,8 +634,8 @@ function evaluateGuess(guess) {
 
     /*
         SECOND PASS
-        Correct letter,
-        wrong position.
+        Find letters that exist
+        somewhere else.
     */
 
     for (
@@ -655,6 +685,10 @@ function evaluateGuess(guess) {
     );
 
 
+    /*
+        WIN
+    */
+
     if (
         guess === answer
     ) {
@@ -666,10 +700,18 @@ function evaluateGuess(guess) {
     }
 
 
+    /*
+        NEXT ROW
+    */
+
     currentRow++;
 
     currentCol = 0;
 
+
+    /*
+        LOSS
+    */
 
     if (
         currentRow >= MAX_ATTEMPTS
@@ -702,9 +744,9 @@ function revealRow(
         col++
     ) {
 
-        const cell =
+        const tile =
             boardElement.querySelector(
-                '.wordsmith-cell[data-row="' +
+                '.tile[data-row="' +
                 row +
                 '"][data-col="' +
                 col +
@@ -712,12 +754,17 @@ function revealRow(
             );
 
 
-        if (!cell) {
+        if (!tile) {
             continue;
         }
 
 
-        cell.classList.add(
+        tile.classList.remove(
+            "filled"
+        );
+
+
+        tile.classList.add(
             result[col]
         );
 
@@ -763,13 +810,18 @@ function updateKeyboard(
         }
 
 
+        /*
+            CORRECT IS ALWAYS THE
+            STRONGEST RESULT.
+        */
+
         if (
             result[i] === "correct"
         ) {
 
             button.classList.remove(
                 "present",
-                "incorrect"
+                "absent"
             );
 
 
@@ -782,6 +834,11 @@ function updateKeyboard(
 
         }
 
+
+        /*
+            PRESENT ONLY OVERRIDES
+            ABSENT.
+        */
 
         if (
             result[i] === "present" &&
@@ -791,7 +848,7 @@ function updateKeyboard(
         ) {
 
             button.classList.remove(
-                "incorrect"
+                "absent"
             );
 
 
@@ -805,8 +862,14 @@ function updateKeyboard(
         }
 
 
+        /*
+            ABSENT ONLY APPLIES IF
+            LETTER IS NOT ALREADY
+            PRESENT OR CORRECT.
+        */
+
         if (
-            result[i] === "incorrect" &&
+            result[i] === "absent" &&
             !button.classList.contains(
                 "correct"
             ) &&
@@ -816,7 +879,7 @@ function updateKeyboard(
         ) {
 
             button.classList.add(
-                "incorrect"
+                "absent"
             );
 
         }
@@ -910,7 +973,6 @@ function loseGame() {
     if (answerDisplay) {
 
         answerDisplay.textContent =
-            "The word was " +
             answer;
 
     }
@@ -1033,7 +1095,7 @@ if (
 
 
 /* =========================================
-   KEYBOARD INPUT
+   PHYSICAL KEYBOARD
 ========================================= */
 
 document.addEventListener(
@@ -1055,6 +1117,10 @@ document.addEventListener(
         }
 
 
+        /*
+            LETTER
+        */
+
         if (
             /^[a-zA-Z]$/.test(
                 event.key
@@ -1074,6 +1140,10 @@ document.addEventListener(
         }
 
 
+        /*
+            BACKSPACE
+        */
+
         if (
             event.key === "Backspace"
         ) {
@@ -1088,6 +1158,10 @@ document.addEventListener(
 
         }
 
+
+        /*
+            ENTER
+        */
 
         if (
             event.key === "Enter"
