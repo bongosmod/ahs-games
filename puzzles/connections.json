@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-05",
+    "date": "2026-10-06",
     "groups": [
         {
-            "name": "___ BOARD",
+            "name": "Can Precede BOARD",
             "words": [
+                "CHALK",
                 "DASH",
-                "SKATE",
-                "SCORE",
-                "SOUND"
+                "KEY",
+                "SKATE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___ COAT",
+            "name": "Can Follow FIRE",
             "words": [
-                "LAB",
-                "RAIN",
-                "TOP",
-                "SUGAR"
+                "BALL",
+                "CRACKER",
+                "FLY",
+                "HOUSE"
             ],
             "className": "group-green"
         },
         {
-            "name": "STAR___",
+            "name": "Kinds of BEANS",
             "words": [
-                "BURST",
-                "DUST",
-                "FISH",
-                "LIGHT"
+                "COFFEE",
+                "JELLY",
+                "KIDNEY",
+                "LIMA"
             ],
             "className": "group-blue"
         },
         {
-            "name": "___HOUSE",
+            "name": "Can Precede STONE",
             "words": [
-                "CLUB",
-                "GREEN",
-                "POWER",
-                "WARE"
+                "BRIM",
+                "CORNER",
+                "MILE",
+                "TOUCH"
             ],
             "className": "group-purple"
         }
