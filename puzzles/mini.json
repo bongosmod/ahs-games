@@ -2,48 +2,60 @@
     "date": "2026-10-06",
     "title": "The Grid",
     "grid": [
-        "#####",
-        "#EEL#",
-        "#YOO#",
-        "#ESL#",
-        "#####"
+        "ACUTE",
+        "N#N#X",
+        "NE#PI",
+        "O#G#S",
+        "YEAST"
     ],
     "clues": [
         {
             "number": 1,
             "direction": "across",
-            "clue": "An aquatic animal similar to a snake that is electric.",
-            "answer": "EEL"
+            "clue": "An angle that is less than 90 degrees.",
+            "answer": "ACUTE"
         },
         {
             "number": 4,
             "direction": "across",
-            "clue": "Chocolate drink brand, ___ Hoo",
-            "answer": "YOO"
+            "clue": "Direction from China to North Korea.",
+            "answer": "NE"
         },
         {
             "number": 5,
             "direction": "across",
-            "clue": "Classes for immigrants learning English, for short.",
-            "answer": "ESL"
+            "clue": "The number that starts with 3.14",
+            "answer": "PI"
+        },
+        {
+            "number": 7,
+            "direction": "across",
+            "clue": "A tiny fungus that feeds on sugar and is used to make many alcohols.",
+            "answer": "YEAST"
         },
         {
             "number": 1,
             "direction": "down",
-            "clue": "A sensory organ that humans have two of.",
-            "answer": "EYE"
+            "clue": "To nag continuously.",
+            "answer": "ANNOY"
         },
         {
             "number": 2,
             "direction": "down",
-            "clue": "A popular lotion brand.",
-            "answer": "EOS"
+            "clue": "Abbreviation for the peace foundation founded after WW2.",
+            "answer": "UN"
         },
         {
             "number": 3,
             "direction": "down",
-            "clue": "A popular internet acronym people say when something is funny.",
-            "answer": "LOL"
+            "clue": "To have real being, life, or presence in the world.",
+            "answer": "EXIST"
+        },
+        {
+            "number": 6,
+            "direction": "down",
+            "clue": "Abbreviation for the state of Georgia.",
+            "answer": "GA"
         }
     ]
 }
