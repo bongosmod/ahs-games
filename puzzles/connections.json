@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-06",
+    "date": "2026-10-07",
     "groups": [
         {
-            "name": "Can Precede BOARD",
+            "name": "___ LIGHT",
             "words": [
-                "CHALK",
-                "DASH",
-                "KEY",
-                "SKATE"
+                "CANDLE",
+                "NEON",
+                "TRAFFIC",
+                "SEARCH"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Can Follow FIRE",
+            "name": "___ BOARD",
             "words": [
-                "BALL",
-                "CRACKER",
-                "FLY",
-                "HOUSE"
+                "DASH",
+                "BILL",
+                "SURF",
+                "KEY"
             ],
             "className": "group-green"
         },
         {
-            "name": "Kinds of BEANS",
+            "name": "PASTA SHAPES",
             "words": [
-                "COFFEE",
-                "JELLY",
-                "KIDNEY",
-                "LIMA"
+                "SHELL",
+                "BOWTIE",
+                "ELBOW",
+                "RIGATONI"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Can Precede STONE",
+            "name": "GRAND ___",
             "words": [
-                "BRIM",
-                "CORNER",
-                "MILE",
-                "TOUCH"
+                "CANYON",
+                "JURY",
+                "PIANO",
+                "SLAM"
             ],
             "className": "group-purple"
         }
