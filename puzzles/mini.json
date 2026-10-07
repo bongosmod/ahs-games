@@ -1,61 +1,61 @@
 {
-    "date": "2026-10-06",
+    "date": "2026-10-07",
     "title": "The Grid",
     "grid": [
-        "ACUTE",
-        "N#N#X",
-        "NE#PI",
-        "O#G#S",
-        "YEAST"
+        "####R",
+        "OPP#E",
+        "DEBRA",
+        "O#JAR",
+        "R####"
     ],
     "clues": [
         {
-            "number": 1,
+            "number": 2,
             "direction": "across",
-            "clue": "An angle that is less than 90 degrees.",
-            "answer": "ACUTE"
+            "clue": "Slang for opposition.",
+            "answer": "OPP"
         },
         {
-            "number": 9,
+            "number": 5,
             "direction": "across",
-            "clue": "Direction from China to North Korea.",
-            "answer": "NE"
+            "clue": "An old name that has Hebrew roots and means bee.",
+            "answer": "DEBRA"
         },
         {
-            "number": 11,
+            "number": 7,
             "direction": "across",
-            "clue": "The number that starts with 3.14",
-            "answer": "PI"
-        },
-        {
-            "number": 15,
-            "direction": "across",
-            "clue": "A tiny fungus that feeds on sugar and is used to make many alcohols.",
-            "answer": "YEAST"
+            "clue": "\"Mason ___\" A southern container.",
+            "answer": "JAR"
         },
         {
             "number": 1,
             "direction": "down",
-            "clue": "To nag continuously.",
-            "answer": "ANNOY"
+            "clue": "Back end of something.",
+            "answer": "REAR"
+        },
+        {
+            "number": 2,
+            "direction": "down",
+            "clue": "A smell or scent.",
+            "answer": "ODOR"
         },
         {
             "number": 3,
             "direction": "down",
-            "clue": "Abbreviation for the peace foundation founded after WW2.",
-            "answer": "UN"
+            "clue": "Abbreviation for a school subject that focuses on fitness.",
+            "answer": "PE"
         },
         {
-            "number": 5,
+            "number": 4,
             "direction": "down",
-            "clue": "To have real being, life, or presence in the world.",
-            "answer": "EXIST"
+            "clue": "Abbreviation for a sandwich that almost everyone has had.",
+            "answer": "PBJ"
         },
         {
-            "number": 13,
+            "number": 6,
             "direction": "down",
-            "clue": "Abbreviation for the state of Georgia.",
-            "answer": "GA"
+            "clue": "Abbreviation for a college dorm authority figure.",
+            "answer": "RA"
         }
     ]
 }
