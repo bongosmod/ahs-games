@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-07",
+    "date": "2026-10-08",
     "groups": [
         {
-            "name": "___ LIGHT",
+            "name": "DANCES",
             "words": [
-                "CANDLE",
-                "NEON",
-                "TRAFFIC",
-                "SEARCH"
+                "BALLET",
+                "TANGO",
+                "SALSA",
+                "TAP"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___ BOARD",
+            "name": "CAN FOLLOW RAIN",
             "words": [
-                "DASH",
-                "BILL",
-                "SURF",
-                "KEY"
+                "BOW",
+                "COAT",
+                "DROP",
+                "FOREST"
             ],
             "className": "group-green"
         },
         {
-            "name": "PASTA SHAPES",
+            "name": "FICTIONAL DETECTIVES",
             "words": [
-                "SHELL",
-                "BOWTIE",
-                "ELBOW",
-                "RIGATONI"
+                "HOLMES",
+                "POIROT",
+                "COLUMBO",
+                "MORSE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "GRAND ___",
+            "name": "CAN PRECEDE STONE",
             "words": [
-                "CANYON",
-                "JURY",
-                "PIANO",
-                "SLAM"
+                "BRIM",
+                "KIDNEY",
+                "MILE",
+                "TOUCH"
             ],
             "className": "group-purple"
         }
