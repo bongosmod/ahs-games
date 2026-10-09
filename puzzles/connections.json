@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-08",
+    "date": "2026-10-09",
     "groups": [
         {
-            "name": "DANCES",
+            "name": "WORDS THAT FOLLOW CORN",
             "words": [
-                "BALLET",
-                "TANGO",
-                "SALSA",
-                "TAP"
+                "COB",
+                "BREAD",
+                "DOG",
+                "FLAKE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN FOLLOW RAIN",
+            "name": "PASTA TYPES",
             "words": [
-                "BOW",
-                "COAT",
-                "DROP",
-                "FOREST"
+                "ORZO",
+                "PENNE",
+                "ZITI",
+                "RAVIOLI"
             ],
             "className": "group-green"
         },
         {
-            "name": "FICTIONAL DETECTIVES",
+            "name": "WORDS THAT FOLLOW STAR",
             "words": [
-                "HOLMES",
-                "POIROT",
-                "COLUMBO",
-                "MORSE"
+                "FISH",
+                "DUST",
+                "GATE",
+                "STRUCK"
             ],
             "className": "group-blue"
         },
         {
-            "name": "CAN PRECEDE STONE",
+            "name": "WORDS THAT PRECEDE HOUSE",
             "words": [
-                "BRIM",
-                "KIDNEY",
-                "MILE",
-                "TOUCH"
+                "BOAT",
+                "FULL",
+                "POWER",
+                "WARE"
             ],
             "className": "group-purple"
         }
