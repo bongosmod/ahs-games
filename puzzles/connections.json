@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-09",
+    "date": "2026-10-10",
     "groups": [
         {
-            "name": "WORDS THAT FOLLOW CORN",
+            "name": "PLANETS",
             "words": [
-                "COB",
-                "BREAD",
-                "DOG",
-                "FLAKE"
+                "MARS",
+                "VENUS",
+                "EARTH",
+                "SATURN"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "PASTA TYPES",
+            "name": "TYPES OF DANCE",
             "words": [
-                "ORZO",
-                "PENNE",
-                "ZITI",
-                "RAVIOLI"
+                "WALTZ",
+                "TANGO",
+                "SALSA",
+                "SWING"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS THAT FOLLOW STAR",
+            "name": "___ BELL",
             "words": [
-                "FISH",
-                "DUST",
-                "GATE",
-                "STRUCK"
+                "DOOR",
+                "COW",
+                "SCHOOL",
+                "LIBERTY"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS THAT PRECEDE HOUSE",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "BOAT",
-                "FULL",
-                "POWER",
-                "WARE"
+                "KNIFE",
+                "WRITE",
+                "GNOME",
+                "WRIST"
             ],
             "className": "group-purple"
         }
