@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-10",
+    "date": "2026-10-11",
     "groups": [
         {
-            "name": "PLANETS",
+            "name": "CAN FOLLOW OVER",
             "words": [
-                "MARS",
-                "VENUS",
-                "EARTH",
-                "SATURN"
+                "DUE",
+                "SEAS",
+                "SIGHT",
+                "THROW"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "TYPES OF DANCE",
+            "name": "CAN PRECEDE WALK",
             "words": [
-                "WALTZ",
-                "TANGO",
-                "SALSA",
-                "SWING"
+                "CAT",
+                "CAKE",
+                "SLEEP",
+                "CROSS"
             ],
             "className": "group-green"
         },
         {
-            "name": "___ BELL",
+            "name": "FICTIONAL DETECTIVES",
             "words": [
-                "DOOR",
-                "COW",
-                "SCHOOL",
-                "LIBERTY"
+                "HOLMES",
+                "POIROT",
+                "MARPLE",
+                "COLOMBO"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS WITH A SILENT FIRST LETTER",
+            "name": "CAN PRECEDE STONE",
             "words": [
-                "KNIFE",
-                "WRITE",
-                "GNOME",
-                "WRIST"
+                "BRIM",
+                "GEM",
+                "LIME",
+                "SAND"
             ],
             "className": "group-purple"
         }
