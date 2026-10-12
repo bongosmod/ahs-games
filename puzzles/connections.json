@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-11",
+    "date": "2026-10-12",
     "groups": [
         {
-            "name": "CAN FOLLOW OVER",
+            "name": "COURTROOM TERMS",
             "words": [
-                "DUE",
-                "SEAS",
-                "SIGHT",
-                "THROW"
+                "JUDGE",
+                "JURY",
+                "BAILIFF",
+                "VERDICT"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN PRECEDE WALK",
+            "name": "___ STONE",
             "words": [
-                "CAT",
-                "CAKE",
-                "SLEEP",
-                "CROSS"
+                "CAP",
+                "KIDNEY",
+                "STEPPING",
+                "TOUCH"
             ],
             "className": "group-green"
         },
         {
-            "name": "FICTIONAL DETECTIVES",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "HOLMES",
-                "POIROT",
-                "MARPLE",
-                "COLOMBO"
+                "KNIFE",
+                "PSALM",
+                "GNOME",
+                "HONEST"
             ],
             "className": "group-blue"
         },
         {
-            "name": "CAN PRECEDE STONE",
+            "name": "CAN FOLLOW KEY",
             "words": [
-                "BRIM",
-                "GEM",
                 "LIME",
-                "SAND"
+                "NOTE",
+                "BOARD",
+                "WEST"
             ],
             "className": "group-purple"
         }
