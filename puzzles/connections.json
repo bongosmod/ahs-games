@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-12",
+    "date": "2026-10-13",
     "groups": [
         {
-            "name": "COURTROOM TERMS",
+            "name": "CAN FOLLOW PAPER",
             "words": [
-                "JUDGE",
-                "JURY",
-                "BAILIFF",
-                "VERDICT"
+                "CLIP",
+                "PLANE",
+                "TIGER",
+                "TOWEL"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___ STONE",
+            "name": "CAN PRECEDE BOARD",
             "words": [
-                "CAP",
-                "KIDNEY",
-                "STEPPING",
-                "TOUCH"
+                "SKATE",
+                "SURF",
+                "CHESS",
+                "KEY"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS WITH A SILENT FIRST LETTER",
+            "name": "___FISH",
             "words": [
-                "KNIFE",
-                "PSALM",
-                "GNOME",
-                "HONEST"
+                "CLOWN",
+                "GOLD",
+                "SWORD",
+                "JELLY"
             ],
             "className": "group-blue"
         },
         {
-            "name": "CAN FOLLOW KEY",
+            "name": "___BALL",
             "words": [
-                "LIME",
-                "NOTE",
-                "BOARD",
-                "WEST"
+                "BASKET",
+                "CANNON",
+                "CRYSTAL",
+                "MIRROR"
             ],
             "className": "group-purple"
         }
