@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-13",
+    "date": "2026-10-14",
     "groups": [
         {
-            "name": "CAN FOLLOW PAPER",
+            "name": "Things You Can CRACK",
             "words": [
-                "CLIP",
-                "PLANE",
-                "TIGER",
-                "TOWEL"
+                "CODE",
+                "EGG",
+                "JOKE",
+                "CASE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN PRECEDE BOARD",
+            "name": "___BOARD Compounds",
             "words": [
-                "SKATE",
-                "SURF",
                 "CHESS",
-                "KEY"
+                "SURF",
+                "SKATE",
+                "IRONING"
             ],
             "className": "group-green"
         },
         {
-            "name": "___FISH",
+            "name": "___WAVE Compounds",
             "words": [
-                "CLOWN",
-                "GOLD",
-                "SWORD",
-                "JELLY"
+                "BRAIN",
+                "SHOCK",
+                "SOUND",
+                "TIDAL"
             ],
             "className": "group-blue"
         },
         {
-            "name": "___BALL",
+            "name": "Words That Follow UNDER",
             "words": [
-                "BASKET",
-                "CANNON",
-                "CRYSTAL",
-                "MIRROR"
+                "COVER",
+                "GROUND",
+                "SCORE",
+                "WEAR"
             ],
             "className": "group-purple"
         }
