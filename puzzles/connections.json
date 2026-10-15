@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-14",
+    "date": "2026-10-15",
     "groups": [
         {
-            "name": "Things You Can CRACK",
+            "name": "THINGS YOU CAN FLIP",
             "words": [
-                "CODE",
-                "EGG",
-                "JOKE",
-                "CASE"
+                "COIN",
+                "PANCAKE",
+                "PAGE",
+                "SWITCH"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___BOARD Compounds",
+            "name": "FRUITS ENDING IN -BERRY",
             "words": [
-                "CHESS",
-                "SURF",
-                "SKATE",
-                "IRONING"
+                "BLUEBERRY",
+                "BLACKBERRY",
+                "RASPBERRY",
+                "STRAWBERRY"
             ],
             "className": "group-green"
         },
         {
-            "name": "___WAVE Compounds",
+            "name": "___BALL SPORTS",
             "words": [
-                "BRAIN",
-                "SHOCK",
-                "SOUND",
-                "TIDAL"
+                "BASE",
+                "BASKET",
+                "FOOT",
+                "VOLLEY"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Words That Follow UNDER",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "COVER",
-                "GROUND",
-                "SCORE",
-                "WEAR"
+                "HONEST",
+                "KNIFE",
+                "PSALM",
+                "WRITE"
             ],
             "className": "group-purple"
         }
