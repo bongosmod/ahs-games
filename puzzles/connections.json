@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-15",
+    "date": "2026-10-16",
     "groups": [
         {
-            "name": "THINGS YOU CAN FLIP",
+            "name": "Can Follow FIRE",
             "words": [
-                "COIN",
-                "PANCAKE",
-                "PAGE",
-                "SWITCH"
+                "FLY",
+                "PLACE",
+                "HOUSE",
+                "WORK"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "FRUITS ENDING IN -BERRY",
-            "words": [
-                "BLUEBERRY",
-                "BLACKBERRY",
-                "RASPBERRY",
-                "STRAWBERRY"
-            ],
-            "className": "group-green"
-        },
-        {
-            "name": "___BALL SPORTS",
+            "name": "Can Precede BALL",
             "words": [
                 "BASE",
                 "BASKET",
                 "FOOT",
                 "VOLLEY"
             ],
+            "className": "group-green"
+        },
+        {
+            "name": "Typefaces",
+            "words": [
+                "ARIAL",
+                "COURIER",
+                "GEORGIA",
+                "IMPACT"
+            ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS WITH A SILENT FIRST LETTER",
+            "name": "Become Another Word When Their First Letter Is Removed",
             "words": [
-                "HONEST",
-                "KNIFE",
-                "PSALM",
-                "WRITE"
+                "PLANE",
+                "PLATE",
+                "SMILE",
+                "STONE"
             ],
             "className": "group-purple"
         }
