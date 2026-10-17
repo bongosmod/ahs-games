@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-16",
+    "date": "2026-10-17",
     "groups": [
         {
-            "name": "Can Follow FIRE",
+            "name": "PAPER ___",
             "words": [
-                "FLY",
-                "PLACE",
-                "HOUSE",
-                "WORK"
+                "TOWEL",
+                "TIGER",
+                "CUT",
+                "JAM"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Can Precede BALL",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "BASE",
-                "BASKET",
-                "FOOT",
-                "VOLLEY"
+                "KNIFE",
+                "KNEE",
+                "WRITE",
+                "WRIST"
             ],
             "className": "group-green"
         },
         {
-            "name": "Typefaces",
+            "name": "___STONE",
             "words": [
-                "ARIAL",
-                "COURIER",
-                "GEORGIA",
-                "IMPACT"
+                "CAP",
+                "CORNER",
+                "MILE",
+                "TOUCH"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Become Another Word When Their First Letter Is Removed",
+            "name": "___BOARD",
             "words": [
-                "PLANE",
-                "PLATE",
-                "SMILE",
-                "STONE"
+                "DASH",
+                "SURF",
+                "KEY",
+                "CUP"
             ],
             "className": "group-purple"
         }
