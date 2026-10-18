@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-17",
+    "date": "2026-10-18",
     "groups": [
         {
-            "name": "PAPER ___",
+            "name": "Can Precede HOUSE",
             "words": [
-                "TOWEL",
-                "TIGER",
-                "CUT",
-                "JAM"
+                "TREE",
+                "LIGHT",
+                "GREEN",
+                "FIRE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "WORDS WITH A SILENT FIRST LETTER",
+            "name": "Boxing Punches",
             "words": [
-                "KNIFE",
-                "KNEE",
-                "WRITE",
-                "WRIST"
+                "JAB",
+                "HOOK",
+                "CROSS",
+                "UPPERCUT"
             ],
             "className": "group-green"
         },
         {
-            "name": "___STONE",
+            "name": "Monopoly Properties",
             "words": [
-                "CAP",
-                "CORNER",
-                "MILE",
-                "TOUCH"
+                "BALTIC",
+                "BOARDWALK",
+                "ORIENTAL",
+                "PARK PLACE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "___BOARD",
+            "name": "Fictional Detectives",
             "words": [
-                "DASH",
-                "SURF",
-                "KEY",
-                "CUP"
+                "HOLMES",
+                "POIROT",
+                "MARPLE",
+                "COLUMBO"
             ],
             "className": "group-purple"
         }
