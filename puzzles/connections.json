@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-18",
+    "date": "2026-10-19",
     "groups": [
         {
-            "name": "Can Precede HOUSE",
+            "name": "Words Before BALL",
             "words": [
-                "TREE",
-                "LIGHT",
-                "GREEN",
-                "FIRE"
+                "BASKET",
+                "FOOT",
+                "BASE",
+                "VOLLEY"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Boxing Punches",
+            "name": "Words Before HOUSE",
             "words": [
-                "JAB",
-                "HOOK",
-                "CROSS",
-                "UPPERCUT"
+                "GREEN",
+                "FARM",
+                "LIGHT",
+                "POWER"
             ],
             "className": "group-green"
         },
         {
-            "name": "Monopoly Properties",
+            "name": "Words Before STONE",
             "words": [
-                "BALTIC",
-                "BOARDWALK",
-                "ORIENTAL",
-                "PARK PLACE"
+                "MILE",
+                "GEM",
+                "MOON",
+                "TOUCH"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Fictional Detectives",
+            "name": "Words Beginning With a Silent Letter",
             "words": [
-                "HOLMES",
-                "POIROT",
-                "MARPLE",
-                "COLUMBO"
+                "KNIGHT",
+                "WRITE",
+                "WRECK",
+                "PSALM"
             ],
             "className": "group-purple"
         }
