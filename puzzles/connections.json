@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-19",
+    "date": "2026-10-20",
     "groups": [
         {
-            "name": "Words Before BALL",
+            "name": "PUNCTUATION MARKS",
             "words": [
-                "BASKET",
-                "FOOT",
-                "BASE",
-                "VOLLEY"
+                "COMMA",
+                "COLON",
+                "PERIOD",
+                "DASH"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Words Before HOUSE",
+            "name": "___BALL",
             "words": [
-                "GREEN",
-                "FARM",
-                "LIGHT",
-                "POWER"
+                "FIRE",
+                "FOOT",
+                "BASKET",
+                "BASE"
             ],
             "className": "group-green"
         },
         {
-            "name": "Words Before STONE",
+            "name": "___CAKE",
             "words": [
-                "MILE",
-                "GEM",
-                "MOON",
-                "TOUCH"
+                "CHEESE",
+                "CUP",
+                "PAN",
+                "FRUIT"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Words Beginning With a Silent Letter",
+            "name": "CAN FOLLOW GRAND",
             "words": [
-                "KNIGHT",
-                "WRITE",
-                "WRECK",
-                "PSALM"
+                "CANYON",
+                "JURY",
+                "PIANO",
+                "SLAM"
             ],
             "className": "group-purple"
         }
