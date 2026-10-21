@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-20",
+    "date": "2026-10-21",
     "groups": [
         {
-            "name": "PUNCTUATION MARKS",
+            "name": "THINGS YOU CAN BREAK",
             "words": [
-                "COMMA",
-                "COLON",
-                "PERIOD",
-                "DASH"
+                "HEART",
+                "PROMISE",
+                "RECORD",
+                "SILENCE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___BALL",
+            "name": "CAN PRECEDE LIGHT",
             "words": [
-                "FIRE",
-                "FOOT",
-                "BASKET",
-                "BASE"
+                "TRAFFIC",
+                "MOON",
+                "SPOT",
+                "GREEN"
             ],
             "className": "group-green"
-        },
-        {
-            "name": "___CAKE",
-            "words": [
-                "CHEESE",
-                "CUP",
-                "PAN",
-                "FRUIT"
-            ],
-            "className": "group-blue"
         },
         {
             "name": "CAN FOLLOW GRAND",
             "words": [
                 "CANYON",
-                "JURY",
                 "PIANO",
+                "JURY",
                 "SLAM"
+            ],
+            "className": "group-blue"
+        },
+        {
+            "name": "CAN PRECEDE STONE",
+            "words": [
+                "KIDNEY",
+                "TOUCH",
+                "CORNER",
+                "MILE"
             ],
             "className": "group-purple"
         }
