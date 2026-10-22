@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-21",
+    "date": "2026-10-22",
     "groups": [
         {
-            "name": "THINGS YOU CAN BREAK",
+            "name": "DANCES",
             "words": [
-                "HEART",
-                "PROMISE",
-                "RECORD",
-                "SILENCE"
+                "BALLET",
+                "SALSA",
+                "SWING",
+                "TAP"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN PRECEDE LIGHT",
+            "name": "WORDS THAT CAN FOLLOW \"BOARD\"",
             "words": [
-                "TRAFFIC",
-                "MOON",
-                "SPOT",
-                "GREEN"
+                "DASH",
+                "KEY",
+                "SKATE",
+                "SURF"
             ],
             "className": "group-green"
         },
         {
-            "name": "CAN FOLLOW GRAND",
+            "name": "WORDS THAT CAN FOLLOW \"SPACE\"",
             "words": [
-                "CANYON",
-                "PIANO",
-                "JURY",
-                "SLAM"
+                "BAR",
+                "JAM",
+                "SHIP",
+                "STATION"
             ],
             "className": "group-blue"
         },
         {
-            "name": "CAN PRECEDE STONE",
+            "name": "WORDS THAT CAN PRECEDE \"STONE\"",
             "words": [
                 "KIDNEY",
-                "TOUCH",
-                "CORNER",
-                "MILE"
+                "MILE",
+                "MOON",
+                "TOUCH"
             ],
             "className": "group-purple"
         }
