@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-22",
+    "date": "2026-10-23",
     "groups": [
         {
-            "name": "DANCES",
+            "name": "WORDS BEFORE BOARD",
             "words": [
-                "BALLET",
-                "SALSA",
-                "SWING",
-                "TAP"
+                "CHALK",
+                "DASH",
+                "SKATE",
+                "SURF"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "WORDS THAT CAN FOLLOW \"BOARD\"",
+            "name": "WORDS AFTER BUTTER",
             "words": [
-                "DASH",
-                "KEY",
-                "SKATE",
-                "SURF"
+                "BALL",
+                "CUP",
+                "FLY",
+                "MILK"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS THAT CAN FOLLOW \"SPACE\"",
+            "name": "WORDS BEFORE BERRY",
             "words": [
-                "BAR",
-                "JAM",
-                "SHIP",
-                "STATION"
+                "BLACK",
+                "BLUE",
+                "GOOSE",
+                "STRAW"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS THAT CAN PRECEDE \"STONE\"",
+            "name": "FICTIONAL DETECTIVES",
             "words": [
-                "KIDNEY",
-                "MILE",
-                "MOON",
-                "TOUCH"
+                "COLUMBO",
+                "HOLMES",
+                "MARPLE",
+                "POIROT"
             ],
             "className": "group-purple"
         }
