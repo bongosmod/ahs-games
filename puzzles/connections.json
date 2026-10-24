@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-23",
+    "date": "2026-10-24",
     "groups": [
         {
-            "name": "WORDS BEFORE BOARD",
+            "name": "Can follow OVER",
             "words": [
-                "CHALK",
-                "DASH",
-                "SKATE",
-                "SURF"
+                "BOARD",
+                "COAT",
+                "FLOW",
+                "LOOK"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "WORDS AFTER BUTTER",
+            "name": "Punctuation marks",
             "words": [
-                "BALL",
-                "CUP",
-                "FLY",
-                "MILK"
+                "DASH",
+                "PERIOD",
+                "COMMA",
+                "COLON"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS BEFORE BERRY",
+            "name": "Can precede BERRY",
             "words": [
-                "BLACK",
-                "BLUE",
+                "RASP",
+                "STRAW",
                 "GOOSE",
-                "STRAW"
+                "BLACK"
             ],
             "className": "group-blue"
         },
         {
-            "name": "FICTIONAL DETECTIVES",
+            "name": "Begin with a silent letter",
             "words": [
-                "COLUMBO",
-                "HOLMES",
-                "MARPLE",
-                "POIROT"
+                "KNIFE",
+                "WRECK",
+                "GNOME",
+                "HONEST"
             ],
             "className": "group-purple"
         }
