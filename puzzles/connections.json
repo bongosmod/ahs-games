@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-24",
+    "date": "2026-10-25",
     "groups": [
         {
-            "name": "Can follow OVER",
+            "name": "___ BALL",
             "words": [
-                "BOARD",
-                "COAT",
-                "FLOW",
-                "LOOK"
+                "BASKET",
+                "BASE",
+                "FOOT",
+                "SNOW"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Punctuation marks",
+            "name": "___ HOUSE",
             "words": [
-                "DASH",
-                "PERIOD",
-                "COMMA",
-                "COLON"
+                "GINGERBREAD",
+                "GREEN",
+                "LIGHT",
+                "COURT"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can precede BERRY",
+            "name": "___ JACK",
             "words": [
-                "RASP",
-                "STRAW",
-                "GOOSE",
-                "BLACK"
+                "BLACK",
+                "FLAP",
+                "LUMBER",
+                "UNION"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Begin with a silent letter",
+            "name": "___ STONE",
             "words": [
-                "KNIFE",
-                "WRECK",
-                "GNOME",
-                "HONEST"
+                "KIDNEY",
+                "MILE",
+                "TOUCH",
+                "CORNER"
             ],
             "className": "group-purple"
         }
