@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-25",
+    "date": "2026-10-26",
     "groups": [
         {
-            "name": "___ BALL",
+            "name": "CAN FOLLOW BREAK",
             "words": [
-                "BASKET",
-                "BASE",
-                "FOOT",
-                "SNOW"
+                "HEART",
+                "RECORD",
+                "PROMISE",
+                "GROUND"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___ HOUSE",
+            "name": "___FLY",
             "words": [
-                "GINGERBREAD",
-                "GREEN",
-                "LIGHT",
-                "COURT"
+                "BUTTER",
+                "DRAGON",
+                "HORSE",
+                "FIRE"
             ],
             "className": "group-green"
         },
         {
-            "name": "___ JACK",
+            "name": "CAN FOLLOW GRAND",
             "words": [
-                "BLACK",
-                "FLAP",
-                "LUMBER",
-                "UNION"
+                "PIANO",
+                "SLAM",
+                "CANYON",
+                "THEFT"
             ],
             "className": "group-blue"
         },
         {
-            "name": "___ STONE",
+            "name": "BEGIN WITH A SILENT LETTER",
             "words": [
-                "KIDNEY",
-                "MILE",
-                "TOUCH",
-                "CORNER"
+                "KNIFE",
+                "GNOME",
+                "WRIST",
+                "HONEST"
             ],
             "className": "group-purple"
         }
