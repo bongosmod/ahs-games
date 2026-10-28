@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-27",
+    "date": "2026-10-28",
     "groups": [
         {
-            "name": "OUTER LAYERS",
+            "name": "TYPES OF BEANS",
             "words": [
-                "BARK",
-                "PEEL",
-                "RIND",
-                "HUSK"
+                "KIDNEY",
+                "LIMA",
+                "PINTO",
+                "RUNNER"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "WORDS FOLLOWING UNDER",
+            "name": "___ BOARD",
             "words": [
-                "GROUND",
-                "STAND",
-                "WORLD",
-                "WEAR"
+                "CHALK",
+                "SURF",
+                "SKATE",
+                "CUTTING"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS FOLLOWING BOARD",
+            "name": "MYTHICAL CREATURES",
             "words": [
-                "DASH",
-                "KEY",
-                "SKATE",
-                "CHESS"
+                "DRAGON",
+                "UNICORN",
+                "PHOENIX",
+                "GRIFFIN"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS WITH A SILENT FIRST LETTER",
+            "name": "THINGS YOU CAN PITCH",
             "words": [
-                "KNIGHT",
-                "WRITE",
-                "GNOME",
-                "PSALM"
+                "TENT",
+                "IDEA",
+                "BASEBALL",
+                "VOICE"
             ],
             "className": "group-purple"
         }
