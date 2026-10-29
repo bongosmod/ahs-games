@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-28",
+    "date": "2026-10-29",
     "groups": [
         {
-            "name": "TYPES OF BEANS",
+            "name": "___ LIGHT",
             "words": [
-                "KIDNEY",
-                "LIMA",
-                "PINTO",
-                "RUNNER"
+                "DAY",
+                "MOON",
+                "SUN",
+                "STAR"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___ BOARD",
+            "name": "DANCE STYLES",
             "words": [
-                "CHALK",
-                "SURF",
-                "SKATE",
-                "CUTTING"
+                "BALLET",
+                "SALSA",
+                "TANGO",
+                "WALTZ"
             ],
             "className": "group-green"
         },
         {
-            "name": "MYTHICAL CREATURES",
+            "name": "KINDS OF BEAN",
             "words": [
-                "DRAGON",
-                "UNICORN",
-                "PHOENIX",
-                "GRIFFIN"
+                "COFFEE",
+                "JELLY",
+                "LIMA",
+                "PINTO"
             ],
             "className": "group-blue"
         },
         {
-            "name": "THINGS YOU CAN PITCH",
+            "name": "___CASE",
             "words": [
-                "TENT",
-                "IDEA",
-                "BASEBALL",
-                "VOICE"
+                "BOOK",
+                "BRIEF",
+                "SHOW",
+                "SUIT"
             ],
             "className": "group-purple"
         }
