@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "groups": [
         {
-            "name": "___ LIGHT",
+            "name": "BLACK ___",
             "words": [
-                "DAY",
-                "MOON",
-                "SUN",
-                "STAR"
+                "BIRD",
+                "JACK",
+                "MAIL",
+                "SMITH"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "DANCE STYLES",
+            "name": "___BOARD",
             "words": [
-                "BALLET",
-                "SALSA",
-                "TANGO",
-                "WALTZ"
+                "DASH",
+                "KEY",
+                "SKATE",
+                "SURF"
             ],
             "className": "group-green"
         },
         {
-            "name": "KINDS OF BEAN",
+            "name": "GRAND ___",
             "words": [
-                "COFFEE",
-                "JELLY",
-                "LIMA",
-                "PINTO"
+                "CANYON",
+                "PIANO",
+                "SLAM",
+                "THEFT"
             ],
             "className": "group-blue"
         },
         {
-            "name": "___CASE",
+            "name": "___STONE",
             "words": [
-                "BOOK",
-                "BRIEF",
-                "SHOW",
-                "SUIT"
+                "CORNER",
+                "KIDNEY",
+                "MILE",
+                "TOUCH"
             ],
             "className": "group-purple"
         }
