@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-30",
+    "date": "2026-10-31",
     "groups": [
         {
-            "name": "BLACK ___",
+            "name": "SQUASH VARIETIES",
             "words": [
-                "BIRD",
-                "JACK",
-                "MAIL",
-                "SMITH"
+                "ACORN",
+                "BUTTERNUT",
+                "DELICATA",
+                "SPAGHETTI"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___BOARD",
+            "name": "CAN FOLLOW JACK",
             "words": [
-                "DASH",
-                "KEY",
-                "SKATE",
-                "SURF"
+                "FRUIT",
+                "KNIFE",
+                "POT",
+                "RABBIT"
             ],
             "className": "group-green"
         },
         {
-            "name": "GRAND ___",
+            "name": "CAN FOLLOW BLACK",
             "words": [
-                "CANYON",
-                "PIANO",
-                "SLAM",
-                "THEFT"
+                "BERRY",
+                "BIRD",
+                "JACK",
+                "MAIL"
             ],
             "className": "group-blue"
         },
         {
-            "name": "___STONE",
+            "name": "CAN FOLLOW CROSS",
             "words": [
-                "CORNER",
-                "KIDNEY",
-                "MILE",
-                "TOUCH"
+                "BOW",
+                "FIRE",
+                "ROAD",
+                "WORD"
             ],
             "className": "group-purple"
         }
