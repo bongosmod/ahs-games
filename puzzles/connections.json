@@ -1,43 +1,43 @@
 {
-    "date": "2026-10-31",
+    "date": "2026-11-01",
     "groups": [
         {
-            "name": "SQUASH VARIETIES",
+            "name": "Can Precede BOARD",
             "words": [
-                "ACORN",
-                "BUTTERNUT",
-                "DELICATA",
-                "SPAGHETTI"
+                "DASH",
+                "KEY",
+                "SURF",
+                "SKATE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN FOLLOW JACK",
+            "name": "Can Precede BALL",
             "words": [
-                "FRUIT",
-                "KNIFE",
-                "POT",
-                "RABBIT"
+                "EYE",
+                "FIRE",
+                "PIN",
+                "SNOW"
             ],
             "className": "group-green"
         },
         {
-            "name": "CAN FOLLOW BLACK",
+            "name": "Can Follow UNDER",
             "words": [
-                "BERRY",
-                "BIRD",
-                "JACK",
-                "MAIL"
+                "GROUND",
+                "SCORE",
+                "STAND",
+                "WEAR"
             ],
             "className": "group-blue"
         },
         {
-            "name": "CAN FOLLOW CROSS",
+            "name": "Can Follow GOOSE",
             "words": [
-                "BOW",
-                "FIRE",
-                "ROAD",
-                "WORD"
+                "BERRY",
+                "BUMPS",
+                "NECK",
+                "STEP"
             ],
             "className": "group-purple"
         }
