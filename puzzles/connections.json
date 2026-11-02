@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-01",
+    "date": "2026-11-02",
     "groups": [
         {
-            "name": "Can Precede BOARD",
+            "name": "BOARD GAMES",
             "words": [
-                "DASH",
-                "KEY",
-                "SURF",
-                "SKATE"
+                "CLUE",
+                "RISK",
+                "SORRY",
+                "TROUBLE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Can Precede BALL",
+            "name": "CAN FOLLOW SUN",
             "words": [
-                "EYE",
-                "FIRE",
-                "PIN",
-                "SNOW"
+                "FLOWER",
+                "SCREEN",
+                "RISE",
+                "SET"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Follow UNDER",
+            "name": "CAN FOLLOW KEY",
             "words": [
-                "GROUND",
-                "SCORE",
-                "STAND",
-                "WEAR"
+                "BOARD",
+                "STONE",
+                "NOTE",
+                "HOLE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Can Follow GOOSE",
+            "name": "CAN FOLLOW COPY",
             "words": [
-                "BERRY",
-                "BUMPS",
-                "NECK",
-                "STEP"
+                "CAT",
+                "RIGHT",
+                "BOOK",
+                "WRITER"
             ],
             "className": "group-purple"
         }
