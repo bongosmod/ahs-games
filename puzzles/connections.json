@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-02",
+    "date": "2026-11-03",
     "groups": [
         {
-            "name": "BOARD GAMES",
+            "name": "___ BOARD",
             "words": [
-                "CLUE",
-                "RISK",
-                "SORRY",
-                "TROUBLE"
+                "CHALK",
+                "DASH",
+                "KEY",
+                "SKATE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN FOLLOW SUN",
+            "name": "___ BEAN",
             "words": [
-                "FLOWER",
-                "SCREEN",
-                "RISE",
-                "SET"
+                "COFFEE",
+                "JELLY",
+                "KIDNEY",
+                "LIMA"
             ],
             "className": "group-green"
         },
         {
-            "name": "CAN FOLLOW KEY",
+            "name": "FIRE ___",
             "words": [
-                "BOARD",
-                "STONE",
-                "NOTE",
-                "HOLE"
+                "ALARM",
+                "ANT",
+                "FLY",
+                "PLACE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "CAN FOLLOW COPY",
+            "name": "___ STONE",
             "words": [
-                "CAT",
-                "RIGHT",
-                "BOOK",
-                "WRITER"
+                "COBBLE",
+                "FLAG",
+                "GEM",
+                "HAIL"
             ],
             "className": "group-purple"
         }
