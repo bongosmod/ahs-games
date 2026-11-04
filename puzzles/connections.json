@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-03",
+    "date": "2026-11-04",
     "groups": [
         {
-            "name": "___ BOARD",
+            "name": "SNOW ___",
             "words": [
-                "CHALK",
-                "DASH",
-                "KEY",
-                "SKATE"
+                "BALL",
+                "CONE",
+                "GLOBE",
+                "MAN"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___ BEAN",
+            "name": "___ BOARD",
             "words": [
-                "COFFEE",
-                "JELLY",
-                "KIDNEY",
-                "LIMA"
+                "KEY",
+                "SCORE",
+                "SKATE",
+                "SURF"
             ],
             "className": "group-green"
         },
         {
             "name": "FIRE ___",
             "words": [
-                "ALARM",
-                "ANT",
                 "FLY",
-                "PLACE"
+                "PLACE",
+                "WALL",
+                "WORK"
             ],
             "className": "group-blue"
         },
         {
-            "name": "___ STONE",
+            "name": "___ HOUSE",
             "words": [
-                "COBBLE",
-                "FLAG",
-                "GEM",
-                "HAIL"
+                "CLUB",
+                "DREAM",
+                "POWER",
+                "TREE"
             ],
             "className": "group-purple"
         }
