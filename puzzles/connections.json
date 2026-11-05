@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-04",
+    "date": "2026-11-05",
     "groups": [
         {
-            "name": "SNOW ___",
+            "name": "WORDS BEFORE BOARD",
             "words": [
-                "BALL",
-                "CONE",
-                "GLOBE",
-                "MAN"
+                "DASH",
+                "MOTHER",
+                "SCORE",
+                "SKATE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___ BOARD",
+            "name": "WORDS BEFORE HOUSE",
             "words": [
-                "KEY",
-                "SCORE",
-                "SKATE",
-                "SURF"
+                "LIGHT",
+                "GREEN",
+                "COURT",
+                "CLUB"
             ],
             "className": "group-green"
         },
         {
-            "name": "FIRE ___",
+            "name": "THINGS THAT CAN FOLLOW CRACK",
             "words": [
-                "FLY",
-                "PLACE",
-                "WALL",
-                "WORK"
+                "CODE",
+                "JOKE",
+                "EGG",
+                "WHIP"
             ],
             "className": "group-blue"
         },
         {
-            "name": "___ HOUSE",
+            "name": "WORDS AFTER GRAND",
             "words": [
-                "CLUB",
-                "DREAM",
-                "POWER",
-                "TREE"
+                "CANYON",
+                "PIANO",
+                "SLAM",
+                "PRIX"
             ],
             "className": "group-purple"
         }
