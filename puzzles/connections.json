@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-05",
+    "date": "2026-11-06",
     "groups": [
         {
-            "name": "WORDS BEFORE BOARD",
+            "name": "TOOLBOX ESSENTIALS",
             "words": [
-                "DASH",
-                "MOTHER",
-                "SCORE",
-                "SKATE"
+                "HAMMER",
+                "LEVEL",
+                "WRENCH",
+                "PLIERS"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "WORDS BEFORE HOUSE",
+            "name": "WORDS THAT FOLLOW FIRE",
             "words": [
-                "LIGHT",
-                "GREEN",
-                "COURT",
-                "CLUB"
+                "ALARM",
+                "DRILL",
+                "FLY",
+                "PLACE"
             ],
             "className": "group-green"
         },
         {
-            "name": "THINGS THAT CAN FOLLOW CRACK",
+            "name": "WORDS THAT FOLLOW BOARD",
             "words": [
-                "CODE",
-                "JOKE",
-                "EGG",
-                "WHIP"
+                "DASH",
+                "CLIP",
+                "MOTHER",
+                "SKATE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS AFTER GRAND",
+            "name": "SILENT FIRST LETTERS",
             "words": [
-                "CANYON",
-                "PIANO",
-                "SLAM",
-                "PRIX"
+                "KNEE",
+                "KNOW",
+                "WRITE",
+                "GNOME"
             ],
             "className": "group-purple"
         }
