@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-06",
+    "date": "2026-11-07",
     "groups": [
         {
-            "name": "TOOLBOX ESSENTIALS",
+            "name": "Can Follow BLACK",
             "words": [
-                "HAMMER",
-                "LEVEL",
-                "WRENCH",
-                "PLIERS"
+                "BERRY",
+                "BOARD",
+                "BIRD",
+                "JACK"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "WORDS THAT FOLLOW FIRE",
+            "name": "Blackjack Moves",
             "words": [
-                "ALARM",
-                "DRILL",
-                "FLY",
-                "PLACE"
+                "HIT",
+                "STAND",
+                "SPLIT",
+                "DOUBLE"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS THAT FOLLOW BOARD",
+            "name": "Can Follow GRAND",
             "words": [
-                "DASH",
-                "CLIP",
-                "MOTHER",
-                "SKATE"
+                "CANYON",
+                "PIANO",
+                "SLAM",
+                "THEFT"
             ],
             "className": "group-blue"
         },
         {
-            "name": "SILENT FIRST LETTERS",
+            "name": "Muppet Names",
             "words": [
-                "KNEE",
-                "KNOW",
-                "WRITE",
-                "GNOME"
+                "KERMIT",
+                "GONZO",
+                "FOZZIE",
+                "ANIMAL"
             ],
             "className": "group-purple"
         }
