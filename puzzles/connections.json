@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-07",
+    "date": "2026-11-08",
     "groups": [
         {
-            "name": "Can Follow BLACK",
+            "name": "Words Before FISH",
             "words": [
-                "BERRY",
-                "BOARD",
-                "BIRD",
-                "JACK"
+                "JELLY",
+                "CLOWN",
+                "SWORD",
+                "PUFFER"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Blackjack Moves",
+            "name": "Words Before BOARD",
             "words": [
-                "HIT",
-                "STAND",
-                "SPLIT",
-                "DOUBLE"
+                "DASH",
+                "SNOW",
+                "SPRING",
+                "DIVING"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Follow GRAND",
+            "name": "Words Before CARD",
             "words": [
-                "CANYON",
-                "PIANO",
-                "SLAM",
-                "THEFT"
+                "CREDIT",
+                "GREETING",
+                "PUNCH",
+                "INDEX"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Muppet Names",
+            "name": "Become a New Word When the First Letter Is Removed",
             "words": [
-                "KERMIT",
-                "GONZO",
-                "FOZZIE",
-                "ANIMAL"
+                "PLANE",
+                "SMILE",
+                "CHAIR",
+                "CLOUD"
             ],
             "className": "group-purple"
         }
