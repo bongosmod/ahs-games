@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-08",
+    "date": "2026-11-09",
     "groups": [
         {
-            "name": "Words Before FISH",
+            "name": "FISH",
             "words": [
-                "JELLY",
-                "CLOWN",
-                "SWORD",
-                "PUFFER"
+                "COD",
+                "EEL",
+                "PIKE",
+                "SOLE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Words Before BOARD",
+            "name": "ROLES IN PUBLISHING",
             "words": [
-                "DASH",
-                "SNOW",
-                "SPRING",
-                "DIVING"
+                "AUTHOR",
+                "EDITOR",
+                "ILLUSTRATOR",
+                "PUBLISHER"
             ],
             "className": "group-green"
         },
         {
-            "name": "Words Before CARD",
+            "name": "BASKETBALL POSITION PREFIXES",
             "words": [
-                "CREDIT",
-                "GREETING",
-                "PUNCH",
-                "INDEX"
+                "POINT",
+                "SHOOTING",
+                "SMALL",
+                "POWER"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Become a New Word When the First Letter Is Removed",
+            "name": "WORDS FOLLOWING GRAND",
             "words": [
-                "PLANE",
-                "SMILE",
-                "CHAIR",
-                "CLOUD"
+                "CANYON",
+                "JURY",
+                "PIANO",
+                "SLAM"
             ],
             "className": "group-purple"
         }
