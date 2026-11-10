@@ -1,38 +1,38 @@
 {
-    "date": "2026-11-09",
+    "date": "2026-11-10",
     "groups": [
         {
-            "name": "FISH",
+            "name": "CAKE VARIETIES",
             "words": [
-                "COD",
-                "EEL",
-                "PIKE",
-                "SOLE"
+                "ANGEL",
+                "CHIFFON",
+                "POUND",
+                "SPONGE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "ROLES IN PUBLISHING",
+            "name": "BASEBALL TERMS",
             "words": [
-                "AUTHOR",
-                "EDITOR",
-                "ILLUSTRATOR",
-                "PUBLISHER"
+                "BAT",
+                "DIAMOND",
+                "PITCHER",
+                "STEAL"
             ],
             "className": "group-green"
         },
         {
-            "name": "BASKETBALL POSITION PREFIXES",
+            "name": "___BOARD",
             "words": [
-                "POINT",
-                "SHOOTING",
-                "SMALL",
-                "POWER"
+                "DASH",
+                "KEY",
+                "SKATE",
+                "SURF"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS FOLLOWING GRAND",
+            "name": "GRAND ___",
             "words": [
                 "CANYON",
                 "JURY",
