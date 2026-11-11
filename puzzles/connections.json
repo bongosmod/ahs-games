@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-10",
+    "date": "2026-11-11",
     "groups": [
         {
-            "name": "CAKE VARIETIES",
+            "name": "CAN BE CRACKED",
             "words": [
-                "ANGEL",
-                "CHIFFON",
-                "POUND",
-                "SPONGE"
+                "CODE",
+                "EGG",
+                "JOKE",
+                "WHIP"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "BASEBALL TERMS",
+            "name": "TYPES OF HEADWEAR",
             "words": [
-                "BAT",
-                "DIAMOND",
-                "PITCHER",
-                "STEAL"
+                "BERET",
+                "BOWLER",
+                "FEDORA",
+                "VISOR"
             ],
             "className": "group-green"
         },
         {
-            "name": "___BOARD",
+            "name": "CAN FOLLOW BALL",
             "words": [
-                "DASH",
-                "KEY",
-                "SKATE",
-                "SURF"
+                "CANNON",
+                "EYE",
+                "MEAT",
+                "SNOW"
             ],
             "className": "group-blue"
         },
         {
-            "name": "GRAND ___",
+            "name": "CAN FOLLOW GRAND",
             "words": [
-                "CANYON",
-                "JURY",
                 "PIANO",
-                "SLAM"
+                "SLAM",
+                "STAND",
+                "THEFT"
             ],
             "className": "group-purple"
         }
