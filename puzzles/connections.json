@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-11",
+    "date": "2026-11-12",
     "groups": [
         {
-            "name": "CAN BE CRACKED",
+            "name": "___ CRACKER",
             "words": [
-                "CODE",
-                "EGG",
-                "JOKE",
-                "WHIP"
+                "ANIMAL",
+                "GRAHAM",
+                "OYSTER",
+                "SALTINE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "TYPES OF HEADWEAR",
+            "name": "FIRE ___",
             "words": [
-                "BERET",
-                "BOWLER",
-                "FEDORA",
-                "VISOR"
+                "ALARM",
+                "DRILL",
+                "PLACE",
+                "WORK"
             ],
             "className": "group-green"
         },
         {
-            "name": "CAN FOLLOW BALL",
+            "name": "MONOPOLY BOARD SPACES",
             "words": [
-                "CANNON",
-                "EYE",
-                "MEAT",
-                "SNOW"
+                "CHANCE",
+                "JAIL",
+                "PARKING",
+                "RAILROAD"
             ],
             "className": "group-blue"
         },
         {
-            "name": "CAN FOLLOW GRAND",
+            "name": "BECOME ANOTHER WORD WHEN THE FIRST LETTER IS REMOVED",
             "words": [
-                "PIANO",
-                "SLAM",
-                "STAND",
-                "THEFT"
+                "BREAD",
+                "BRIDE",
+                "PLANE",
+                "STARE"
             ],
             "className": "group-purple"
         }
