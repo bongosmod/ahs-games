@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-12",
+    "date": "2026-11-13",
     "groups": [
         {
-            "name": "___ CRACKER",
+            "name": "EGG PREPARATIONS",
             "words": [
-                "ANIMAL",
-                "GRAHAM",
-                "OYSTER",
-                "SALTINE"
+                "FRIED",
+                "POACHED",
+                "SCRAMBLED",
+                "DEVILED"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "FIRE ___",
+            "name": "DANCES",
             "words": [
-                "ALARM",
-                "DRILL",
-                "PLACE",
-                "WORK"
+                "BREAK",
+                "SALSA",
+                "SWING",
+                "TANGO"
             ],
             "className": "group-green"
         },
         {
-            "name": "MONOPOLY BOARD SPACES",
+            "name": "WORDS THAT CAN PRECEDE HOUSE",
             "words": [
-                "CHANCE",
-                "JAIL",
-                "PARKING",
-                "RAILROAD"
+                "COURT",
+                "GREEN",
+                "LIGHT",
+                "WARE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "BECOME ANOTHER WORD WHEN THE FIRST LETTER IS REMOVED",
+            "name": "WORDS THAT FOLLOW UNDER",
             "words": [
-                "BREAD",
-                "BRIDE",
-                "PLANE",
-                "STARE"
+                "GROUND",
+                "STAND",
+                "SCORE",
+                "WEAR"
             ],
             "className": "group-purple"
         }
