@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "groups": [
         {
-            "name": "EGG PREPARATIONS",
+            "name": "PLAYGROUND EQUIPMENT",
             "words": [
-                "FRIED",
-                "POACHED",
-                "SCRAMBLED",
-                "DEVILED"
+                "SWING",
+                "SLIDE",
+                "SEESAW",
+                "SANDBOX"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "DANCES",
+            "name": "CAN PRECEDE \u201cBOARD\u201d",
             "words": [
-                "BREAK",
-                "SALSA",
-                "SWING",
-                "TANGO"
+                "KEY",
+                "DASH",
+                "SKATE",
+                "CUP"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS THAT CAN PRECEDE HOUSE",
+            "name": "BASEBALL TERMS",
             "words": [
-                "COURT",
-                "GREEN",
-                "LIGHT",
-                "WARE"
+                "BAT",
+                "GLOVE",
+                "STEAL",
+                "DIAMOND"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS THAT FOLLOW UNDER",
+            "name": "WORDS WITH SILENT LETTERS",
             "words": [
-                "GROUND",
-                "STAND",
-                "SCORE",
-                "WEAR"
+                "KNIFE",
+                "PSALM",
+                "DEBT",
+                "ISLAND"
             ],
             "className": "group-purple"
         }
