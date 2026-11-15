@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-14",
+    "date": "2026-11-15",
     "groups": [
         {
-            "name": "PLAYGROUND EQUIPMENT",
+            "name": "Can Follow PAPER",
             "words": [
-                "SWING",
-                "SLIDE",
-                "SEESAW",
-                "SANDBOX"
+                "CLIP",
+                "PLANE",
+                "TIGER",
+                "TOWEL"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN PRECEDE \u201cBOARD\u201d",
+            "name": "Keyboard Keys",
             "words": [
-                "KEY",
-                "DASH",
-                "SKATE",
-                "CUP"
+                "ENTER",
+                "SHIFT",
+                "ESCAPE",
+                "TAB"
             ],
             "className": "group-green"
         },
         {
-            "name": "BASEBALL TERMS",
+            "name": "Can Precede BALL",
             "words": [
-                "BAT",
-                "GLOVE",
-                "STEAL",
-                "DIAMOND"
+                "CANNON",
+                "CRYSTAL",
+                "MEAT",
+                "PIN"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS WITH SILENT LETTERS",
+            "name": "Can Precede CASE",
             "words": [
-                "KNIFE",
-                "PSALM",
-                "DEBT",
-                "ISLAND"
+                "LOWER",
+                "UPPER",
+                "SUIT",
+                "SHOW"
             ],
             "className": "group-purple"
         }
