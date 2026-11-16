@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-15",
+    "date": "2026-11-16",
     "groups": [
         {
-            "name": "Can Follow PAPER",
+            "name": "DANCE STYLES",
             "words": [
-                "CLIP",
-                "PLANE",
-                "TIGER",
-                "TOWEL"
+                "TANGO",
+                "SALSA",
+                "WALTZ",
+                "FOXTROT"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Keyboard Keys",
+            "name": "___HOUSE",
             "words": [
-                "ENTER",
-                "SHIFT",
-                "ESCAPE",
-                "TAB"
+                "LIGHT",
+                "GREEN",
+                "WARE",
+                "OUT"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Precede BALL",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "CANNON",
-                "CRYSTAL",
-                "MEAT",
-                "PIN"
+                "KNIGHT",
+                "PSALM",
+                "GNOME",
+                "WRIST"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Can Precede CASE",
+            "name": "BECOME A NEW WORD WHEN THEIR FIRST LETTER IS REMOVED",
             "words": [
-                "LOWER",
-                "UPPER",
-                "SUIT",
-                "SHOW"
+                "PLANE",
+                "STONE",
+                "WHEAT",
+                "BRACE"
             ],
             "className": "group-purple"
         }
