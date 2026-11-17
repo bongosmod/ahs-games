@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-16",
+    "date": "2026-11-17",
     "groups": [
         {
-            "name": "DANCE STYLES",
+            "name": "Can Precede BOARD",
             "words": [
-                "TANGO",
-                "SALSA",
-                "WALTZ",
-                "FOXTROT"
+                "DASH",
+                "KEY",
+                "SCORE",
+                "SKATE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___HOUSE",
+            "name": "Can Follow ROCK",
             "words": [
-                "LIGHT",
-                "GREEN",
-                "WARE",
-                "OUT"
+                "BAND",
+                "BOTTOM",
+                "CANDY",
+                "LOBSTER"
             ],
             "className": "group-green"
         },
         {
-            "name": "WORDS WITH A SILENT FIRST LETTER",
+            "name": "Can Precede HOUSE",
             "words": [
-                "KNIGHT",
-                "PSALM",
-                "GNOME",
-                "WRIST"
+                "FULL",
+                "GREEN",
+                "POWER",
+                "WARE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "BECOME A NEW WORD WHEN THEIR FIRST LETTER IS REMOVED",
+            "name": "Silent First Letter",
             "words": [
-                "PLANE",
-                "STONE",
-                "WHEAT",
-                "BRACE"
+                "GNOME",
+                "KNIFE",
+                "PSALM",
+                "WRECK"
             ],
             "className": "group-purple"
         }
