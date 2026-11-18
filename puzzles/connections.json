@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "groups": [
         {
-            "name": "Can Precede BOARD",
+            "name": "KINDS OF BREAD",
             "words": [
-                "DASH",
-                "KEY",
-                "SCORE",
-                "SKATE"
+                "BAGEL",
+                "BRIOCHE",
+                "CIABATTA",
+                "RYE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Can Follow ROCK",
+            "name": "___ BALL",
             "words": [
-                "BAND",
-                "BOTTOM",
-                "CANDY",
-                "LOBSTER"
+                "BASKET",
+                "CRYSTAL",
+                "FIRE",
+                "FOOT"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Precede HOUSE",
+            "name": "DANCE STYLES",
             "words": [
-                "FULL",
-                "GREEN",
-                "POWER",
-                "WARE"
+                "SALSA",
+                "SWING",
+                "TANGO",
+                "TAP"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Silent First Letter",
+            "name": "WORDS FOLLOWING BRAIN",
             "words": [
-                "GNOME",
-                "KNIFE",
-                "PSALM",
-                "WRECK"
+                "FREEZE",
+                "STORM",
+                "TEASER",
+                "TRUST"
             ],
             "className": "group-purple"
         }
