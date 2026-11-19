@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-18",
+    "date": "2026-11-19",
     "groups": [
         {
-            "name": "KINDS OF BREAD",
+            "name": "WORDS BEFORE BOARD",
             "words": [
-                "BAGEL",
-                "BRIOCHE",
-                "CIABATTA",
-                "RYE"
+                "CHESS",
+                "SKATE",
+                "SURF",
+                "OUIJA"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___ BALL",
+            "name": "WORDS BEFORE HOUSE",
             "words": [
-                "BASKET",
-                "CRYSTAL",
-                "FIRE",
-                "FOOT"
+                "FULL",
+                "HAUNTED",
+                "OPEN",
+                "GREEN"
             ],
             "className": "group-green"
         },
         {
-            "name": "DANCE STYLES",
+            "name": "STRING INSTRUMENTS",
             "words": [
-                "SALSA",
-                "SWING",
-                "TANGO",
-                "TAP"
+                "HARP",
+                "CELLO",
+                "VIOLIN",
+                "BANJO"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS FOLLOWING BRAIN",
+            "name": "WORDS BEFORE BERRY",
             "words": [
-                "FREEZE",
-                "STORM",
-                "TEASER",
-                "TRUST"
+                "STRAW",
+                "BLUE",
+                "BLACK",
+                "GOOSE"
             ],
             "className": "group-purple"
         }
