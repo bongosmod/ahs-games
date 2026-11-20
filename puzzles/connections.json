@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-19",
+    "date": "2026-11-20",
     "groups": [
         {
-            "name": "WORDS BEFORE BOARD",
+            "name": "Can Precede BOARD",
             "words": [
-                "CHESS",
+                "DASH",
+                "IRONING",
                 "SKATE",
-                "SURF",
-                "OUIJA"
+                "SURF"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "WORDS BEFORE HOUSE",
+            "name": "Can Precede COAT",
             "words": [
-                "FULL",
-                "HAUNTED",
-                "OPEN",
-                "GREEN"
+                "LAB",
+                "SPORT",
+                "TOP",
+                "WINTER"
             ],
             "className": "group-green"
         },
         {
-            "name": "STRING INSTRUMENTS",
+            "name": "Can Follow DRAFT",
             "words": [
-                "HARP",
-                "CELLO",
-                "VIOLIN",
-                "BANJO"
+                "BEER",
+                "DODGER",
+                "MILITARY",
+                "ROUGH"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS BEFORE BERRY",
+            "name": "Font Families",
             "words": [
-                "STRAW",
-                "BLUE",
-                "BLACK",
-                "GOOSE"
+                "ARIAL",
+                "COURIER",
+                "GEORGIA",
+                "IMPACT"
             ],
             "className": "group-purple"
         }
