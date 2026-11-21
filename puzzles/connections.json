@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-20",
+    "date": "2026-11-21",
     "groups": [
         {
-            "name": "Can Precede BOARD",
+            "name": "THINGS YOU CAN CRACK",
             "words": [
-                "DASH",
-                "IRONING",
-                "SKATE",
-                "SURF"
+                "CODE",
+                "EGG",
+                "JOKE",
+                "SAFE"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "Can Precede COAT",
+            "name": "CAN FOLLOW HIGH",
             "words": [
-                "LAB",
-                "SPORT",
-                "TOP",
-                "WINTER"
+                "CHAIR",
+                "NOON",
+                "ROAD",
+                "TIDE"
             ],
             "className": "group-green"
         },
         {
-            "name": "Can Follow DRAFT",
+            "name": "___ BOARD",
             "words": [
-                "BEER",
-                "DODGER",
-                "MILITARY",
-                "ROUGH"
+                "BULLETIN",
+                "CHESS",
+                "SKATE",
+                "SURF"
             ],
             "className": "group-blue"
         },
         {
-            "name": "Font Families",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "ARIAL",
-                "COURIER",
-                "GEORGIA",
-                "IMPACT"
+                "HONEST",
+                "KNIFE",
+                "PSALM",
+                "WRIST"
             ],
             "className": "group-purple"
         }
