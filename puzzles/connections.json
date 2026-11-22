@@ -1,8 +1,8 @@
 {
-    "date": "2026-11-21",
+    "date": "2026-11-22",
     "groups": [
         {
-            "name": "THINGS YOU CAN CRACK",
+            "name": "CAN BE CRACKED",
             "words": [
                 "CODE",
                 "EGG",
@@ -12,32 +12,32 @@
             "className": "group-yellow"
         },
         {
-            "name": "CAN FOLLOW HIGH",
+            "name": "___BOARD",
             "words": [
-                "CHAIR",
-                "NOON",
-                "ROAD",
-                "TIDE"
+                "DASH",
+                "KEY",
+                "SKATE",
+                "SURF"
             ],
             "className": "group-green"
         },
         {
-            "name": "___ BOARD",
+            "name": "___MATE",
             "words": [
-                "BULLETIN",
-                "CHESS",
-                "SKATE",
-                "SURF"
+                "CLASS",
+                "ROOM",
+                "TEAM",
+                "SHIP"
             ],
             "className": "group-blue"
         },
         {
-            "name": "WORDS WITH A SILENT FIRST LETTER",
+            "name": "ADD IN- TO MAKE A NEW WORD",
             "words": [
-                "HONEST",
-                "KNIFE",
-                "PSALM",
-                "WRIST"
+                "SIDE",
+                "SIGHT",
+                "PUT",
+                "COME"
             ],
             "className": "group-purple"
         }
