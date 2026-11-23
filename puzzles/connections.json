@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-22",
+    "date": "2026-11-23",
     "groups": [
         {
-            "name": "CAN BE CRACKED",
+            "name": "PASTA TYPES",
             "words": [
-                "CODE",
-                "EGG",
-                "JOKE",
-                "SAFE"
+                "PENNE",
+                "FUSILLI",
+                "RIGATONI",
+                "LASAGNA"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "___BOARD",
+            "name": "CAN FOLLOW FIRE",
             "words": [
-                "DASH",
-                "KEY",
-                "SKATE",
-                "SURF"
+                "FLY",
+                "ALARM",
+                "DRILL",
+                "WORKS"
             ],
             "className": "group-green"
         },
         {
-            "name": "___MATE",
+            "name": "___BERRY",
             "words": [
-                "CLASS",
-                "ROOM",
-                "TEAM",
-                "SHIP"
+                "BLACK",
+                "BLUE",
+                "STRAW",
+                "GOOSE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "ADD IN- TO MAKE A NEW WORD",
+            "name": "BEGIN WITH A SILENT LETTER",
             "words": [
-                "SIDE",
-                "SIGHT",
-                "PUT",
-                "COME"
+                "KNIFE",
+                "GNOME",
+                "PSALM",
+                "WRIST"
             ],
             "className": "group-purple"
         }
