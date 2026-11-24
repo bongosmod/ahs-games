@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-23",
+    "date": "2026-11-24",
     "groups": [
         {
-            "name": "PASTA TYPES",
+            "name": "DANCES",
             "words": [
-                "PENNE",
-                "FUSILLI",
-                "RIGATONI",
-                "LASAGNA"
+                "BALLET",
+                "SALSA",
+                "TANGO",
+                "WALTZ"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN FOLLOW FIRE",
+            "name": "CAN FOLLOW BREAK",
             "words": [
-                "FLY",
-                "ALARM",
-                "DRILL",
-                "WORKS"
+                "BANK",
+                "PROMISE",
+                "RECORD",
+                "SILENCE"
             ],
             "className": "group-green"
         },
         {
-            "name": "___BERRY",
+            "name": "___ BALL",
             "words": [
-                "BLACK",
-                "BLUE",
-                "STRAW",
-                "GOOSE"
+                "CANNON",
+                "EYE",
+                "MEAT",
+                "SNOW"
             ],
             "className": "group-blue"
         },
         {
-            "name": "BEGIN WITH A SILENT LETTER",
+            "name": "TYPEFACES",
             "words": [
-                "KNIFE",
-                "GNOME",
-                "PSALM",
-                "WRIST"
+                "ARIAL",
+                "COURIER",
+                "GEORGIA",
+                "IMPACT"
             ],
             "className": "group-purple"
         }
