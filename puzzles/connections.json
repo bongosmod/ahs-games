@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-24",
+    "date": "2026-11-25",
     "groups": [
         {
-            "name": "DANCES",
+            "name": "CAN FOLLOW \"RAIN\"",
             "words": [
-                "BALLET",
-                "SALSA",
-                "TANGO",
-                "WALTZ"
+                "BOW",
+                "COAT",
+                "CHECK",
+                "FOREST"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN FOLLOW BREAK",
+            "name": "CAN PRECEDE \"HOUSE\"",
             "words": [
-                "BANK",
-                "PROMISE",
-                "RECORD",
-                "SILENCE"
+                "GREEN",
+                "FULL",
+                "POWER",
+                "STEAK"
             ],
             "className": "group-green"
         },
         {
-            "name": "___ BALL",
+            "name": "CAN FOLLOW \"UNDER\"",
             "words": [
-                "CANNON",
-                "EYE",
-                "MEAT",
-                "SNOW"
+                "GROUND",
+                "STUDY",
+                "SCORE",
+                "LINE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "TYPEFACES",
+            "name": "BEGIN WITH A SILENT LETTER",
             "words": [
-                "ARIAL",
-                "COURIER",
-                "GEORGIA",
-                "IMPACT"
+                "KNIFE",
+                "WRITE",
+                "PSALM",
+                "GNOME"
             ],
             "className": "group-purple"
         }
