@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-25",
+    "date": "2026-11-26",
     "groups": [
         {
-            "name": "CAN FOLLOW \"RAIN\"",
+            "name": "THANKSGIVING TABLE STAPLES",
             "words": [
-                "BOW",
-                "COAT",
-                "CHECK",
-                "FOREST"
+                "TURKEY",
+                "GRAVY",
+                "STUFFING",
+                "CRANBERRY"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "CAN PRECEDE \"HOUSE\"",
+            "name": "___BOARD COMPOUNDS",
             "words": [
-                "GREEN",
-                "FULL",
-                "POWER",
-                "STEAK"
+                "DASH",
+                "KEY",
+                "SCORE",
+                "SURF"
             ],
             "className": "group-green"
         },
         {
-            "name": "CAN FOLLOW \"UNDER\"",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "GROUND",
-                "STUDY",
-                "SCORE",
-                "LINE"
+                "KNIGHT",
+                "KNOT",
+                "PSYCHIC",
+                "WRECK"
             ],
             "className": "group-blue"
         },
         {
-            "name": "BEGIN WITH A SILENT LETTER",
+            "name": "MEANINGS OF PITCH",
             "words": [
-                "KNIFE",
-                "WRITE",
-                "PSALM",
-                "GNOME"
+                "ROOF",
+                "SALES",
+                "BASEBALL",
+                "MUSICAL"
             ],
             "className": "group-purple"
         }
