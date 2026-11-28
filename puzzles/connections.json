@@ -1,43 +1,43 @@
 {
-    "date": "2026-11-27",
+    "date": "2026-11-28",
     "groups": [
         {
-            "name": "___ FISH",
+            "name": "CORDS AND STRINGS",
             "words": [
-                "STAR",
-                "JELLY",
-                "SWORD",
-                "CLOWN"
+                "LACE",
+                "ROPE",
+                "TWINE",
+                "YARN"
             ],
             "className": "group-yellow"
         },
         {
-            "name": "WORDS THAT FOLLOW \"OVER\"",
+            "name": "___BOARD COMPOUNDS",
             "words": [
-                "BOARD",
-                "NIGHT",
-                "HEAD",
-                "TIME"
+                "DASH",
+                "KEY",
+                "STORY",
+                "SURF"
             ],
             "className": "group-green"
         },
         {
-            "name": "___ HOUSE",
+            "name": "CAN FOLLOW UNDER___",
             "words": [
-                "GREEN",
-                "LIGHT",
-                "POWER",
-                "FULL"
+                "CUT",
+                "LINE",
+                "SCORE",
+                "TAKE"
             ],
             "className": "group-blue"
         },
         {
-            "name": "THINGS YOU CAN \"SHOOT\"",
+            "name": "WORDS WITH A SILENT FIRST LETTER",
             "words": [
-                "HOOPS",
-                "POOL",
-                "FILM",
-                "BREEZE"
+                "GNOME",
+                "KNIGHT",
+                "WRITE",
+                "WRIST"
             ],
             "className": "group-purple"
         }
